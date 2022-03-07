@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package Paquete;
 
 /**
@@ -10,17 +7,19 @@ package Paquete;
  */
 public class GestorFiltros {
     
-    Filtro filtros [];
+    CadenaFiltros filtros;
     ObjetoSalpicadero salpicadero;
     
-    public void crearCadenaFiltros(){
-        
+    public void crearCadenaFiltros( ObjetoSalpicadero salpi){
+        filtros = new CadenaFiltros();
+        salpicadero = salpi;
     };
-    public void añadirFiltro(Filtro f){};
+    public void añadirFiltro(Filtro f){
+        filtros.añadirCalcularVelocidad();
+        filtros.añadirRepercutirRozamiento();
+    };
     public void peticionFiltros(double revoluciones, EstadoMotor estadoMotor){
-        for(int i = 0; i<filtros.length; i++){
-            revoluciones = filtros[i].ejecutar(revoluciones, estadoMotor);
-        }
+        revoluciones = filtros.aplicarFiltros(revoluciones,estadoMotor);
         salpicadero.ejecutar(revoluciones, estadoMotor);
     };
 }

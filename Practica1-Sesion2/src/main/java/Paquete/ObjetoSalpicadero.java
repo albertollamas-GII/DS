@@ -9,7 +9,9 @@ package Paquete;
  * @author luisg
  */
 public class ObjetoSalpicadero {
-    public double ejecutar(double revoluciones, EstadoMotor estadoMotor){
-        return 0;
+    public void ejecutar(double revoluciones, EstadoMotor estadoMotor){
+        //actualizar las revoluciones en la pantalla
+     
+        //actualizar el estado del motor
     };
 }

@@ -8,6 +8,17 @@ package Paquete;
  *
  * @author luisg
  */
-public class ClienteMotor {
+public class ClienteMotor extends Thread{
     
+    EstadoMotor estado;
+    
+    @Override
+    public void run () {
+        
+        //actualizar estado
+        
+        
+        
+    }
+
 }
