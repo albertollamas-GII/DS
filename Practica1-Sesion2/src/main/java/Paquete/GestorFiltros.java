@@ -12,9 +12,10 @@ public class GestorFiltros {
     
     public void crearCadenaFiltros( ObjetoSalpicadero salpi){
         filtros = new CadenaFiltros();
+        añadirFiltros();
         salpicadero = salpi;
     };
-    public void añadirFiltro(Filtro f){
+    private void añadirFiltros(){
         filtros.añadirCalcularVelocidad();
         filtros.añadirRepercutirRozamiento();
     };

@@ -4,21 +4,43 @@
  */
 package Paquete;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author luisg
  */
 public class ClienteMotor extends Thread{
     
-    EstadoMotor estado;
+    public EstadoMotor estado;
+    private double RPM;
+    public GestorFiltros gestor;
+    private boolean running = false;
+
+    public ClienteMotor() {
+        
+        gestor = new GestorFiltros();
+        
+        
+    }
+    
+    public void kill(){
+        running = false;
+    }
+    
     
     @Override
-    public void run () {
-        
-        //actualizar estado
-        
-        
-        
+    public void run () { 
+        running = true;
+        while(this.running){
+            gestor.peticionFiltros(RPM, estado);
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(ClienteMotor.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 
 }

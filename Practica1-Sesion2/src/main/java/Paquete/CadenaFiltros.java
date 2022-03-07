@@ -10,20 +10,20 @@ package Paquete;
  */
 public class CadenaFiltros {
     
-    FiltroCalcularVelocidad filtroVelocidad;
-    FiltroRepercutirRozamiento filtroRozamiento;
+    private Filtro filtros[];
     
     public void añadirCalcularVelocidad(){
-        filtroVelocidad = new FiltroCalcularVelocidad();
+        filtros[filtros.length] = new FiltroCalcularVelocidad();
     };
     
     public void añadirRepercutirRozamiento(){
-        filtroRozamiento = new FiltroRepercutirRozamiento();
+        filtros[filtros.length] = new FiltroRepercutirRozamiento();
     };
     
     public double aplicarFiltros(double revoluciones, EstadoMotor estadoMotor){
-        revoluciones = filtroVelocidad.ejecutar(revoluciones, estadoMotor);
-        revoluciones = filtroRozamiento.ejecutar(revoluciones, estadoMotor);
+        for(int i = 0; i<filtros.length; i++){
+            filtros[i].ejecutar(revoluciones, estadoMotor);
+        }
         return revoluciones;
     };
 }
