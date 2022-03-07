@@ -5,6 +5,8 @@
 
 package Paquete;
 
+import javax.swing.JFrame;
+
 /**
  *
  * @author luisg
@@ -12,6 +14,7 @@ package Paquete;
 public class Practica1Sesion2 {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        JFrame Pantalla = new JFrame();
+        
     }
 }
