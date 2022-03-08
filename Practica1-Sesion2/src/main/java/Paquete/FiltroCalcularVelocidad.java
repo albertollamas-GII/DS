@@ -15,7 +15,7 @@ public class FiltroCalcularVelocidad implements Filtro{
     @Override
     public double ejecutar(double revoluciones, EstadoMotor estadoMotor) {
         switch (estadoMotor) {
-            case ENCENDIDO:
+            case ACELERANDO:
                 revoluciones += factorVelocidad;
                 if(revoluciones > maximoRevoluciones) revoluciones = maximoRevoluciones;
                 break;

@@ -11,19 +11,32 @@ package Paquete;
 public class CadenaFiltros {
     
     private Filtro filtros[];
+    private int n_filtros;
+    private ObjetoSalpicadero salpicadero;
+
+    public CadenaFiltros(ObjetoSalpicadero salpi) {
+    
+        filtros = new Filtro[2];
+        n_filtros = 0;
+        salpicadero = salpi;
+    }
+    
+    
     
     public void añadirCalcularVelocidad(){
-        filtros[filtros.length] = new FiltroCalcularVelocidad();
+        filtros[n_filtros++] = new FiltroCalcularVelocidad();
     };
     
     public void añadirRepercutirRozamiento(){
-        filtros[filtros.length] = new FiltroRepercutirRozamiento();
+        filtros[n_filtros++] = new FiltroRepercutirRozamiento();
     };
     
     public double aplicarFiltros(double revoluciones, EstadoMotor estadoMotor){
-        for(int i = 0; i<filtros.length; i++){
-            filtros[i].ejecutar(revoluciones, estadoMotor);
+        for(int i = 0; i<n_filtros; i++){
+            revoluciones = filtros[i].ejecutar(revoluciones, estadoMotor);
         }
+        System.out.println("salen : " + revoluciones);
+        salpicadero.ejecutar(revoluciones, estadoMotor);
         return revoluciones;
     };
 }

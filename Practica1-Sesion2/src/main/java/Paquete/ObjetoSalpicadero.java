@@ -109,7 +109,9 @@ public class ObjetoSalpicadero extends javax.swing.JFrame {
             Informacion.setText("Encendido");
             motor.estado = EstadoMotor.ENCENDIDO;
         } else{
+            if(Acelerador.isSelected()) Acelerador.doClick();
             Acelerador.setEnabled(false);
+            if(Freno.isSelected())Freno.doClick();
             Freno.setEnabled(false);
             EncendidoApagado.setText("Encender");
             Informacion.setText("Apagado");
@@ -146,34 +148,15 @@ public class ObjetoSalpicadero extends javax.swing.JFrame {
     }//GEN-LAST:event_FrenoActionPerformed
 
     public void ejecutar(double revoluciones, EstadoMotor estadoMotor){
-        Velocimetro.setText( (2 * PI * 0.15 * revoluciones * (60/1000)) + " KM/H");
+        Velocimetro.setText( (2 * PI * 0.15 * revoluciones * (60f/1000f)) + " KM/H");
+        //Velocimetro.repaint();
     }
     
     public static void aplicarMotor(ClienteMotor mot){
         motor = mot;
     }
     
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        ClienteMotor Motor = new ClienteMotor();
-        ObjetoSalpicadero.aplicarMotor(Motor);
-        
-        
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                ObjetoSalpicadero obj = new ObjetoSalpicadero();
-                obj.setVisible(true);
-                Motor.gestor.crearCadenaFiltros(obj);
-            }
-        });
-        Motor.start();
-        
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton Acelerador;

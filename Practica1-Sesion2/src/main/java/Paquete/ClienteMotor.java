@@ -19,10 +19,11 @@ public class ClienteMotor extends Thread{
     private boolean running = false;
 
     public ClienteMotor() {
-        
-        gestor = new GestorFiltros();
-        
-        
+            estado = EstadoMotor.APAGADO;
+    }
+    
+    public void OfrecerGestor(GestorFiltros gestorf){
+        gestor = gestorf;
     }
     
     public void kill(){
@@ -34,9 +35,10 @@ public class ClienteMotor extends Thread{
     public void run () { 
         running = true;
         while(this.running){
-            gestor.peticionFiltros(RPM, estado);
+            RPM = gestor.peticionFiltros(RPM, estado);
+            
             try {
-                Thread.sleep(100);
+                Thread.sleep(1000);
             } catch (InterruptedException ex) {
                 Logger.getLogger(ClienteMotor.class.getName()).log(Level.SEVERE, null, ex);
             }
