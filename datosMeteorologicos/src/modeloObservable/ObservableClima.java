@@ -5,13 +5,21 @@
  */
 package modeloObservable;
 import java.util.Observable;
+import java.util.Random;
 
 /**
  *
  * @author albertollamasgonzalez
  */
-public class ObservableClima extends Observable {
+public class ObservableClima extends Observable implements Runnable {
     private float temperatura;
+    private Thread miHilo;
+    private static Random rdn = new Random();
+    
+    public ObservableClima(){
+        this.temperatura = (rdn.nextFloat() * 100) % 39;
+        this.miHilo = new Thread("THREAD1");
+    }
     
     public float getTemperatura(){
         return temperatura;
@@ -19,6 +27,25 @@ public class ObservableClima extends Observable {
     
     public void setTemperatura(float temp){
         this.temperatura = temp;
+        this.setChanged();  //Antes del notifyObservers hay que dejar constancia del cambio
+        this.notifyObservers(this.temperatura); // Comunicación push con observadores suscritos
+        System.out.println(this.temperatura);
+    }
+    
+    public void start(){
+        miHilo = new Thread(this);
+        miHilo.start();
+    }
+    @Override
+    public void run() {
+        while (true) {
+            try {
+                miHilo.sleep(3000);
+                this.setTemperatura((rdn.nextFloat() * 100) % 39);
+            } catch (InterruptedException ex) {
+                System.err.println(ex.getMessage());
+            }
+        }
     }
     
 }
