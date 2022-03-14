@@ -4,7 +4,7 @@
 #include "ComponenteEquipo.h"
 
 class Equipo {
-<<<<<<< Updated upstream
+
 
     private:
         ComponenteEquipo * componentes ;
@@ -12,9 +12,6 @@ class Equipo {
     public:
         void algo();
 
-=======
-    
->>>>>>> Stashed changes
 };
 
 #endif

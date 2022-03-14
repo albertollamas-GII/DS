@@ -6,6 +6,7 @@
 
 class Tarjeta : ComponenteEquipo {
     public:
+
         void aceptar(VisitanteEquipo visitante) override;
 };
 

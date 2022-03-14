@@ -11,6 +11,7 @@ class VisitantePrecio : VisitanteEquipo {
 
         void visitarBus(Bus b) override;
 
+
 };
 
 #endif

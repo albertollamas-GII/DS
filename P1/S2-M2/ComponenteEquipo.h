@@ -8,6 +8,7 @@ class ComponenteEquipo {
 
     private:
         string nombre;
+
         float precio;
 
     public:

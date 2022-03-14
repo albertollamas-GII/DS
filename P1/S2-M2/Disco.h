@@ -2,6 +2,7 @@
 #define DISCO_H
 
 class Disco : ComponenteEquipo {
+
 };
 
 #endif

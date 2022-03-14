@@ -10,6 +10,7 @@ class VisitantePrecioDetalle : VisitanteEquipo {
         void visitarTarjeta(Tarjeta t) override;
 
         void visitarBus(Bus b) override;
+
 };
 
 #endif

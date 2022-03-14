@@ -12,6 +12,7 @@ class VisitanteEquipo {
         virtual void visitarTarjeta(Tarjeta t);
 
         virtual void visitarBus(Bus b);
+
 };
 
 #endif
