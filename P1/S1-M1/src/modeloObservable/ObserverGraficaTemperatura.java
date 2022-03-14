@@ -21,7 +21,8 @@ import org.jfree.data.category.DefaultCategoryDataset;
 public class ObserverGraficaTemperatura extends javax.swing.JFrame implements Observer{
     
     private static ArrayList<Float> temperaturas = new ArrayList<>();
-    private int i = 0;
+    private int i = 0, semana = 1;
+    
     JFrame informacion = new JFrame("Grafica");
 
     /**
@@ -49,13 +50,13 @@ public class ObserverGraficaTemperatura extends javax.swing.JFrame implements Ob
     }
     
     public void pintaGrafico(){
-        
-        int semana = 1;
         JFreeChart grafico = null;
         DefaultCategoryDataset datos = new DefaultCategoryDataset();
         int j = 0;
-        if (i > 0)
+        if (i > 0){
             i = i - 6;
+            semana = semana - 6;
+        }
         
         while(j < 7){
             datos.addValue(temperaturas.get(i), "Grafica 1", "Semana " + semana);
