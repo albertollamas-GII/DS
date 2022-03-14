@@ -25,20 +25,48 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Component id="EncendidoApagado" min="-2" pref="97" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="Acelerador" min="-2" pref="205" max="-2" attributes="0"/>
-                  </Group>
-                  <Component id="Informacion" max="32767" attributes="0"/>
-              </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="Freno" pref="98" max="32767" attributes="0"/>
-                  <Component id="Velocimetro" max="32767" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="ContadorRecienteLabel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="ContadorRecienteCampo" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Component id="VelocimetroLabel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="EncendidoApagado" min="-2" pref="97" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="Acelerador" min="-2" pref="205" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="Informacion" min="-2" pref="314" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="Freno" pref="98" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="VelocimetroCampo" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="ContadorTotalLabel" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="ContadorTotalCampo" min="-2" pref="342" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="RevolucionesCampo" min="-2" max="-2" attributes="0"/>
+                          <Component id="CuentaRevolucionesLabel" min="-2" max="-2" attributes="0"/>
+                          <Component id="CuentaKilometrosLabel" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -46,17 +74,34 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="Velocimetro" max="32767" attributes="0"/>
-                  <Component id="Informacion" max="32767" attributes="0"/>
-              </Group>
+              <Component id="Informacion" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="EncendidoApagado" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="Acelerador" alignment="3" max="32767" attributes="0"/>
                   <Component id="Freno" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="Acelerador" alignment="3" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+              <Component id="VelocimetroLabel" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="VelocimetroCampo" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="CuentaKilometrosLabel" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="ContadorRecienteLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="ContadorRecienteCampo" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="ContadorTotalLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="ContadorTotalCampo" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="CuentaRevolucionesLabel" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="RevolucionesCampo" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -91,9 +136,49 @@
         <Property name="text" type="java.lang.String" value="Informacion"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="Velocimetro">
+    <Component class="javax.swing.JLabel" name="VelocimetroCampo">
       <Properties>
-        <Property name="text" type="java.lang.String" value="KM/H"/>
+        <Property name="text" type="java.lang.String" value="0 KM/H"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="VelocimetroLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Velocimetro"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="CuentaKilometrosLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="CuentaKilometros"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="ContadorRecienteCampo">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="0"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="ContadorTotalCampo">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="0"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="CuentaRevolucionesLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="CuentaRevoluciones"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="RevolucionesCampo">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="0 RPM"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="ContadorTotalLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="ContadorTotal"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="ContadorRecienteLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Contador Reciente"/>
       </Properties>
     </Component>
   </SubComponents>

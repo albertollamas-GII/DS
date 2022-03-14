@@ -36,7 +36,15 @@ public class ObjetoSalpicadero extends javax.swing.JFrame {
         Acelerador = new javax.swing.JToggleButton();
         Freno = new javax.swing.JToggleButton();
         Informacion = new javax.swing.JLabel();
-        Velocimetro = new javax.swing.JLabel();
+        VelocimetroCampo = new javax.swing.JLabel();
+        VelocimetroLabel = new javax.swing.JLabel();
+        CuentaKilometrosLabel = new javax.swing.JLabel();
+        ContadorRecienteCampo = new javax.swing.JLabel();
+        ContadorTotalCampo = new javax.swing.JLabel();
+        CuentaRevolucionesLabel = new javax.swing.JLabel();
+        RevolucionesCampo = new javax.swing.JLabel();
+        ContadorTotalLabel = new javax.swing.JLabel();
+        ContadorRecienteLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -63,7 +71,23 @@ public class ObjetoSalpicadero extends javax.swing.JFrame {
 
         Informacion.setText("Informacion");
 
-        Velocimetro.setText("KM/H");
+        VelocimetroCampo.setText("0 KM/H");
+
+        VelocimetroLabel.setText("Velocimetro");
+
+        CuentaKilometrosLabel.setText("CuentaKilometros");
+
+        ContadorRecienteCampo.setText("0");
+
+        ContadorTotalCampo.setText("0");
+
+        CuentaRevolucionesLabel.setText("CuentaRevoluciones");
+
+        RevolucionesCampo.setText("0 RPM");
+
+        ContadorTotalLabel.setText("ContadorTotal");
+
+        ContadorRecienteLabel.setText("Contador Reciente");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -71,31 +95,68 @@ public class ObjetoSalpicadero extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(EncendidoApagado, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(Acelerador, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(Informacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Freno, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
-                    .addComponent(Velocimetro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(24, 24, 24))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(ContadorRecienteLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(ContadorRecienteCampo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(12, 12, 12))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(VelocimetroLabel)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(EncendidoApagado, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(Acelerador, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(Informacion, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(Freno, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
+                        .addGap(24, 24, 24))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(VelocimetroCampo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(ContadorTotalLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(ContadorTotalCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(RevolucionesCampo)
+                            .addComponent(CuentaRevolucionesLabel)
+                            .addComponent(CuentaKilometrosLabel))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(Velocimetro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Informacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(Informacion)
                 .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(EncendidoApagado)
-                    .addComponent(Acelerador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Freno))
-                .addGap(47, 47, 47))
+                    .addComponent(Freno)
+                    .addComponent(Acelerador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(31, 31, 31)
+                .addComponent(VelocimetroLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(VelocimetroCampo)
+                .addGap(18, 18, 18)
+                .addComponent(CuentaKilometrosLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ContadorRecienteLabel)
+                    .addComponent(ContadorRecienteCampo))
+                .addGap(12, 12, 12)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ContadorTotalLabel)
+                    .addComponent(ContadorTotalCampo))
+                .addGap(18, 18, 18)
+                .addComponent(CuentaRevolucionesLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(RevolucionesCampo)
+                .addGap(82, 82, 82))
         );
 
         pack();
@@ -148,7 +209,7 @@ public class ObjetoSalpicadero extends javax.swing.JFrame {
     }//GEN-LAST:event_FrenoActionPerformed
 
     public void ejecutar(double revoluciones, EstadoMotor estadoMotor){
-        Velocimetro.setText( (2 * PI * 0.15 * revoluciones * (60f/1000f)) + " KM/H");
+        VelocimetroCampo.setText( (2 * PI * 0.15 * revoluciones * (60f/1000f)) + " KM/H");
         //Velocimetro.repaint();
     }
     
@@ -160,9 +221,17 @@ public class ObjetoSalpicadero extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton Acelerador;
+    private javax.swing.JLabel ContadorRecienteCampo;
+    private javax.swing.JLabel ContadorRecienteLabel;
+    private javax.swing.JLabel ContadorTotalCampo;
+    private javax.swing.JLabel ContadorTotalLabel;
+    private javax.swing.JLabel CuentaKilometrosLabel;
+    private javax.swing.JLabel CuentaRevolucionesLabel;
     private javax.swing.JToggleButton EncendidoApagado;
     private javax.swing.JToggleButton Freno;
     private javax.swing.JLabel Informacion;
-    private javax.swing.JLabel Velocimetro;
+    private javax.swing.JLabel RevolucionesCampo;
+    private javax.swing.JLabel VelocimetroCampo;
+    private javax.swing.JLabel VelocimetroLabel;
     // End of variables declaration//GEN-END:variables
 }
