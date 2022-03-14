@@ -8,19 +8,29 @@ package modeloObservable;
 import java.util.ArrayList;
 import java.util.Observer;
 import java.util.Observable;
+import javax.swing.JFrame;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
 /**
  *
  * @author albertollamasgonzalez
  */
 public class ObserverGraficaTemperatura extends javax.swing.JFrame implements Observer{
     
-    private static ArrayList<String> temperaturas = new ArrayList<>();
+    private static ArrayList<Float> temperaturas = new ArrayList<>();
+    private int i = 0;
+    JFrame informacion = new JFrame("Grafica");
+
     /**
      * Creates new form ObserverGraficaTemperatura
      */
     public ObserverGraficaTemperatura() {
         initComponents();
-        this.setVisible(true);
+        informacion.setLocation(800, 0);
+        this.setVisible(false);
     }
     
     @Override
@@ -28,10 +38,39 @@ public class ObserverGraficaTemperatura extends javax.swing.JFrame implements Ob
         ObservableClima clima = (ObservableClima) o;
         Float a = (float) arg;
         
-        temperaturas.add(a.toString());
+        temperaturas.add(a);
+        
+        if (temperaturas.size() >= 7){
+            this.pintaGrafico();
+            this.repaint();
+            this.revalidate();
+        }
         
     }
     
+    public void pintaGrafico(){
+        
+        int semana = 1;
+        JFreeChart grafico = null;
+        DefaultCategoryDataset datos = new DefaultCategoryDataset();
+        int j = 0;
+        if (i > 0)
+            i = i - 6;
+        
+        while(j < 7){
+            datos.addValue(temperaturas.get(i), "Grafica 1", "Semana " + semana);
+            semana++;
+            j++;
+            i++;
+        }
+        
+        grafico = ChartFactory.createBarChart("Grafica Temperaturas", "Semana", "Temperatura", datos, PlotOrientation.VERTICAL, true, true, false);
+        
+        ChartPanel cPanel = new ChartPanel(grafico);
+        informacion.getContentPane().add(cPanel);
+        informacion.pack();
+        informacion.setVisible(true);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -42,7 +81,31 @@ public class ObserverGraficaTemperatura extends javax.swing.JFrame implements Ob
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jFrame1 = new javax.swing.JFrame();
+        jFrame2 = new javax.swing.JFrame();
         jLabel1 = new javax.swing.JLabel();
+
+        javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
+        jFrame1.getContentPane().setLayout(jFrame1Layout);
+        jFrame1Layout.setHorizontalGroup(
+            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jFrame1Layout.setVerticalGroup(
+            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jFrame2Layout = new javax.swing.GroupLayout(jFrame2.getContentPane());
+        jFrame2.getContentPane().setLayout(jFrame2Layout);
+        jFrame2Layout.setHorizontalGroup(
+            jFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jFrame2Layout.setVerticalGroup(
+            jFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -53,57 +116,26 @@ public class ObserverGraficaTemperatura extends javax.swing.JFrame implements Ob
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(133, 133, 133)
+                .addGap(290, 290, 290)
                 .addComponent(jLabel1)
-                .addContainerGap(133, Short.MAX_VALUE))
+                .addContainerGap(373, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addContainerGap(278, Short.MAX_VALUE))
+                .addContainerGap(386, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ObserverGraficaTemperatura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ObserverGraficaTemperatura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ObserverGraficaTemperatura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ObserverGraficaTemperatura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ObserverGraficaTemperatura().setVisible(true);
-            }
-        });
-    }
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JFrame jFrame1;
+    private javax.swing.JFrame jFrame2;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

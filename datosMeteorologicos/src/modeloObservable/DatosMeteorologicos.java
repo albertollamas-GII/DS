@@ -21,9 +21,15 @@ public class DatosMeteorologicos {
         
         //Observador 2 (no siscrito comunicacion pull)
         ObserverPantallaTemperatura pantalla = new ObserverPantallaTemperatura(temperatura);
+        ObserverGraficaTemperatura grafica = new ObserverGraficaTemperatura();
+        CambiadorTemperatura cambiador = new CambiadorTemperatura(temperatura);
+
+
         temperatura.start();
         pantalla.start();
-
+        
+        temperatura.addObserver(grafica);
+        temperatura.addObserver(cambiador);
     }
     
 }

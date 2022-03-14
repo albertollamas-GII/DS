@@ -5,6 +5,7 @@
         <group>
             <file>file:/Users/albertollamasgonzalez/Desktop/INFORMATICA/TERCERO/DS/P1/S1/Practicas-DS/datosMeteorologicos/src/modeloObservable/DatosMeteorologicos.java</file>
             <file>file:/Users/albertollamasgonzalez/Desktop/INFORMATICA/TERCERO/DS/P1/S1/Practicas-DS/datosMeteorologicos/src/modeloObservable/ObserverPantallaTemperatura.java</file>
+            <file>file:/Users/albertollamasgonzalez/Desktop/INFORMATICA/TERCERO/DS/P1/S1/Practicas-DS/datosMeteorologicos/src/modeloObservable/CambiadorTemperatura.java</file>
             <file>file:/Users/albertollamasgonzalez/Desktop/INFORMATICA/TERCERO/DS/P1/S1/Practicas-DS/datosMeteorologicos/src/modeloObservable/ObserverGraficaTemperatura.java</file>
             <file>file:/Users/albertollamasgonzalez/Desktop/INFORMATICA/TERCERO/DS/P1/S1/Practicas-DS/datosMeteorologicos/src/modeloObservable/ObservableClima.java</file>
         </group>

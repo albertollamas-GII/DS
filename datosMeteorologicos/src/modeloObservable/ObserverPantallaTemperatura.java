@@ -24,6 +24,7 @@ public class ObserverPantallaTemperatura extends javax.swing.JFrame implements O
         this.temperatura = t;
         this.LabelCelsius.setText("");
         this.LabelFahrenheit.setText("");
+        this.pack();
         this.setVisible(true);
     }
 
@@ -36,11 +37,12 @@ public class ObserverPantallaTemperatura extends javax.swing.JFrame implements O
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         LabelTitulo = new javax.swing.JLabel();
-        LabelCelsius = new javax.swing.JLabel();
-        LabelFahrenheit = new javax.swing.JLabel();
         tituloCelsius = new javax.swing.JLabel();
         tituloFahrenheit = new javax.swing.JLabel();
+        LabelCelsius = new javax.swing.JLabel();
+        LabelFahrenheit = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -48,47 +50,66 @@ public class ObserverPantallaTemperatura extends javax.swing.JFrame implements O
         LabelTitulo.setText("Temperatura Actual:");
         LabelTitulo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        tituloCelsius.setText("Celsius:");
+
+        tituloFahrenheit.setText("Fahrenheit:");
+
         LabelCelsius.setText("LabelCelsius");
 
         LabelFahrenheit.setText("LabelFahrenheit");
 
-        tituloCelsius.setText("Celsius:");
-
-        tituloFahrenheit.setText("Fahrenheit:");
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(LabelTitulo))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(41, 41, 41)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(tituloFahrenheit)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 261, Short.MAX_VALUE)
+                                .addComponent(LabelFahrenheit))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(tituloCelsius)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(LabelCelsius)))))
+                .addGap(159, 159, 159))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(LabelTitulo)
+                .addGap(29, 29, 29)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tituloCelsius)
+                    .addComponent(LabelCelsius))
+                .addGap(57, 57, 57)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tituloFahrenheit)
+                    .addComponent(LabelFahrenheit))
+                .addContainerGap(75, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(LabelTitulo)
+                .addGap(25, 25, 25)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tituloCelsius)
-                    .addComponent(tituloFahrenheit))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 160, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(LabelFahrenheit)
-                    .addComponent(LabelCelsius))
-                .addGap(87, 87, 87))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addComponent(LabelTitulo)
-                .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(LabelCelsius)
-                    .addComponent(tituloCelsius))
-                .addGap(36, 36, 36)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(LabelFahrenheit)
-                    .addComponent(tituloFahrenheit))
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(46, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -104,7 +125,7 @@ public class ObserverPantallaTemperatura extends javax.swing.JFrame implements O
     public void run() {
         while (true) {
             try {
-                miHilo.sleep(10000);
+                miHilo.sleep(5000);
                 this.LabelCelsius.setText(
                         Float.toString( (float) temperatura.getTemperatura() ) + " ºC"
                 );
@@ -127,6 +148,7 @@ public class ObserverPantallaTemperatura extends javax.swing.JFrame implements O
     private javax.swing.JLabel LabelCelsius;
     private javax.swing.JLabel LabelFahrenheit;
     private javax.swing.JLabel LabelTitulo;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel tituloCelsius;
     private javax.swing.JLabel tituloFahrenheit;
     // End of variables declaration//GEN-END:variables
