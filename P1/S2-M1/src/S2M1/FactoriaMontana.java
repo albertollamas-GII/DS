@@ -10,5 +10,14 @@ package S2M1;
  * @author albertollamasgonzalez
  */
 public class FactoriaMontana implements FactoriaCarreraYBicicleta {
-    
+            
+        @Override
+        public CarreraMontana crearCarrera(int numCarrera){
+            return new CarreraMontana(numCarrera);
+        }
+        
+        @Override
+        public BicicletaMontana crearBicicleta(int id){
+            return new BicicletaMontana(id);
+        }
 }

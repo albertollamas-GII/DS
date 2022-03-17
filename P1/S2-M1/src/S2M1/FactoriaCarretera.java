@@ -10,13 +10,15 @@ package S2M1;
  * @author albertollamasgonzalez
  */
 public class FactoriaCarretera implements FactoriaCarreraYBicicleta{
+        
         @Override
-        public CarreraCarretera crearCarrera(){
-            
+        public CarreraCarretera crearCarrera(int numCarrera){
+            return new CarreraCarretera(numCarrera);
         }
         
-        public BicicletaCarretera crearCarrera(){
-            
+        @Override
+        public BicicletaCarretera crearBicicleta(int id){
+            return new BicicletaCarretera(id);
         }
 
 }

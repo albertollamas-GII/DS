@@ -10,6 +10,6 @@ package S2M1;
  * @author albertollamasgonzalez
  */
 public interface FactoriaCarreraYBicicleta {
-    public Carrera crearCarrera();
-    public Bicicleta crearBicicleta();
+    abstract Carrera crearCarrera(int numCarrera);
+    abstract Bicicleta crearBicicleta(int id);
 }

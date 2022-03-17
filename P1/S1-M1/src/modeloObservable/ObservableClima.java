@@ -36,6 +36,7 @@ public class ObservableClima extends Observable implements Runnable {
         miHilo = new Thread(this);
         miHilo.start();
     }
+    
     @Override
     public void run() {
         while (true) {

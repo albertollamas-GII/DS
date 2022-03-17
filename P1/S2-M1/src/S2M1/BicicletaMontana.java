@@ -10,5 +10,14 @@ package S2M1;
  * @author albertollamasgonzalez
  */
 public class BicicletaMontana extends Bicicleta{
+
+    BicicletaMontana(int num) {
+        super(num);
+    }
+
+    @Override
+    public int getNumeroBicicleta() {
+        return this.numeroBicicleta;
+    }
     
 }

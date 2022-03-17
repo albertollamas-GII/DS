@@ -9,7 +9,7 @@ package S2M1;
  *
  * @author albertollamasgonzalez
  */
-public interface FactoriaCarreraYBicicleta {
-    public void crearCarrera();
-    public void crearBicicleta();
+public enum TipoCarrera {
+    MONTANA,
+    CARRETERA
 }

@@ -11,4 +11,12 @@ package S2M1;
  */
 public abstract class Bicicleta {
     protected int numeroBicicleta;
+    
+    Bicicleta(int num){
+        this.numeroBicicleta = num;
+    }
+    
+    public abstract int getNumeroBicicleta();
+
 }
+
