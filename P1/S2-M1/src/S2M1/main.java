@@ -15,6 +15,7 @@ public class main {
 
     /**
      * @param args the command line arguments
+     * @throws java.lang.InterruptedException
      */
     public static void main(String[] args) throws InterruptedException {
         // TODO code application logic here
@@ -31,8 +32,11 @@ public class main {
         cliente1.start();
         cliente2.start();
         
-        if (cliente2.getCarrera().isAlive()){
-            cliente1.getCarrera().wait();
+        try{
+            cliente1.getCarrera().join();
+            cliente2.getCarrera().join();
+        } catch (InterruptedException e){
+            e.printStackTrace();
         }
         
         
