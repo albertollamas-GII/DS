@@ -3,7 +3,7 @@
 
 #include "ComponenteEquipo.h"
 
-class Bus : ComponenteEquipo {
+class Bus : public ComponenteEquipo {
 
     public:
         void aceptar(VisitanteEquipo visitante) override;

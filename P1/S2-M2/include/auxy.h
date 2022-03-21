@@ -2,6 +2,6 @@
 #define AUXY_H
 
 #include <cstring>
-
+#include <iostream>
 
 #endif

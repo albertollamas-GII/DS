@@ -5,13 +5,13 @@
 
 class Equipo {
 
-
     private:
         ComponenteEquipo * componentes ;
 
     public:
         void algo();
 
+    
 };
 
 #endif
