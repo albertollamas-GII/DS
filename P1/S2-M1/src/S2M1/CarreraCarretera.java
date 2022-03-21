@@ -25,9 +25,9 @@ public class CarreraCarretera extends Carrera{
             
             this.comienzaCarrera(TipoCarrera.CARRETERA, 0.1);
             for (int i = 0; i < this.bicicletas.size(); i++){
-                        System.out.println("El ciclista " + this.bicicletas.get(i).getNumeroBicicleta() + " ha acabado la carrera de CARRETERA.");
-                    }               
-                System.out.println("Se ha acabado la carrera de CARRETERA!!");
+                System.out.println("El ciclista " + this.bicicletas.get(i).getNumeroBicicleta() + " ha acabado la carrera de CARRETERA.");
+            }               
+            System.out.println("Se ha acabado la carrera de CARRETERA!!");
 
     }
 }

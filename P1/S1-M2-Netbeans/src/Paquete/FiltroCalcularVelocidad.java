@@ -10,7 +10,7 @@ package Paquete;
 public class FiltroCalcularVelocidad implements Filtro{
 
     int factorVelocidad = 100;
-    final int maximoRevoluciones = 5000;
+        final int maximoRevoluciones = 5000;
 
     @Override
     public double ejecutar(double revoluciones, EstadoMotor estadoMotor) {

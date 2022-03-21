@@ -15,6 +15,7 @@ import java.util.logging.Logger;
  */
 public abstract class Carrera extends Thread implements Runnable {
     
+    private final int DURACION_CARRERA = 60; //Duración en segundos
     protected ArrayList<Bicicleta> bicicletas;
     protected TipoCarrera tipo;
     protected int numBicicletas;
@@ -40,46 +41,25 @@ public abstract class Carrera extends Thread implements Runnable {
         
     public synchronized void comienzaCarrera(TipoCarrera tipo, double porcentajeRetirados){
         try {
-                String indent = "";
-                if (tipo == TipoCarrera.MONTANA)
-                    indent = "\t";
+            String indent = "";
+            if (tipo == TipoCarrera.MONTANA)
+                indent = "\t";
                     
-                Random random = new Random();
+            Random random = new Random();
                 
-                System.out.println(indent + "Comienza la carrera de " + tipo.toString() + " !");
-                int retirados = (int) (this.numBicicletas * porcentajeRetirados);
-                int ciclistaAleatorio;
-                
-                for (int i = 0; i < retirados; i++){ 
-                    int aleatorio = random.nextInt(3);
-                    
-                    switch (aleatorio){
-                        case 0 -> {
-                            //Tiron
-                            ciclistaAleatorio = random.nextInt(this.bicicletas.size());
-                            System.out.println(indent + "Se retira el ciclista " + ciclistaAleatorio + " porque le ha dado un tirón.");
-                            this.bicicletas.remove(ciclistaAleatorio);
-                            this.sleep(2000);
-                        }
-                        case 1 -> {
-                            //Cansancio
-                            ciclistaAleatorio = random.nextInt(this.bicicletas.size());
-                            System.out.println(indent + "Se retira el ciclista " + ciclistaAleatorio + " porque se ha cansado.");
-                            this.bicicletas.remove(ciclistaAleatorio);
-                            this.sleep(1000);
-                        }
-                            
-                        case 2 -> {
-                            //Roto bicicleta
-                            ciclistaAleatorio = random.nextInt(this.bicicletas.size());
-                            System.out.println(indent + "Se retira el ciclista " + ciclistaAleatorio + " porque se le ha roto la bicicleta.");
-                            this.bicicletas.remove(ciclistaAleatorio);
-                            this.sleep(3000);
-                        }
-                    }                 
+            System.out.println(indent + "Comienza la carrera de " + tipo.toString() + " !");
+            int retirados = (int) (this.numBicicletas * porcentajeRetirados);
+            int ciclistaAleatorio;
+            
+            for (int i=0; i<DURACION_CARRERA; i++){
+                if(i > 15 && retirados !=0){ //Supongo que se retira un ciclista cada segundo a partir de un cuarto de la carrera
+                    ciclistaAleatorio = random.nextInt(this.bicicletas.size());
+                    System.out.println(indent + "Se retira el ciclista " + ciclistaAleatorio + " porque le ha dado un tirón. Quedan " + bicicletas.size() + " ciclistas.");
+                    this.bicicletas.remove(ciclistaAleatorio);
+                    retirados--;
                 }
-                
-                    
+                this.sleep(1000); //Dormimos la hebra durante un segundo;
+            }
         } catch (InterruptedException ex) {
                     Logger.getLogger(CarreraMontana.class.getName()).log(Level.SEVERE, null, ex);
         }
