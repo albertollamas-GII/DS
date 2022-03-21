@@ -4,6 +4,7 @@
  */
 package Paquete;
 
+import java.util.Observable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -11,15 +12,15 @@ import java.util.logging.Logger;
  *
  * @author luisg
  */
-public class ClienteMotor extends Thread{
+public class ClienteMotor extends Observable implements Runnable{
     
-    public EstadoMotor estado;
+    private EstadoMotor estado;
     private double RPM;
-    public GestorFiltros gestor;
+    private GestorFiltros gestor;
     private boolean running = false;
 
     public ClienteMotor() {
-            estado = EstadoMotor.APAGADO;
+        estado = EstadoMotor.APAGADO;
     }
     
     public void OfrecerGestor(GestorFiltros gestorf){
@@ -28,6 +29,14 @@ public class ClienteMotor extends Thread{
     
     public void kill(){
         running = false;
+    }
+    
+    public void setEstado(EstadoMotor estado){
+        this.estado = estado;
+    }
+    
+    public double getRevoluciones(){
+        return RPM;
     }
     
     

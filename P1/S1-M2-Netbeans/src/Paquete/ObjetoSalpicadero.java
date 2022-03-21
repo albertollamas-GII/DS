@@ -168,7 +168,7 @@ public class ObjetoSalpicadero extends javax.swing.JFrame {
             Freno.setEnabled(true);
             EncendidoApagado.setText("Apagar");
             Informacion.setText("Encendido");
-            motor.estado = EstadoMotor.ENCENDIDO;
+            motor.setEstado(EstadoMotor.ENCENDIDO);
         } else{
             if(Acelerador.isSelected()) Acelerador.doClick();
             Acelerador.setEnabled(false);
@@ -176,7 +176,7 @@ public class ObjetoSalpicadero extends javax.swing.JFrame {
             Freno.setEnabled(false);
             EncendidoApagado.setText("Encender");
             Informacion.setText("Apagado");
-            motor.estado = EstadoMotor.APAGADO;
+            motor.setEstado(EstadoMotor.APAGADO);
         }
     }//GEN-LAST:event_EncendidoApagadoActionPerformed
 
@@ -186,11 +186,11 @@ public class ObjetoSalpicadero extends javax.swing.JFrame {
             Acelerador.setText("Soltar acelerador");
             if(Freno.isSelected())Freno.doClick();
             Informacion.setText("Acelerando");
-            motor.estado = EstadoMotor.ACELERANDO;
+            motor.setEstado(EstadoMotor.ACELERANDO);
         }else{
             Acelerador.setText("Acelerar");
             Informacion.setText("Encendido");
-            motor.estado = EstadoMotor.ENCENDIDO;
+            motor.setEstado(EstadoMotor.ENCENDIDO);
         }
     }//GEN-LAST:event_AceleradorActionPerformed
 
@@ -199,11 +199,11 @@ public class ObjetoSalpicadero extends javax.swing.JFrame {
             Freno.setText("Soltar freno");
             if(Acelerador.isSelected())Acelerador.doClick();
             Informacion.setText("Frenando");
-            motor.estado = EstadoMotor.FRENANDO;
+            motor.setEstado(EstadoMotor.FRENANDO);
         }else{
             Freno.setText("Frenar");
             Informacion.setText("Encendido");
-            motor.estado = EstadoMotor.ENCENDIDO;
+            motor.setEstado(EstadoMotor.ENCENDIDO);
             
         }
     }//GEN-LAST:event_FrenoActionPerformed
