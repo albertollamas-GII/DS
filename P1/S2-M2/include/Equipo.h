@@ -7,10 +7,11 @@ class Equipo {
 
     private:
         ComponenteEquipo * componentes ;
+        int n_elementos;
 
     public:
-        void algo();
-
+        void visitar(VisitanteEquipo visitante);
+        Equipo(ComponenteEquipo * componentes);
     
 };
 

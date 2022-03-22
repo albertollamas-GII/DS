@@ -5,7 +5,7 @@
 
 class Disco : public ComponenteEquipo {
     public:
-        void getPrecio();
+        void aceptar(VisitanteEquipo visitante) override;
 };
 
 #endif

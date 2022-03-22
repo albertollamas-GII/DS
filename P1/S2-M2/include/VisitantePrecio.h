@@ -8,6 +8,7 @@
 #include "Bus.h"
 
 class VisitantePrecio : public VisitanteEquipo {
+
     public:
         void visitarDisco(Disco d) override;
 
@@ -16,9 +17,6 @@ class VisitantePrecio : public VisitanteEquipo {
         void visitarBus(Bus b) override;
 
         float getTotalPrice();
-
-    private:
-        float total;
 
 };
 

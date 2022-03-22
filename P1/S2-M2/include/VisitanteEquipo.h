@@ -13,8 +13,11 @@ class VisitanteEquipo {
         virtual void visitarTarjeta(Tarjeta t);
 
         virtual void visitarBus(Bus b);
-    protected:
+
         VisitanteEquipo();
+    protected:
+        
+        float total;
 
 };
 

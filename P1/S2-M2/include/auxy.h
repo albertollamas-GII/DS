@@ -3,5 +3,6 @@
 
 #include <cstring>
 #include <iostream>
+#include <vector>
 
 #endif

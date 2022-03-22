@@ -8,7 +8,6 @@ class Bus : public ComponenteEquipo {
     public:
         void aceptar(VisitanteEquipo visitante) override;
 
-
 };
 
 #endif

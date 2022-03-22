@@ -3,16 +3,20 @@
 
 
 #include "auxy.h"
+#include "VisitanteEquipo.h"
 
 class ComponenteEquipo {
 
-    private:
-        char nombre;
-
+    protected:
+        char * nombre;
         float precio;
 
     public:
-        virtual void aceptar(int visitante);
+        virtual void aceptar( VisitanteEquipo visitante);
+        float getPrecio();
+        char * getNombre();
+
+        ComponenteEquipo(float precion, char* nombre);
 
 };
 

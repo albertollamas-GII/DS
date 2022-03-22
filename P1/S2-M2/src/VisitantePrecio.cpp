@@ -1,18 +1,18 @@
 #include "VisitantePrecio.h"
-#include "VisitanteEquipo.h"
 
-void VisitanteEquipo::visitarDisco(Disco d){
+
+void VisitantePrecio::visitarDisco(Disco d){
     total += d.getPrecio();
 }
 
-void VisitanteEquipo::visitarBus(Bus b){
+void VisitantePrecio::visitarBus(Bus b){
     total += b.getPrecio();
 }
 
-void VisitanteEquipo::visitarTarjeta(Tarjeta t){
+void VisitantePrecio::visitarTarjeta(Tarjeta t){
     total += t.getPrecio();
 }
 
-float VisitanteEquipo::getTotalPrice(){
+float VisitantePrecio::getTotalPrice(){
     return total;
 }

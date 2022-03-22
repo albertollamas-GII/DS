@@ -6,8 +6,7 @@
 
 class Tarjeta : public ComponenteEquipo {
     public:
-        void getPrecio();
-        void aceptar(int visitante) override;
+        void aceptar(VisitanteEquipo visitante) override;
 };
 
 #endif

@@ -15,6 +15,11 @@ class VisitantePrecioDetalle : public VisitanteEquipo {
 
         void visitarBus(Bus b) override;
 
+        std::pair<float, std::vector<char *>> getInfo();
+
+    private:
+        std::vector<char *> nombres;
+
 };
 
 #endif
