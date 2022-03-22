@@ -37,7 +37,7 @@ public class Controlador {
         }else if( (revolucionAlmacenada - revolucionesActuales) < 0.005){
             motor.setEstado(EstadoMotor.APAGADO);
         }
-        alarma.activar();
+        alarma.activar(revolucionAlmacenada);
     }
     
 }
