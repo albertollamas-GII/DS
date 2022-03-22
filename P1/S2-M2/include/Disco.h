@@ -5,7 +5,7 @@
 
 class Disco : public ComponenteEquipo {
     public:
-        void pene();
+        void getPrecio();
 };
 
 #endif

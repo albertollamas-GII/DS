@@ -3,14 +3,22 @@
 
 #include "VisitanteEquipo.h"
 
+#include "Disco.h"
+#include "Tarjeta.h"
+#include "Bus.h"
+
 class VisitantePrecio : public VisitanteEquipo {
     public:
-        void visitarDisco(int d) override;
+        void visitarDisco(Disco d) override;
 
-        void visitarTarjeta(int t) override;
+        void visitarTarjeta(Tarjeta t) override;
 
-        void visitarBus(int b) override;
+        void visitarBus(Bus b) override;
 
+        float getTotalPrice();
+
+    private:
+        float total;
 
 };
 

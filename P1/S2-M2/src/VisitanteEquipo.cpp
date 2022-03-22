@@ -1,13 +1,13 @@
 #include "VisitanteEquipo.h"
 
-void VisitanteEquipo::visitarDisco(int d){
-    std::cout << "uuuaaaauuu" << std::endl;
+void VisitanteEquipo::visitarDisco(Disco d){
+    
 }
 
-void VisitanteEquipo::visitarBus(int b){
+void VisitanteEquipo::visitarBus(Bus b){
 
 }
 
-void VisitanteEquipo::visitarTarjeta(int t){
+void VisitanteEquipo::visitarTarjeta(Tarjeta t){
 
 }
