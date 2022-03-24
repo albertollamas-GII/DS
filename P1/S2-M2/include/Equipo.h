@@ -2,16 +2,20 @@
 #define EQUIPO_H
 
 #include "ComponenteEquipo.h"
+#include "Bus.h"
+#include "Disco.h"
+#include "Tarjeta.h"
 
 class Equipo {
 
     private:
-        std::vector<ComponenteEquipo> componentes ;
-        int n_elementos;
+        Bus bus;
+        Disco disco;
+        Tarjeta tarjeta;
 
     public:
         void visitar(VisitanteEquipo visitante);
-        Equipo(std::vector<ComponenteEquipo> componentes);
+        Equipo(Bus b, Tarjeta t, Disco d);
     
 };
 

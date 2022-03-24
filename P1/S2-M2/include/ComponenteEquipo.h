@@ -3,6 +3,7 @@
 
 
 #include "auxy.h"
+
 class VisitanteEquipo;
 
 class ComponenteEquipo {
@@ -12,11 +13,9 @@ class ComponenteEquipo {
         float precio;
 
     public:
-        virtual void aceptar(VisitanteEquipo visitante);
+        //virtual void aceptar(VisitanteEquipo visitante);
         float getPrecio() const;
         std::string getNombre() const;
-
-        ComponenteEquipo(float precion, char* nombre);
 
 };
 

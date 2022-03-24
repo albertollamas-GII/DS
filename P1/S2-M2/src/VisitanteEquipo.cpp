@@ -13,5 +13,5 @@ void VisitanteEquipo::visitarTarjeta(const Tarjeta & t){
 }
 
 VisitanteEquipo::VisitanteEquipo(){
-    
+    total = 0;
 }

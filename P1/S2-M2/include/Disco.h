@@ -5,7 +5,8 @@
 
 class Disco : public ComponenteEquipo {
     public:
-        void aceptar(VisitanteEquipo visitante) override;
+        void aceptar(VisitanteEquipo visitante);
+        Disco(float precion,std::string nombre);
 };
 
 #endif

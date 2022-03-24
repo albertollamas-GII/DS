@@ -6,7 +6,8 @@
 class Bus : public ComponenteEquipo {
 
     public:
-        void aceptar(VisitanteEquipo visitante) override;
+        void aceptar(VisitanteEquipo visitante) ;
+        Bus(float precion,std::string nombre);
 
 };
 

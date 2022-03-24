@@ -6,7 +6,8 @@
 
 class Tarjeta : public ComponenteEquipo {
     public:
-        void aceptar(VisitanteEquipo visitante) override;
+        Tarjeta(float precion,std::string nombre);
+        void aceptar(VisitanteEquipo visitante);
 };
 
 #endif

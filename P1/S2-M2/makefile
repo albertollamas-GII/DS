@@ -1,13 +1,13 @@
 OUT	= ejecutar.exe
 CC	 = g++
-LFLAGS	 = -I./include -Wall
-FLAGS	 = -g -c $(LFLAGS)
+LFLAGS	 =  -g -I./include -Wall
+FLAGS	 = -c $(LFLAGS)
 
+all: obj/ClienteMain.o
+	$(CC) -o ejecutar.exe $(LFLAGS) obj/ClienteMain.o obj/ComponenteEquipo.o obj/VisitanteEquipo.o obj/Bus.o obj/VisitantePrecio.o obj/Tarjeta.o obj/Equipo.o obj/Disco.o obj/VisitantePrecioDetalle.o  -std=c++11
 
-
-
-all: obj/Bus.o obj/VisitantePrecio.o obj/Tarjeta.o obj/Equipo.o obj/Disco.o obj/VisitantePrecioDetalle.o obj/ComponenteEquipo.o
-	$(CC) -o ejecutar.exe $(LFLAGS) src/ClienteMain.cpp obj/ComponenteEquipo.o obj/VisitanteEquipo.o -std=c++11
+obj/ClienteMain.o:  obj/VisitantePrecio.o obj/Tarjeta.o obj/Equipo.o obj/Disco.o obj/VisitantePrecioDetalle.o obj/ComponenteEquipo.o obj/Bus.o
+	$(CC) -o obj/ClienteMain.o $(FLAGS) src/ClienteMain.cpp obj/ComponenteEquipo.o obj/VisitanteEquipo.o obj/Bus.o obj/VisitantePrecio.o obj/Tarjeta.o obj/Equipo.o obj/Disco.o obj/VisitantePrecioDetalle.o  -std=c++11
 
 obj/Bus.o: obj/ComponenteEquipo.o
 	$(CC) -o obj/Bus.o $(FLAGS) src/Bus.cpp obj/ComponenteEquipo.o -std=c++11
@@ -15,7 +15,7 @@ obj/Bus.o: obj/ComponenteEquipo.o
 obj/Tarjeta.o: obj/ComponenteEquipo.o 
 	$(CC) -o obj/Tarjeta.o $(FLAGS) src/Tarjeta.cpp obj/ComponenteEquipo.o  -std=c++11
 
-obj/Equipo.o: obj/ComponenteEquipo.o 
+obj/Equipo.o: obj/ComponenteEquipo.o obj/Bus.o obj/Disco.o obj/Tarjeta.o
 	$(CC) -o obj/Equipo.o $(FLAGS) src/Equipo.cpp obj/ComponenteEquipo.o  -std=c++11
 
 obj/Disco.o: obj/ComponenteEquipo.o 
@@ -39,4 +39,4 @@ obj/VisitantePrecioDetalle.o:  obj/VisitanteEquipo.o
 
 
 clean:
-	rm -f $(OBJS) $(OUT)
+	rm ./obj/*.o
