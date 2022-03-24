@@ -7,10 +7,14 @@ ComponenteEquipo::ComponenteEquipo(float precio, char * nombre){
     this->nombre = nombre;
 }
 
-char * ComponenteEquipo::getNombre(){
+std::string ComponenteEquipo::getNombre()const{
     return nombre;
 }
 
-float ComponenteEquipo::getPrecio(){
+float ComponenteEquipo::getPrecio()const{
     return precio;
 }
+
+/*void ComponenteEquipo::aceptar(VisitanteEquipo visitante){
+
+}*/

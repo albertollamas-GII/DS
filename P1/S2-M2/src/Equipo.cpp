@@ -1,4 +1,5 @@
 #include "Equipo.h"
+#include "VisitanteEquipo.h"
 
 void Equipo::visitar(VisitanteEquipo visitante){
     for(int i = 0; i<n_elementos; i++){
@@ -6,6 +7,6 @@ void Equipo::visitar(VisitanteEquipo visitante){
     }
 }
 
-Equipo::Equipo(ComponenteEquipo * componentes){
+Equipo::Equipo(std::vector<ComponenteEquipo> componentes){
     this->componentes = componentes;
 }

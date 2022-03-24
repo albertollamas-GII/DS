@@ -2,22 +2,23 @@
 #define VISITANTEEQUIPO_H
 
 #include "auxy.h"
-#include "Disco.h"
-#include "Tarjeta.h"
-#include "Bus.h"
+
+class Bus;
+class Tarjeta;
+class Disco;
 
 class VisitanteEquipo {
     public:
-        virtual void visitarDisco(Disco d);
+        virtual void visitarDisco(const Disco & d);
 
-        virtual void visitarTarjeta(Tarjeta t);
+        virtual void visitarTarjeta(const Tarjeta & t);
 
-        virtual void visitarBus(Bus b);
+        virtual void visitarBus(const Bus & b);
 
         VisitanteEquipo();
     protected:
         
-        float total;
+        float total = 0;
 
 };
 

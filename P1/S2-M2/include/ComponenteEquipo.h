@@ -3,18 +3,18 @@
 
 
 #include "auxy.h"
-#include "VisitanteEquipo.h"
+class VisitanteEquipo;
 
 class ComponenteEquipo {
 
     protected:
-        char * nombre;
+        std::string nombre;
         float precio;
 
     public:
-        virtual void aceptar( VisitanteEquipo visitante);
-        float getPrecio();
-        char * getNombre();
+        virtual void aceptar(VisitanteEquipo visitante);
+        float getPrecio() const;
+        std::string getNombre() const;
 
         ComponenteEquipo(float precion, char* nombre);
 

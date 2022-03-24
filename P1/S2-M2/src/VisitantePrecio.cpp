@@ -1,15 +1,17 @@
 #include "VisitantePrecio.h"
+#include "Bus.h"
+#include "Disco.h"
+#include "Tarjeta.h"
 
-
-void VisitantePrecio::visitarDisco(Disco d){
+void VisitantePrecio::visitarDisco(const Disco & d){
     total += d.getPrecio();
 }
 
-void VisitantePrecio::visitarBus(Bus b){
+void VisitantePrecio::visitarBus(const Bus & b){
     total += b.getPrecio();
 }
 
-void VisitantePrecio::visitarTarjeta(Tarjeta t){
+void VisitantePrecio::visitarTarjeta(const Tarjeta & t){
     total += t.getPrecio();
 }
 

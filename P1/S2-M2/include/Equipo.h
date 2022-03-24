@@ -6,12 +6,12 @@
 class Equipo {
 
     private:
-        ComponenteEquipo * componentes ;
+        std::vector<ComponenteEquipo> componentes ;
         int n_elementos;
 
     public:
         void visitar(VisitanteEquipo visitante);
-        Equipo(ComponenteEquipo * componentes);
+        Equipo(std::vector<ComponenteEquipo> componentes);
     
 };
 
