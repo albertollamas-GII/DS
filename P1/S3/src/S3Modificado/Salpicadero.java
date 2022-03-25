@@ -36,7 +36,6 @@ public class Salpicadero extends javax.swing.JFrame {
     }
     
     private void frenar(){
-        
         controlador.modificarEstado(EstadoMotor.FRENANDO);
     }
     
