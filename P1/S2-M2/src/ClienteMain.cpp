@@ -29,8 +29,22 @@ int main(int argc, char * argv[]) {
     Equipo e1 = Equipo(b1,t1,d1);
     Equipo e2 = Equipo(b2,t2,d2);
 
+    cout << "========================================================================" << endl << "EQUIPO 1" << endl << "========================================================================" << endl;
+
     e1.visitar(v1);
     e1.visitar(v2);
+
+    cout    << "El precio total por el visitante 1 es : " << v1.getTotalPrice() << endl;
+    cout    << "El precio total por el visitante 2 es : " << v2.getInfo().first << endl
+            << "El nombre de los detalles por el visitante 2 son : " 
+            << v2.getInfo().second[0] << " : " 
+            << v2.getInfo().second[1] << " : " 
+            << v2.getInfo().second[2] << endl;
+
+    cout << "========================================================================" << endl << "EQUIPO 2" << endl << "========================================================================" << endl;
+
+    e2.visitar(v1);
+    e2.visitar(v2);
 
     cout    << "El precio total por el visitante 1 es : " << v1.getTotalPrice() << endl;
     cout    << "El precio total por el visitante 2 es : " << v2.getInfo().first << endl
