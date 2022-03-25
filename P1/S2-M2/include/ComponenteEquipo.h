@@ -9,8 +9,8 @@ class VisitanteEquipo;
 class ComponenteEquipo {
 
     protected:
-        const std::string nombre;
-        const float precio;
+        const std::string nombre = "";
+        const float precio = 0;
         
         ComponenteEquipo(float precio, std::string nombre);
 

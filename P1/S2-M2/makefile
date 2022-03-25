@@ -6,6 +6,7 @@ FLAGS	 = -c -g -Wall -I./include
 
 all: $(OBJS)
 	$(CC) -g $(OBJS) -o $(OUT) $(LFLAGS) 
+	-rm $(OBJS)
 
 obj/ClienteMain.o:  
 	$(CC) -o obj/ClienteMain.o $(FLAGS) src/ClienteMain.cpp -std=c++11
@@ -40,4 +41,4 @@ obj/VisitantePrecioDetalle.o:
 
 
 clean:
-	rm ./obj/*.o
+	-rm ./obj/*.o
