@@ -4,7 +4,7 @@
  */
 package S3Modificado;
 
-import s3.*;
+
 
 /**
  *
@@ -17,3 +17,4 @@ public enum EstadoMotor {
     ENCENDIDO,
     MANTENER;
 }
+
