@@ -6,8 +6,8 @@
 class Bus : public ComponenteEquipo {
 
     public:
-        void aceptar(VisitanteEquipo visitante) ;
-        Bus(float precion,std::string nombre);
+        void aceptar(VisitanteEquipo & visitante) const;
+        Bus(float precio,std::string nombre);
 
 };
 

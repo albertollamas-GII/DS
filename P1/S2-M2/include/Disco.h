@@ -5,7 +5,7 @@
 
 class Disco : public ComponenteEquipo {
     public:
-        void aceptar(VisitanteEquipo visitante);
+        void aceptar(VisitanteEquipo & visitante) const;
         Disco(float precion,std::string nombre);
 };
 

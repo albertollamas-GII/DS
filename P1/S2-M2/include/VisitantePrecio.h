@@ -6,14 +6,18 @@
 
 class VisitantePrecio : public VisitanteEquipo {
 
+    private:
+
+        float total;
+
     public:
-        void visitarDisco(const Disco & d) override;
+        void visitarDisco(const Disco & d);
 
-        void visitarTarjeta(const Tarjeta & t) override;
+        void visitarTarjeta(const Tarjeta & t);
 
-        void visitarBus(const Bus & b) override;
+        void visitarBus(const Bus & b);
 
-        float getTotalPrice();
+        float getTotalPrice() const;
 
 };
 

@@ -1,11 +1,9 @@
 #include "Bus.h"
 #include "VisitanteEquipo.h"
 
-void Bus::aceptar(VisitanteEquipo visitante){
+void Bus::aceptar(VisitanteEquipo & visitante)const {
     visitante.visitarBus(*this);
 }
 
-Bus::Bus(float precion,std::string nombre){
-    this->nombre = nombre;
-    this->precio = precio;
+Bus::Bus(float precio,std::string nombre) : ComponenteEquipo(precio,nombre){
 }

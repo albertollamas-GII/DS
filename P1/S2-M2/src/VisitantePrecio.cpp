@@ -15,6 +15,6 @@ void VisitantePrecio::visitarTarjeta(const Tarjeta & t){
     total += t.getPrecio();
 }
 
-float VisitantePrecio::getTotalPrice(){
+float VisitantePrecio::getTotalPrice()const{
     return total;
 }

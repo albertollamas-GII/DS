@@ -14,9 +14,6 @@ using namespace std;
 
 int main(int argc, char * argv[]) {
 
-    VisitantePrecio v1 = VisitantePrecio();
-    VisitantePrecioDetalle v2 = VisitantePrecioDetalle();
-
     Bus b1 = Bus(2.0f,"BusPro");
     Bus b2 = Bus(5.0f,"Buskk");
 
@@ -30,29 +27,23 @@ int main(int argc, char * argv[]) {
     Equipo e2 = Equipo(b2,t2,d2);
 
     cout << "========================================================================" << endl << "EQUIPO 1" << endl << "========================================================================" << endl;
-
-    e1.visitar(v1);
-    e1.visitar(v2);
-
-    cout    << "El precio total por el visitante 1 es : " << v1.getTotalPrice() << endl;
-    cout    << "El precio total por el visitante 2 es : " << v2.getInfo().first << endl
-            << "El nombre de los detalles por el visitante 2 son : " 
-            << v2.getInfo().second[0] << " : " 
-            << v2.getInfo().second[1] << " : " 
-            << v2.getInfo().second[2] << endl;
+    VisitantePrecio * vp = new VisitantePrecio;
+    VisitantePrecioDetalle * vpd = new VisitantePrecioDetalle;
+    
+    e1.visitar(*vp);
+    cout    << "El precio total por el visitante 1 es : " << vp->getTotalPrice() << endl;
+    
+    e1.visitar(*vpd);
 
     cout << "========================================================================" << endl << "EQUIPO 2" << endl << "========================================================================" << endl;
+    vp = new VisitantePrecio;
+    vpd = new VisitantePrecioDetalle;
 
-    e2.visitar(v1);
-    e2.visitar(v2);
 
-    cout    << "El precio total por el visitante 1 es : " << v1.getTotalPrice() << endl;
-    cout    << "El precio total por el visitante 2 es : " << v2.getInfo().first << endl
-            << "El nombre de los detalles por el visitante 2 son : " 
-            << v2.getInfo().second[0] << " : " 
-            << v2.getInfo().second[1] << " : " 
-            << v2.getInfo().second[2] << endl;
-
+    e2.visitar(*vp);
+    cout    << "El precio total por el visitante 1 es : " << vp->getTotalPrice() << endl;
+    
+    e2.visitar(*vpd);
 
     return 0;
 }

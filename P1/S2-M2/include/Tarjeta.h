@@ -7,7 +7,7 @@
 class Tarjeta : public ComponenteEquipo {
     public:
         Tarjeta(float precion,std::string nombre);
-        void aceptar(VisitanteEquipo visitante);
+        void aceptar(VisitanteEquipo & visitante) const;
 };
 
 #endif

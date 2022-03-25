@@ -4,21 +4,14 @@
 #include "Tarjeta.h"
 
 void VisitantePrecioDetalle::visitarDisco(const Disco & d){
-    total += d.getPrecio();
-    nombres.push_back(d.getNombre());
+    std::cout << "El disco \"" << d.getNombre() << "\" tiene un valor de : " << d.getPrecio() << std::endl;
 }
 
 void VisitantePrecioDetalle::visitarBus(const Bus & b){
-    total += b.getPrecio();
-    nombres.push_back(b.getNombre());
+    std::cout << "El Bus \"" << b.getNombre() << "\" tiene un valor de : " << b.getPrecio() << std::endl;
 }
 
 void VisitantePrecioDetalle::visitarTarjeta(const Tarjeta & t){
-    total += t.getPrecio();
-    nombres.push_back(t.getNombre());
+    std::cout << "La Tarjeta \"" << t.getNombre() << "\" tiene un valor de : " << t.getPrecio() << std::endl;
 }
 
-std::pair<float, std::vector<std::string>> VisitantePrecioDetalle::getInfo(){
-    std::pair<float, std::vector<std::string>> par = {total,nombres};
-    return par;
-}

@@ -14,7 +14,7 @@ class Equipo {
         Tarjeta tarjeta;
 
     public:
-        void visitar(VisitanteEquipo visitante);
+        void visitar(VisitanteEquipo & visitante);
         Equipo(Bus b, Tarjeta t, Disco d);
     
 };

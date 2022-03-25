@@ -1,7 +1,7 @@
 #include "Equipo.h"
 #include "VisitanteEquipo.h"
 
-void Equipo::visitar(VisitanteEquipo visitante){
+void Equipo::visitar(VisitanteEquipo & visitante){
     bus.aceptar(visitante);
     disco.aceptar(visitante);
     tarjeta.aceptar(visitante);

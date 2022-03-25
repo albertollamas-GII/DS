@@ -5,16 +5,13 @@
 
 class VisitantePrecioDetalle : public VisitanteEquipo {
     public:
-        void visitarDisco(const Disco & d) override;
+        void visitarDisco(const Disco & d);
 
-        void visitarTarjeta(const Tarjeta & t) override;
+        void visitarTarjeta(const Tarjeta & t);
 
-        void visitarBus(const Bus & b) override;
-
-        std::pair<float, std::vector<std::string>> getInfo();
+        void visitarBus(const Bus & b);
 
     private:
-        std::vector<std::string> nombres;
 
 };
 

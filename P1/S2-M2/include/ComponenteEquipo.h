@@ -9,11 +9,13 @@ class VisitanteEquipo;
 class ComponenteEquipo {
 
     protected:
-        std::string nombre;
-        float precio;
+        const std::string nombre;
+        const float precio;
+        
+        ComponenteEquipo(float precio, std::string nombre);
 
     public:
-        //virtual void aceptar(VisitanteEquipo visitante);
+        virtual void aceptar(VisitanteEquipo & visitante) const = 0;
         float getPrecio() const;
         std::string getNombre() const;
 

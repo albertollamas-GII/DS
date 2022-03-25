@@ -9,16 +9,14 @@ class Disco;
 
 class VisitanteEquipo {
     public:
-        virtual void visitarDisco(const Disco & d);
+        virtual void visitarDisco(const Disco & d) = 0;
 
-        virtual void visitarTarjeta(const Tarjeta & t);
+        virtual void visitarTarjeta(const Tarjeta & t) = 0;
 
-        virtual void visitarBus(const Bus & b);
+        virtual void visitarBus(const Bus & b) = 0;
 
         VisitanteEquipo();
-    protected:
-        
-        float total = 0;
+        ~VisitanteEquipo();
 
 };
 
