@@ -11,17 +11,24 @@ package S3Modificado;
 public class Salpicadero extends javax.swing.JFrame {
 
     private float RPM;
-    private EstadoMotor estado;
-    final private Controlador controlador;
+    //private EstadoMotor estado;
+    private Controlador controlador;
+    
+    void botonPulsado(){
+        int botonPulsado = 2;
+        switch(botonPulsado){
+            case 0: controlador.modificarEstado(EstadoMotor.ACELERANDO);
+        }
+    }
     
     /**
      * @param controlador El controlador del motor
      */
-    public Salpicadero(Controlador controlador) {
+    /*public Salpicadero(Controlador controlador) {
         initComponents();
         this.RPM = 0;
         this.controlador = controlador;
-    }
+    }*/
     
     public void pushRPM(float RPM){
         this.RPM = RPM;
@@ -31,13 +38,13 @@ public class Salpicadero extends javax.swing.JFrame {
         this.estado = estado;
     }*/
     
-    private void acelerar(){
+    /*private void acelerar(){
         controlador.modificarEstado(EstadoMotor.ACELERANDO);
     }
     
     private void frenar(){
         controlador.modificarEstado(EstadoMotor.FRENANDO);
-    }
+    }*/
     
     /**
      * This method is called from within the constructor to initialize the form.

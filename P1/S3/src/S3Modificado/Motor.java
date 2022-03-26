@@ -23,10 +23,6 @@ public class Motor implements Runnable{
         gas += g;
     }
     
-    public float getRPM(){
-        return RPM;
-    }
-    
     Motor(){
         RPM = 0;
     }
