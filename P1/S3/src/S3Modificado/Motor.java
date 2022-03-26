@@ -15,27 +15,30 @@ public class Motor implements Runnable{
     
     private float RPM;
     private float gas;
+    private EstadoMotor estado;
     
     private Controlador controlador;
     private Salpicadero salpicadero;
     
-    public void controlarGas(float g){
+    public void controlar(float g, EstadoMotor estado){
         gas += g;
+        this.estado = estado;
     }
     
     Motor(){
         RPM = 0;
     }
     
-    public void setReferencias(){
-        
+    public void setReferencias(Controlador controlador, Salpicadero salpicadero){
+        this.controlador = controlador;
+        this.salpicadero = salpicadero;
     }
     
     @Override
     public void run(){
         RPM = RPM - RPM * 0.1f;
         RPM += gas;
-        salpicadero.pushRPM(RPM);
+        salpicadero.pushRPM(RPM,estado);
         controlador.pushRPM(RPM);
         try {
             Thread.sleep(1000);

@@ -17,6 +17,9 @@ public class S3 {
     public static void main(String[] args) {
         Motor motor = new Motor();
         Salpicadero salpicadero = new Salpicadero();
+        Controlador controlador = new Controlador(motor);
+        salpicadero.setReferencias(controlador);
+        motor.setReferencias(controlador, salpicadero);
         salpicadero.setVisible(true);
     }
     

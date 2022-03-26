@@ -37,14 +37,22 @@ public class Controlador {
    
     public void pushRPM(float RPM){
         float gas = 0;
-        if(estadoM == EstadoMotor.MANTENER){
+        if(estadoM == EstadoMotor.REINICIANDO || estadoM == EstadoMotor.MANTENER){
             if(RPM > desiredRPM){
                 gas = RPM-desiredRPM;
-                if(gas< -10) gas = -10;
+                if(gas< -5){
+                    gas = -5;
+                }else{
+                    estadoM = EstadoMotor.MANTENER;
+                }
             }
             if(RPM < desiredRPM){
                 gas = desiredRPM - RPM;
-                if(gas > 10) gas = 10;
+                if(gas > 5){
+                    gas = 5;
+                }else{
+                    estadoM = EstadoMotor.MANTENER;
+                }
             }
         }else{
             switch (estadoM) {
@@ -53,6 +61,6 @@ public class Controlador {
                 default -> gas = 0;
             }
         }
-        motor.controlarGas(gas);
+        motor.controlar(gas,estadoM);
     }
 }
