@@ -8,7 +8,7 @@ class VisitantePrecio : public VisitanteEquipo {
 
     private:
 
-        float total;
+        float total = 0;
 
     public:
         void visitarDisco(const Disco & d);
@@ -18,6 +18,9 @@ class VisitantePrecio : public VisitanteEquipo {
         void visitarBus(const Bus & b);
 
         float getTotalPrice() const;
+        
+        VisitantePrecio(TCliente tipo);
+
 
 };
 

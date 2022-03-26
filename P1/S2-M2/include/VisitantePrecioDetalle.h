@@ -11,7 +11,7 @@ class VisitantePrecioDetalle : public VisitanteEquipo {
 
         void visitarBus(const Bus & b);
 
-    private:
+        VisitantePrecioDetalle(TCliente tipo);
 
 };
 

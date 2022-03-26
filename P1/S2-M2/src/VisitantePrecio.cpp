@@ -4,17 +4,20 @@
 #include "Tarjeta.h"
 
 void VisitantePrecio::visitarDisco(const Disco & d){
-    total += d.getPrecio();
+    total += (d.getPrecio() - d.getPrecio()*descuento);
 }
 
 void VisitantePrecio::visitarBus(const Bus & b){
-    total += b.getPrecio();
+    total += (b.getPrecio() - b.getPrecio()*descuento);
 }
 
 void VisitantePrecio::visitarTarjeta(const Tarjeta & t){
-    total += t.getPrecio();
+    total += (t.getPrecio() - t.getPrecio()*descuento);
 }
 
 float VisitantePrecio::getTotalPrice()const{
     return total;
 }
+
+
+VisitantePrecio::VisitantePrecio(TCliente tipo) : VisitanteEquipo(tipo){};
