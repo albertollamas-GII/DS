@@ -16,6 +16,8 @@ public class S3 {
      */
     public static void main(String[] args) {
         Motor motor = new Motor();
+        Salpicadero salpicadero = new Salpicadero();
+        salpicadero.setVisible(true);
     }
     
 }
