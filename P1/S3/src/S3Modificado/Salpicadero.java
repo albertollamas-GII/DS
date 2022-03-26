@@ -27,9 +27,9 @@ public class Salpicadero extends javax.swing.JFrame {
         this.RPM = RPM;
     }
     
-    public void pushEstado(EstadoMotor estado){
+    /*public void pushEstado(EstadoMotor estado){
         this.estado = estado;
-    }
+    }*/
     
     private void acelerar(){
         controlador.modificarEstado(EstadoMotor.ACELERANDO);

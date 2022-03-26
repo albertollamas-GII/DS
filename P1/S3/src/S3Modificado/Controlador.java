@@ -13,14 +13,14 @@ public class Controlador {
     private EstadoMotor estadoM;
     private boolean modoAutomatico;
     private Motor motor;
-    private Salpicadero salpicadero;
+    //private Salpicadero salpicadero;
     
-    Controlador(Motor motor, Salpicadero salpicadero){
+    Controlador(Motor motor/*, Salpicadero salpicadero*/){
         desiredRPM = 0;
         this.modoAutomatico = false;
         this.estadoM = EstadoMotor.APAGADO;
         this.motor = motor;
-        this.salpicadero = salpicadero;
+        //this.salpicadero = salpicadero;
     }
     
     public void modificarEstado(EstadoMotor estado){
@@ -56,6 +56,6 @@ public class Controlador {
             }
         }
         motor.controlarGas(gas);
-        salpicadero.pushEstado(estadoM);
+        //salpicadero.pushEstado(estadoM);
     }
 }
