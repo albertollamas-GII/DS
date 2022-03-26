@@ -21,6 +21,7 @@ public class S3 {
         salpicadero.setReferencias(controlador);
         motor.setReferencias(controlador, salpicadero);
         salpicadero.setVisible(true);
+        motor.run();
     }
     
 }

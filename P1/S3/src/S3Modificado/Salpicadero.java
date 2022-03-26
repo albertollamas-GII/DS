@@ -17,61 +17,49 @@ public class Salpicadero extends javax.swing.JFrame {
     private Controlador controlador;
     
     
+    private void soltar(){
+        estadoM = EstadoMotor.ENCENDIDO;
+        RadioCentrado.setEnabled(true);
+        RadioCentrado.doClick();
+        RadioCentrado.setEnabled(false);
+    }
+    
     private void pulsarAcelerar(){
+        estadoM = EstadoMotor.ACELERANDO;
         controlador.modificarEstado(EstadoMotor.ACELERANDO);
         RadioAcelerar.setEnabled(true);
         RadioAcelerar.doClick();
         RadioAcelerar.setEnabled(false);
     }
-    
-    private void soltarAcelerar(){
-        controlador.modificarEstado(EstadoMotor.ENCENDIDO);
-        RadioCentrado.setEnabled(true);
-        RadioCentrado.doClick();
-        RadioCentrado.setEnabled(false);
-    }
+
     
     private void pulsarMantener(){
+        estadoM = EstadoMotor.MANTENER;
         controlador.encenderAutomatico(RPM);
+        CampoVelocidad.setText(""+RPM);
         RadioMantener.setEnabled(true);
         RadioMantener.doClick();
         RadioMantener.setEnabled(false);
     }
-    
-    private void soltarMantener(){
-        controlador.modificarEstado(EstadoMotor.ENCENDIDO);
-        RadioCentrado.setEnabled(true);
-        RadioCentrado.doClick();
-        RadioCentrado.setEnabled(false);
-    }
+
     
     private void pulsarFrenar(){
+        estadoM = EstadoMotor.FRENANDO;
         controlador.modificarEstado(EstadoMotor.FRENANDO);
         RadioFrenar.setEnabled(true);
         RadioFrenar.doClick();
         RadioFrenar.setEnabled(false);
     }
-    
-    private void soltarFrenar(){
-        controlador.modificarEstado(EstadoMotor.ENCENDIDO);
-        RadioCentrado.setEnabled(true);
-        RadioCentrado.doClick();
-        RadioCentrado.setEnabled(false);
-    }
+
     
     private void pulsarReiniciar(){
+        estadoM = EstadoMotor.REINICIANDO;
         controlador.reiniciarAutomatico();
         RadioReiniciar.setEnabled(true);
         RadioReiniciar.doClick();
         RadioReiniciar.setEnabled(false);
     }
-    
-    private void soltarReiniciar(){
-        controlador.modificarEstado(EstadoMotor.ENCENDIDO);
-        RadioCentrado.setEnabled(true);
-        RadioCentrado.doClick();
-        RadioCentrado.setEnabled(false);
-    }
+
     
     /**
      * @param controlador El controlador del motor
@@ -81,8 +69,8 @@ public class Salpicadero extends javax.swing.JFrame {
         this.RPM = 0;
         RadioAcelerar.setEnabled(false);
         RadioFrenar.setEnabled(false);
-        RadioReiniciar.setEnabled(false);
         RadioMantener.setEnabled(false);
+        RadioReiniciar.setEnabled(false);
         RadioCentrado.setEnabled(false);
         Frenar.setEnabled(false);
         Acelerar.setEnabled(false);
@@ -97,8 +85,7 @@ public class Salpicadero extends javax.swing.JFrame {
     public void pushRPM(float RPM, EstadoMotor estado){
         this.RPM = RPM;
         if(estadoM == EstadoMotor.REINICIANDO && estado == EstadoMotor.MANTENER){
-            soltarMantener();
-            Mantener.doClick();
+            pulsarMantener();
         }
         this.estadoM = estado;
         
@@ -124,15 +111,17 @@ public class Salpicadero extends javax.swing.JFrame {
         PVertical1 = new javax.swing.JPanel();
         RadioFrenar = new javax.swing.JRadioButton();
         RadioAcelerar = new javax.swing.JRadioButton();
-        RadioMantener = new javax.swing.JRadioButton();
         RadioReiniciar = new javax.swing.JRadioButton();
+        RadioMantener = new javax.swing.JRadioButton();
         RadioCentrado = new javax.swing.JRadioButton();
-        Acelerar = new javax.swing.JToggleButton();
-        Frenar = new javax.swing.JToggleButton();
-        Mantener = new javax.swing.JToggleButton();
-        Reiniciar = new javax.swing.JToggleButton();
+        Reiniciar = new javax.swing.JButton();
+        Mantener = new javax.swing.JButton();
+        Acelerar = new javax.swing.JButton();
+        Frenar = new javax.swing.JButton();
         EncendidoApagado = new javax.swing.JToggleButton();
         Informacion = new javax.swing.JLabel();
+        VelocidadLabel = new javax.swing.JLabel();
+        CampoVelocidad = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -177,21 +166,34 @@ public class Salpicadero extends javax.swing.JFrame {
             }
         });
 
-        RadioAcelerar.setBackground(new java.awt.Color(51, 51, 51));
         Palanca.add(RadioAcelerar);
         RadioAcelerar.setText("jRadioButton2");
 
-        Palanca.add(RadioMantener);
-        RadioMantener.setText("jRadioButton4");
-
         Palanca.add(RadioReiniciar);
-        RadioReiniciar.setText("jRadioButton3");
+        RadioReiniciar.setText("jRadioButton4");
+
+        Palanca.add(RadioMantener);
+        RadioMantener.setText("jRadioButton3");
 
         Palanca.add(RadioCentrado);
         RadioCentrado.setText("jRadioButton1");
         RadioCentrado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RadioCentradoActionPerformed(evt);
+            }
+        });
+
+        Reiniciar.setText("REINICIAR");
+        Reiniciar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ReiniciarActionPerformed(evt);
+            }
+        });
+
+        Mantener.setText("MANTENER");
+        Mantener.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MantenerActionPerformed(evt);
             }
         });
 
@@ -209,58 +211,47 @@ public class Salpicadero extends javax.swing.JFrame {
             }
         });
 
-        Mantener.setText("MANTENER");
-        Mantener.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MantenerActionPerformed(evt);
-            }
-        });
-
-        Reiniciar.setText("REINICIAR");
-        Reiniciar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ReiniciarActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout PanelCruzLayout = new javax.swing.GroupLayout(PanelCruz);
         PanelCruz.setLayout(PanelCruzLayout);
         PanelCruzLayout.setHorizontalGroup(
             PanelCruzLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelCruzLayout.createSequentialGroup()
-                .addGap(3, 3, 3)
-                .addComponent(Frenar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(RadioFrenar, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
-                .addComponent(RadioReiniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(Mantener)
-                .addContainerGap())
-            .addGroup(PanelCruzLayout.createSequentialGroup()
                 .addGroup(PanelCruzLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PanelCruzLayout.createSequentialGroup()
-                        .addGap(138, 138, 138)
+                        .addGap(3, 3, 3)
+                        .addComponent(Frenar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(RadioFrenar, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
+                        .addComponent(RadioMantener, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(8, 8, 8)
+                        .addComponent(Mantener))
+                    .addGroup(PanelCruzLayout.createSequentialGroup()
                         .addGroup(PanelCruzLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(RadioMantener, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(RadioAcelerar, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(PanelCruzLayout.createSequentialGroup()
-                        .addGap(103, 103, 103)
-                        .addComponent(Acelerar))
-                    .addGroup(PanelCruzLayout.createSequentialGroup()
-                        .addGap(109, 109, 109)
-                        .addComponent(Reiniciar)))
+                            .addGroup(PanelCruzLayout.createSequentialGroup()
+                                .addGap(138, 138, 138)
+                                .addGroup(PanelCruzLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(RadioAcelerar, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(RadioReiniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(PanelCruzLayout.createSequentialGroup()
+                                .addGap(110, 110, 110)
+                                .addComponent(Reiniciar)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(PanelCruzLayout.createSequentialGroup()
+                .addGap(102, 102, 102)
+                .addComponent(Acelerar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(PanelCruzLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(PanelCruzLayout.createSequentialGroup()
                     .addGap(80, 80, 80)
                     .addComponent(PHorizontal1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(93, Short.MAX_VALUE)))
+                    .addContainerGap(103, Short.MAX_VALUE)))
             .addGroup(PanelCruzLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(PanelCruzLayout.createSequentialGroup()
                     .addGap(132, 132, 132)
                     .addComponent(PVertical1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(145, Short.MAX_VALUE)))
+                    .addContainerGap(155, Short.MAX_VALUE)))
             .addGroup(PanelCruzLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelCruzLayout.createSequentialGroup()
                     .addContainerGap(139, Short.MAX_VALUE)
@@ -277,11 +268,11 @@ public class Salpicadero extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(PanelCruzLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(RadioFrenar)
-                    .addComponent(RadioReiniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Frenar)
-                    .addComponent(Mantener))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
-                .addComponent(RadioMantener, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(RadioMantener, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Mantener)
+                    .addComponent(Frenar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addComponent(RadioReiniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(Reiniciar)
                 .addGap(34, 34, 34))
@@ -309,36 +300,47 @@ public class Salpicadero extends javax.swing.JFrame {
             }
         });
 
+        VelocidadLabel.setText("VELOCIDAD ESPERADA : ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(255, Short.MAX_VALUE)
+                .addComponent(EncendidoApagado)
+                .addGap(217, 217, 217)
+                .addComponent(PanelCruz, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(76, 76, 76))
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(EncendidoApagado)
-                        .addGap(356, 356, 356))
+                        .addGap(177, 177, 177)
+                        .addComponent(Informacion, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(300, 300, 300)
-                        .addComponent(Informacion, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 259, Short.MAX_VALUE)))
-                .addComponent(PanelCruz, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(62, 62, 62))
+                        .addGap(204, 204, 204)
+                        .addComponent(VelocidadLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(CampoVelocidad, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(241, Short.MAX_VALUE)
+                .addContainerGap(163, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(VelocidadLabel)
+                    .addComponent(CampoVelocidad, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(72, 72, 72)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(PanelCruz, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(60, 60, 60))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(Informacion, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(77, 77, 77)
+                        .addGap(66, 66, 66)
                         .addComponent(EncendidoApagado)
-                        .addGap(182, 182, 182))))
+                        .addGap(184, 184, 184))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(PanelCruz, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(22, 22, 22))))
         );
 
         pack();
@@ -351,34 +353,7 @@ public class Salpicadero extends javax.swing.JFrame {
     private void RadioCentradoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RadioCentradoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_RadioCentradoActionPerformed
-
-    private void AcelerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AcelerarActionPerformed
-        if(Acelerar.isSelected()){
-            pulsarAcelerar();
-            Mantener.setEnabled(true);
-        }else{
-            soltarAcelerar();
-        }
-    }//GEN-LAST:event_AcelerarActionPerformed
-
-    private void MantenerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MantenerActionPerformed
-       pulsarMantener();
-    }//GEN-LAST:event_MantenerActionPerformed
-
-    private void ReiniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReiniciarActionPerformed
-        pulsarReiniciar();
-    }//GEN-LAST:event_ReiniciarActionPerformed
-
-    private void FrenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FrenarActionPerformed
-        if(Frenar.isSelected()){
-            if(Mantener.isSelected())soltarMantener();
-            if(Reiniciar.isSelected())Reiniciar.doClick();
-            pulsarFrenar();
-        }else{
-            soltarFrenar();
-        }
-    }//GEN-LAST:event_FrenarActionPerformed
-
+ 
     private void EncendidoApagadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EncendidoApagadoActionPerformed
         if(EncendidoApagado.isSelected()){
             Acelerar.setEnabled(true);
@@ -390,13 +365,9 @@ public class Salpicadero extends javax.swing.JFrame {
             Informacion.setText("ENCENDIDO");
             controlador.modificarEstado(EstadoMotor.ENCENDIDO);
         } else{
-            if(Acelerar.isSelected()) soltarAcelerar();
             Acelerar.setEnabled(false);
-            if(Frenar.isSelected())soltarFrenar();
             Frenar.setEnabled(false);
-            if(Mantener.isSelected())soltarMantener();
             Mantener.setEnabled(false);
-            if(Reiniciar.isSelected())Reiniciar.doClick();
             Reiniciar.setEnabled(false);
             EncendidoApagado.setText("ENCENDER");
             EncendidoApagado.setForeground(Color.green);
@@ -404,6 +375,40 @@ public class Salpicadero extends javax.swing.JFrame {
             controlador.modificarEstado(EstadoMotor.APAGADO);
         }
     }//GEN-LAST:event_EncendidoApagadoActionPerformed
+
+    private void FrenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FrenarActionPerformed
+        if(estadoM != EstadoMotor.FRENANDO){
+            pulsarFrenar();
+        }else{
+            soltar();
+        }
+    }//GEN-LAST:event_FrenarActionPerformed
+
+    private void ReiniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReiniciarActionPerformed
+        if(estadoM != EstadoMotor.REINICIANDO){
+            pulsarReiniciar();
+        }else{
+            soltar();
+        }
+    }//GEN-LAST:event_ReiniciarActionPerformed
+
+    private void MantenerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MantenerActionPerformed
+        if(estadoM != EstadoMotor.MANTENER){ 
+            pulsarMantener();
+        }else{
+            soltar();
+        }
+    }//GEN-LAST:event_MantenerActionPerformed
+
+    private void AcelerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AcelerarActionPerformed
+        if(estadoM != EstadoMotor.ACELERANDO){   
+            pulsarAcelerar();
+            Mantener.setEnabled(true);
+            Reiniciar.setEnabled(true);
+        }else{
+            soltar();
+        }
+    }//GEN-LAST:event_AcelerarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -441,11 +446,12 @@ public class Salpicadero extends javax.swing.JFrame {
     }*/
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JToggleButton Acelerar;
+    private javax.swing.JButton Acelerar;
+    private javax.swing.JLabel CampoVelocidad;
     private javax.swing.JToggleButton EncendidoApagado;
-    private javax.swing.JToggleButton Frenar;
+    private javax.swing.JButton Frenar;
     private javax.swing.JLabel Informacion;
-    private javax.swing.JToggleButton Mantener;
+    private javax.swing.JButton Mantener;
     private javax.swing.JPanel PHorizontal1;
     private javax.swing.JPanel PVertical1;
     private javax.swing.ButtonGroup Palanca;
@@ -455,6 +461,7 @@ public class Salpicadero extends javax.swing.JFrame {
     private javax.swing.JRadioButton RadioFrenar;
     private javax.swing.JRadioButton RadioMantener;
     private javax.swing.JRadioButton RadioReiniciar;
-    private javax.swing.JToggleButton Reiniciar;
+    private javax.swing.JButton Reiniciar;
+    private javax.swing.JLabel VelocidadLabel;
     // End of variables declaration//GEN-END:variables
 }
