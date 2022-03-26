@@ -31,6 +31,10 @@ public class Motor implements Runnable{
         RPM = 0;
     }
     
+    public void setReferencias(){
+        
+    }
+    
     @Override
     public void run(){
         RPM = RPM - RPM * 0.1f;
