@@ -61,8 +61,19 @@ public class Controlador {
             }
         }else{
             switch (estadoM) {
-                case ACELERANDO -> gas = FACTOR_VELOCIDAD;
-                case FRENANDO -> gas = -FACTOR_VELOCIDAD;
+                case ACELERANDO: 
+                    gas = FACTOR_VELOCIDAD;
+                    break;
+                case FRENANDO:
+                    gas = -FACTOR_VELOCIDAD;
+                    if(RPM<=FACTOR_VELOCIDAD){
+                        if(RPM == 0){
+                            gas = 0;
+                        }else{
+                            gas = -RPM;
+                        }
+                    }
+                    break;
             }
         }
         System.out.println(estadoM + " : " + RPM + " : " + gas);
