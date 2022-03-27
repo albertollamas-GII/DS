@@ -1,4 +1,4 @@
-#Practica 1 DS - Grupo DS2_4
+# Practica 1 DS - Grupo DS2_4
 
 * Luis Guerra Batista
 * Jose Jiménez Cazorla
