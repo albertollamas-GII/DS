@@ -58,13 +58,14 @@ Para mostrar el funcionamiento, hemos introducido con en la ventana CambiadorTem
 #### Captura de ejecución
 <br><img src="imagenes/s2m1.png" width="400" height="400">
 
-### Módulo 2 : Patrón visitante básico Ejercicios 1 y 2
+### Módulo 2 : Patrón visitante básico Ejercicios 1 y 2 (Luis Guerra y Jose Jiménez)
 
 #### Diagrama de clases
 <br><img src="imagenes/S2M2.png" width="700" height="400">
 
 #### Captura de ejecución
 
+<br><img src="imagenes/s2m2.jpeg" width="700" height="400">
 
 
 
