@@ -10,7 +10,7 @@ package S3Modificado;
  */
 public class Controlador {
    
-    final int FACTOR_VELOCIDAD = 100;
+    final int FACTOR_VELOCIDAD = 30;
     private float desiredRPM;
     private EstadoMotor estadoM;
     private Motor motor;
@@ -31,7 +31,7 @@ public class Controlador {
     
     public void encenderAutomatico(float RPMactuales){
         estadoM = EstadoMotor.MANTENER;
-        desiredRPM = RPMactuales;
+        desiredRPM = RPMactuales*0.9f;
     }
     
     public void reiniciarAutomatico(){
@@ -43,18 +43,18 @@ public class Controlador {
         float gas = 0;
         
         if(estadoM == EstadoMotor.REINICIANDO || estadoM == EstadoMotor.MANTENER){
-            if(RPM > desiredRPM){
-                gas = RPM-desiredRPM;
-                if(gas< -15){
-                    gas = -15;
+            if(RPM > desiredRPM){ //RPM ACTUAL : 200  DESIRED : 100
+                gas = RPM-desiredRPM; // //GAS = 100
+                if(gas > FACTOR_VELOCIDAD){ 
+                    gas = -FACTOR_VELOCIDAD;
                 }else{
                     estadoM = EstadoMotor.MANTENER;
                 }
             }
-            if(RPM < desiredRPM){
-                gas = desiredRPM - RPM;
-                if(gas > 15){
-                    gas = 15;
+            if(RPM < desiredRPM){ //RPM ACTUAL : 100 DESIRED : 200
+                gas = desiredRPM - RPM; //GAS = 100
+                if(gas > FACTOR_VELOCIDAD){
+                    gas = FACTOR_VELOCIDAD;
                 }else{
                     estadoM = EstadoMotor.MANTENER;
                 }

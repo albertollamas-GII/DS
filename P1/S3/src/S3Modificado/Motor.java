@@ -44,8 +44,8 @@ public class Motor implements Runnable{
     public void run(){
         running = true;
         while(running){
-            RPM = RPM - RPM * 0.1f;
             RPM += gas;
+            RPM = RPM - RPM * 0.1f;
             System.out.println("Vuelta motor");
             salpicadero.pushRPM(RPM,estado);
             controlador.pushRPM(RPM);

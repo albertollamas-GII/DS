@@ -85,6 +85,7 @@ public class Salpicadero extends javax.swing.JFrame {
     public void pushRPM(float RPM, EstadoMotor estado){
         this.RPM = RPM;
         if(estadoM == EstadoMotor.REINICIANDO && estado == EstadoMotor.MANTENER){
+            System.out.println("Se va de madres");
             pulsarMantener();
         }
         this.estadoM = estado;
