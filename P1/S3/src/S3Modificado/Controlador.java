@@ -70,23 +70,27 @@ public class Controlador {
         actualizarAlcanzado(RPM);
         
         float gas = 0;
-        System.out.println("El inyector esta " + inyectorOn + " : aportando un factor " + valorInyector + " : Alcanzado esta a " + alcanzado + "\nVelocidadEsperada : " + desiredRPM);
-        if(estadoM == EstadoMotor.REINICIANDO){ //REINICIANDO
+        float diferenciaRPM;
+        int umbralAceleracion = 100;
+        System.out.println("Actual: " + RPM + "\tDeseada :" + desiredRPM);
+        if(estadoM == EstadoMotor.REINICIANDO || estadoM == EstadoMotor.MANTENER){
             if(RPM > desiredRPM){ //RPM ACTUAL : 200  DESIRED : 100
-                inyectorOn = false;
-                gas = RPM-desiredRPM; //GAS = 100
-                if(gas > FACTOR_VELOCIDAD){ //SE PASA DE GAS
-                    gas = -FACTOR_VELOCIDAD;
+                System.out.println("He entrado en el primero");
+                diferenciaRPM = RPM-desiredRPM; // 100
+                gas = 0;
+                if(gas < -umbralAceleracion){ 
+                    gas = -umbralAceleracion;
                 }else{
                     estadoM = EstadoMotor.MANTENER;
                     alcanzado = true;
                 }
-            }
-            if(RPM < desiredRPM){ //RPM ACTUAL : 100 DESIRED : 200
-                inyectorOn = true;
-                gas = (desiredRPM - RPM)*valorInyector; //GAS = 100
-                if(gas > FACTOR_VELOCIDAD){ //SE PASA DE GAS
-                    gas = FACTOR_VELOCIDAD;
+            }else if(RPM < desiredRPM){ //RPM ACTUAL : 100 DESIRED : 200
+                System.out.println("He entrado en el segundo");
+                diferenciaRPM = RPM-desiredRPM; // = 100
+                
+                gas = -diferenciaRPM*0.25f + RPM*0.1f;
+                if(gas > umbralAceleracion){
+                    gas = umbralAceleracion;
                 }else{
                     estadoM = EstadoMotor.MANTENER;
                     alcanzado = true;
@@ -124,11 +128,7 @@ public class Controlador {
                     inyectorOn = false;
                     gas = -FACTOR_VELOCIDAD;
                     if(RPM<=FACTOR_VELOCIDAD){
-                        if(RPM == 0){
-                            gas = 0;
-                        }else{
-                            gas = -RPM;
-                        }
+                        gas = -RPM;
                     }
                     break;
                 case ENCENDIDO:
