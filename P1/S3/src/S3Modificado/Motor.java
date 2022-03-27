@@ -53,6 +53,9 @@ public class Motor implements Runnable{
             if(RPM < 0.05){
                 RPM =0;
             }
+            if (RPM > 5000){
+                RPM = 5000;
+            }
             System.out.println("Vuelta motor");
             salpicadero.pushRPM(RPM,estado);
             controlador.pushRPM(RPM);
