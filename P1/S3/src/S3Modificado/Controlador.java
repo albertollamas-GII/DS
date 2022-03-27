@@ -15,6 +15,9 @@ public class Controlador {
     private EstadoMotor estadoM;
     private Motor motor;
     
+    public void apagarMotor(){
+        motor.kill();
+    }
     
     public void modificarEstado(EstadoMotor estado){
         estadoM = estado;
@@ -36,20 +39,22 @@ public class Controlador {
     }
    
     public void pushRPM(float RPM){
+        
         float gas = 0;
+        
         if(estadoM == EstadoMotor.REINICIANDO || estadoM == EstadoMotor.MANTENER){
             if(RPM > desiredRPM){
                 gas = RPM-desiredRPM;
-                if(gas< -5){
-                    gas = -5;
+                if(gas< -15){
+                    gas = -15;
                 }else{
                     estadoM = EstadoMotor.MANTENER;
                 }
             }
             if(RPM < desiredRPM){
                 gas = desiredRPM - RPM;
-                if(gas > 5){
-                    gas = 5;
+                if(gas > 15){
+                    gas = 15;
                 }else{
                     estadoM = EstadoMotor.MANTENER;
                 }
@@ -58,9 +63,9 @@ public class Controlador {
             switch (estadoM) {
                 case ACELERANDO -> gas = FACTOR_VELOCIDAD;
                 case FRENANDO -> gas = -FACTOR_VELOCIDAD;
-                default -> gas = 0;
             }
         }
+        System.out.println(estadoM + " : " + RPM + " : " + gas);
         motor.controlar(gas,estadoM);
     }
 }

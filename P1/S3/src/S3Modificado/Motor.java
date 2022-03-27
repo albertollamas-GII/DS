@@ -13,6 +13,8 @@ import java.util.logging.Logger;
  */
 public class Motor implements Runnable{
     
+    private boolean running;
+    
     private float RPM;
     private float gas;
     private EstadoMotor estado;
@@ -21,7 +23,7 @@ public class Motor implements Runnable{
     private Salpicadero salpicadero;
     
     public void controlar(float g, EstadoMotor estado){
-        gas += g;
+        gas = g;
         this.estado = estado;
     }
     
@@ -34,16 +36,24 @@ public class Motor implements Runnable{
         this.salpicadero = salpicadero;
     }
     
+    public void kill(){
+        running = false;
+    }
+    
     @Override
     public void run(){
-        RPM = RPM - RPM * 0.1f;
-        RPM += gas;
-        salpicadero.pushRPM(RPM,estado);
-        controlador.pushRPM(RPM);
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(Motor.class.getName()).log(Level.SEVERE, null, ex);
+        running = true;
+        while(running){
+            RPM = RPM - RPM * 0.1f;
+            RPM += gas;
+            System.out.println("Vuelta motor");
+            salpicadero.pushRPM(RPM,estado);
+            controlador.pushRPM(RPM);
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Motor.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 }

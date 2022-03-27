@@ -122,6 +122,7 @@ public class Salpicadero extends javax.swing.JFrame {
         Informacion = new javax.swing.JLabel();
         VelocidadLabel = new javax.swing.JLabel();
         CampoVelocidad = new javax.swing.JLabel();
+        APAGAR = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -302,16 +303,17 @@ public class Salpicadero extends javax.swing.JFrame {
 
         VelocidadLabel.setText("VELOCIDAD ESPERADA : ");
 
+        APAGAR.setText("APAGAR MOTOR");
+        APAGAR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                APAGARActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(255, Short.MAX_VALUE)
-                .addComponent(EncendidoApagado)
-                .addGap(217, 217, 217)
-                .addComponent(PanelCruz, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(76, 76, 76))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -323,11 +325,24 @@ public class Salpicadero extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(CampoVelocidad, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(255, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(EncendidoApagado)
+                        .addGap(217, 217, 217)
+                        .addComponent(PanelCruz, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(76, 76, 76))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(APAGAR)
+                        .addGap(35, 35, 35))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(163, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(APAGAR)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 127, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(VelocidadLabel)
                     .addComponent(CampoVelocidad, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -410,6 +425,10 @@ public class Salpicadero extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_AcelerarActionPerformed
 
+    private void APAGARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_APAGARActionPerformed
+        controlador.apagarMotor();
+    }//GEN-LAST:event_APAGARActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -446,6 +465,7 @@ public class Salpicadero extends javax.swing.JFrame {
     }*/
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton APAGAR;
     private javax.swing.JButton Acelerar;
     private javax.swing.JLabel CampoVelocidad;
     private javax.swing.JToggleButton EncendidoApagado;
