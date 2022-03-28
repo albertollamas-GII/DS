@@ -24,6 +24,9 @@ Para mostrar el funcionamiento, hemos introducido con en la ventana CambiadorTem
 
 ### Módulo 2 : Patrón arquitectónico Filtros de Intercepción para simular el movimiento de un vehículo con cambio automático (Luis Guerra y Oscar López)
 
+En este supuesto, y bajo el patron arquitectonico Filtros de Intercepcion, hemos ido dando a cada uno de los elementos de nuestro vehiculo su papel dentro del patron. Ya sea el papel del cliente para el motor ("ClienteMotor") y el papel de Objetivo/Target al Salpicadero ("ObjetoSalpicadero").
+Por tanto, y siguiendo el patron designado, seria el motor el que estaria constantemente invocando al gestor de filtros para que este, seguidamente, pasara la informacion dada por el motor a su cadena de filtros. Esta poseeria los filtros pertinentes por los que debiese pasar la informacion para, finalmente, terminar dandole esta informacion al Target, que en nuestro caso es el salpicadero, y vista, de nuestro programa.
+
 #### Diagrama de clases
 
 <br><img src="imagenes/s1-m2.png" width="700" height="400">
