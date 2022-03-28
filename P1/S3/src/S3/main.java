@@ -3,7 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package S3Modificado;
+package S3;
+
+import Controlador_SCACV.Controlador;
+import Modelo_SCACV.Motor;
+import Vista_SCACV.Salpicadero;
 
 /**
  *
@@ -12,7 +16,7 @@ package S3Modificado;
  * @author Alberto Llamas
  * @author Óscar López
  */
-public class S3 {
+public class main {
 
     /**
      * @param args the command line arguments

@@ -2,8 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package S3Modificado;
+package Vista_SCACV;
 
+import Controlador_SCACV.Controlador;
+import Modelo_SCACV.EstadoMotor;
 import java.awt.Color;
 import java.math.BigDecimal;
 import java.math.RoundingMode;

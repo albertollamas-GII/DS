@@ -2,7 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package S3Modificado;
+package Controlador_SCACV;
+
+import Modelo_SCACV.EstadoMotor;
+import Modelo_SCACV.Motor;
 
 /**
  *
@@ -26,7 +29,7 @@ public class Controlador {
         estadoM = estado;
     }
     
-    Controlador(Motor motor){
+    public Controlador(Motor motor){
         desiredRPM = 0;
         this.estadoM = EstadoMotor.APAGADO;
         this.motor = motor;

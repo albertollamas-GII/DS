@@ -2,8 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package S3Modificado;
+package Modelo_SCACV;
 
+import Controlador_SCACV.Controlador;
+import Vista_SCACV.Salpicadero;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -30,7 +32,7 @@ public class Motor implements Runnable{
         this.estado = estado;
     }
     
-    Motor(){
+    public Motor(){
         RPM = 0;
     }
     
