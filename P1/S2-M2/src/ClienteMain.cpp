@@ -28,23 +28,24 @@ int main(int argc, char * argv[]) {
     Equipo e2 = Equipo(b2,t2,d2);
 
     cout << "========================================================================" << endl << "EQUIPO 1" << endl << "========================================================================" << endl;
-    VisitantePrecio * vp1 = new VisitantePrecio(TCliente::SinDescuento);
+    VisitantePrecio * vp1 = new VisitantePrecio(TCliente::Mayorista);
     VisitantePrecioDetalle * vpd1 = new VisitantePrecioDetalle(TCliente::SinDescuento);
     
-    e1.visitar(*vp1);
-    cout    << "El precio total por el visitante 1 es : " << vp1->getTotalPrice() << endl;
     
+    e1.visitar(*vp1);
+    cout    << "MAYORISTE : El precio total por el visitante 1 es : " << vp1->getTotalPrice() << endl;
+    cout << "SinDescuento : " << endl;
     e1.visitar(*vpd1);
 
     cout << "========================================================================" << endl << "EQUIPO 2" << endl << "========================================================================" << endl;
     
-    VisitantePrecio * vp2 = new VisitantePrecio(TCliente::SinDescuento);
-    VisitantePrecioDetalle * vpd2 = new VisitantePrecioDetalle(TCliente::SinDescuento);
+    VisitantePrecio * vp2 = new VisitantePrecio(TCliente::Estudiante);
+    VisitantePrecioDetalle * vpd2 = new VisitantePrecioDetalle(TCliente::Mayorista);
 
 
     e2.visitar(*vp2);
-    cout    << "El precio total por el visitante 1 es : " << vp2->getTotalPrice() << endl;
-    
+    cout    << "ESTUDIANTE : El precio total por el visitante 1 es : " << vp2->getTotalPrice() << endl;
+    cout << "Mayorista :" << endl;
     e2.visitar(*vpd2);
 
     return 0;

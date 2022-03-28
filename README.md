@@ -63,6 +63,8 @@ Por tanto, y siguiendo el patron designado, seria el motor el que estaria consta
 
 ### Módulo 2 : Patrón visitante básico Ejercicios 1 y 2 (Luis Guerra y Jose Jiménez)
 
+En este ejercicio se nos pedia un modelo en el cual se pudiera visitar un equipo que poseyese tres elementos unicos (Tarjeta, Bus, Disco) de dos formas distintas: por precio y por detalle-precio. Ademas, hemos realizado la parte opcional, dando la posibilidad de que cada visitante tenga un tipo y un descuento en el precio en relacion a este. Es por ello que, siguiendo el patron visitante, hemos "encapsulado" los elementos del equipo en una clase ComponenteEquipo de la que heredansen los atributos comunes como precio y nombre, junto con el metodo de aceptar() abstracto que cada uno implementaria. Mismamente hemos hecho con los visitantes en la clase VisitanteEquipo, en la que heredarian el atributo de Tipo y descuento, e implementarian los metodos visitarBus(), visitarTarjeta() y visitarDisco(), abstractos en su clase Padre("VisitanteEquipo").
+
 #### Diagrama de clases
 <br><img src="imagenes/S2M2.png" width="700" height="400">
 
@@ -82,7 +84,9 @@ Como patrón, hemos usado el estilo "Controlador de procesos" ya que hemos consi
 #### Diagrama de clases
 
 <br><img src="imagenes/s3.png" width="500" height="700">
+
 #### Captura de ejecución
+
 <br><img src="imagenes/apagado.png" width="700" height="400">
 <br><img src="imagenes/acelerando.png" width="700" height="400">
 
