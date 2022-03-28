@@ -11,7 +11,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 /**
  *
- * @author albertollamasgonzalez
+ * @author Alberto Llamas
+ * @author Óscar López
  */
 public abstract class Carrera extends Thread implements Runnable {
     

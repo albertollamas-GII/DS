@@ -7,7 +7,8 @@ package S2M1;
 
 /**
  *
- * @author albertollamasgonzalez
+ * @author Alberto Llamas
+ * @author Óscar López
  */
 public enum TipoCarrera {
     MONTANA,

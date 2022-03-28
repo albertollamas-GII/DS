@@ -9,7 +9,8 @@ import java.util.Observable;
 import java.util.Observer;
 /**
  *
- * @author albertollamasgonzalez
+ * @author Jose Jiménez
+ * @author Alberto Llamas
  */
 public class ObserverPantallaTemperatura extends javax.swing.JFrame implements Observer, Runnable {
     

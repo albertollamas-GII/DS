@@ -6,7 +6,10 @@ package S3Modificado;
 
 /**
  *
- * @author luisg
+ * @author Luis Guerra
+ * @author Jose Jiménez
+ * @author Alberto Llamas
+ * @author Óscar López
  */
 public class Controlador {
    

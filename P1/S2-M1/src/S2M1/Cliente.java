@@ -9,7 +9,8 @@ import java.util.Random;
 
 /**
  *
- * @author albertollamasgonzalez
+ * @author Alberto Llamas
+ * @author Óscar López
  */
 public class Cliente {
     private Carrera carrera;

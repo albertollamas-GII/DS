@@ -7,7 +7,10 @@ package S3Modificado;
 
 /**
  *
- * @author albertollamasgonzalez
+ * @author Luis Guerra
+ * @author Jose Jiménez
+ * @author Alberto Llamas
+ * @author Óscar López
  */
 public class S3 {
 

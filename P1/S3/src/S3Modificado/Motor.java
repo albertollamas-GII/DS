@@ -9,7 +9,10 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author luisg
+ * @author Luis Guerra
+ * @author Jose Jiménez
+ * @author Alberto Llamas
+ * @author Óscar López
  */
 public class Motor implements Runnable{
     

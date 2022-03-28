@@ -11,7 +11,8 @@ import java.math.RoundingMode;
 
 /**
  *
- * @author luisg
+ * @author Luis Guerra
+ * @author Óscar López
  */
 public class ObjetoSalpicadero extends javax.swing.JFrame {
 

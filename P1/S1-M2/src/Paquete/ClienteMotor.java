@@ -9,7 +9,8 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author luisg
+ * @author Luis Guerra
+ * @author Óscar López
  */
 public class ClienteMotor extends Thread {
     

@@ -7,7 +7,8 @@ package modeloObservable;
 
 /**
  *
- * @author albertollamasgonzalez
+ * @author Jose Jiménez
+ * @author Alberto Llamas
  */
 public class DatosMeteorologicos {
 

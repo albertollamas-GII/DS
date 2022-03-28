@@ -11,7 +11,8 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author albertollamasgonzalez
+ * @author Alberto Llamas
+ * @author Óscar López
  */
 public class CarreraCarretera extends Carrera{
     

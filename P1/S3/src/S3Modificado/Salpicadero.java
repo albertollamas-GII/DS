@@ -9,8 +9,11 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 /**
- *
- * @author luisg
+ * 
+ * @author Luis Guerra
+ * @author Jose Jiménez
+ * @author Alberto Llamas
+ * @author Óscar López
  */
 public class Salpicadero extends javax.swing.JFrame {
 

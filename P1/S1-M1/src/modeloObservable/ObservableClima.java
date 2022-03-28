@@ -9,7 +9,8 @@ import java.util.Random;
 
 /**
  *
- * @author albertollamasgonzalez
+ * @author Jose Jiménez
+ * @author Alberto Llamas
  */
 public class ObservableClima extends Observable implements Runnable {
     private float temperatura;

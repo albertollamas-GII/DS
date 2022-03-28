@@ -16,7 +16,8 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
 /**
  *
- * @author albertollamasgonzalez
+ * @author Jose Jiménez
+ * @author Alberto Llamas
  */
 public class ObserverGraficaTemperatura extends javax.swing.JFrame implements Observer{
     

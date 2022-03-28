@@ -5,8 +5,9 @@
 package Paquete;
 
 /**
- *
- * @author luisg
+ * 
+ * @author Luis Guerra
+ * @author Óscar López
  */
 public class Practica1Sesion2 {
 

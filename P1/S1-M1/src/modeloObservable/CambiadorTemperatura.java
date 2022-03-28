@@ -10,7 +10,8 @@ import java.util.Observable;
 
 /**
  *
- * @author albertollamasgonzalez
+ * @author Jose Jiménez
+ * @author Alberto Llamas
  */
 public class CambiadorTemperatura extends javax.swing.JFrame implements Observer{
     private ObservableClima temperatura;
