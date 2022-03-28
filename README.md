@@ -55,6 +55,8 @@ Por tanto, y siguiendo el patron designado, seria el motor el que estaria consta
 
 ### Módulo 1 : Ej 1 (Oscar López y Alberto Llamas) Patrón Factoría Abstracta y patrón Método Factoría
 
+En este ejercicio, nos pedían utilizar el patrón Factoría Abstracta para simular dos carreras distintas de ciclistas que durasen 60s y se retirasen un % dependiendo del tipo de carrera. Para el retiro de ciclistas, hemos supuesto que se retira un ciclista aleatorio cada segundo a partir de un cuarto de la carrera por un motivo distinto. Hemos realizado un método synchronized en el que cada hebra "corre" una carrera (Carretera y Montaña) y después mediante el método join() de Thread, hemos fusionado las hebras para que acaben a la vez.
+
 #### Diagrama de clases
 <br><img src="imagenes/s2-m1.png" width="700" height="400">
 
