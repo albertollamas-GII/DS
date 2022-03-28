@@ -70,11 +70,11 @@ Para mostrar el funcionamiento, hemos introducido con en la ventana CambiadorTem
 
 ## Sesión 3
 
-Como patrón, hemos usado el modelo Vista - Controlador ya que hemos considerado que es el que mejor se adapta a nuestro caso debido a la idea principal de éste, separar la funcionalidad del sistema de la interfaz de usuario. De esta forma, hemos podido repartirnos el trabajo más fácilmente:
+Como patrón, hemos usado el estilo "Controlador de procesos" ya que hemos considerado que es el que mejor se adapta a nuestro caso debido a la idea principal de éste, separar la funcionalidad del sistema de la interfaz de usuario y un controlador que monitorice constantemente las acciones que debe realizar el modelo (motor). De esta forma, hemos podido repartirnos el trabajo más fácilmente:
 
 
-* Modelo, Controlador: Luis Guerra, Jose Jiménez, Oscar López.
-* Vista: Alberto Llamas.
+* Motor, Controlador: Luis Guerra, Jose Jiménez, Oscar López.
+* Salpicadero: Alberto Llamas.
 
 #### Diagrama de clases
 
