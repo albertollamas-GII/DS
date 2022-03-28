@@ -68,6 +68,21 @@ Para mostrar el funcionamiento, hemos introducido con en la ventana CambiadorTem
 <br><img src="imagenes/s2m2.jpeg" width="700" height="400">
 
 
+## Sesión 3
+
+Como patrón, hemos usado el modelo Vista - Controlador ya que hemos considerado que es el que mejor se adapta a nuestro caso debido a la idea principal de éste, separar la funcionalidad del sistema de la interfaz de usuario. De esta forma, hemos podido repartirnos el trabajo más fácilmente:
+
+
+* Modelo, Controlador: Luis Guerra, Jose Jiménez, Oscar López.
+* Vista: Alberto Llamas.
+
+#### Diagrama de clases
+
+<br><img src="imagenes/s3.png" width="500" height="700">
+#### Captura de ejecución
+<br><img src="imagenes/apagado.png" width="700" height="400">
+<br><img src="imagenes/acelerando.png" width="700" height="400">
+
 
 
 
