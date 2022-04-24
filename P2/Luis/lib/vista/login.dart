@@ -1,20 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:untitled2/Controlador/ControladorLuis.dart';
+import '../vista/Home.dart';
+import '../vista/bottom_navbar.dart';
+import '../controlador/controladorLuis.dart';
 
-class SignUp extends StatefulWidget{
+class Login extends StatefulWidget{
 
   ControladorLuis controlador;
 
-  SignUp(this.controlador);
+  Login(this.controlador);
 
   @override
-  _SignUpState createState() => _SignUpState();
+  _LoginState createState() => _LoginState();
 
 }
 
-class _SignUpState extends State<SignUp>{
+class _LoginState extends State<Login>{
 
-  String email = "";
+  String nombreUsuario = "";
   String password = "";
 
   @override
@@ -30,7 +32,7 @@ class _SignUpState extends State<SignUp>{
         child: Column(
           children: [
             Image.asset(
-              "Universitter.PNG",
+              "assets/universitter.png",
               height: 200,
             ),
             Text("Introduce tus datos de sesion: "),
@@ -47,11 +49,11 @@ class _SignUpState extends State<SignUp>{
                         children: [
                           TextFormField(
                             decoration: const InputDecoration(
-                              icon: Icon(Icons.email),
-                              hintText: 'Email',
+                              icon: Icon(Icons.person),
+                              hintText: 'Nombre Usuario',
                             ),
                             onChanged: (val) => setState(() {
-                              email = val;
+                              nombreUsuario = val;
                             }),
                           ),
                           TextFormField(
@@ -68,7 +70,7 @@ class _SignUpState extends State<SignUp>{
                         ],
                       ),
                     ),
-                    Padding(padding: EdgeInsets.only(bottom:25)),
+                    Padding(padding: EdgeInsets.only(bottom:20)),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
@@ -85,7 +87,9 @@ class _SignUpState extends State<SignUp>{
                             style: ElevatedButton.styleFrom(
                               primary: Color(0xff15ac63),
                             ),
-                            onPressed: () => clikLoginButton(context)
+                            onPressed: () { 
+                              clickLoginButton(context);
+                            }
                         )
                       ],
                     )
@@ -98,8 +102,8 @@ class _SignUpState extends State<SignUp>{
     );
   }
 
-  void clikLoginButton(BuildContext context){ //ESTO VA EN EL MODELO
-    widget.controlador.ConfirmacionLogin(email,password,context);
+  void clickLoginButton(BuildContext context){ //ESTO VA EN EL MODELO
+    widget.controlador.ConfirmacionLogin(nombreUsuario,password,context);
   }
 
   void clickRegistrarseButton(BuildContext context){ //ESTO VA EN EL MODELO

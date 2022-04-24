@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:untitled2/Controlador/ControladorLuis.dart';
+import '../vista/bottom_navbar.dart';
+import '../controlador/controladorLuis.dart';
 
 class Register extends StatefulWidget{
 
@@ -34,8 +35,8 @@ class _RegisterState extends State<Register> {
           child: Column(
             children: [
               Image.asset(
-                "Universitter.PNG",
-                height: 200,
+                "assets/universitter.png",
+                height: 85,
               ),
               Form(
                   child: Column(
@@ -98,7 +99,6 @@ class _RegisterState extends State<Register> {
                           ],
                         ),
                       ),
-                      Padding(padding: EdgeInsets.only(bottom:25)),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
@@ -107,7 +107,9 @@ class _RegisterState extends State<Register> {
                               style: ElevatedButton.styleFrom(
                                 primary: Color(0xff15ac63),
                               ),
-                              onPressed: () => clickConfirmationButton(context)
+                              onPressed: () {
+                                 clickConfirmationButton(context);
+                              }
                           )
                         ],
                       )
@@ -122,5 +124,6 @@ class _RegisterState extends State<Register> {
 
   void clickConfirmationButton(BuildContext context){
 
+      widget.controlador.ConfirmacionRegistro(nombre,apellidos,nombreUsuario,email,password, context);
   }
 }

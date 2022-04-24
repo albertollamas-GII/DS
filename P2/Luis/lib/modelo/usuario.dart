@@ -1,4 +1,8 @@
+import 'package:twitter/modelo/publicacion.dart';
+
 class Usuario{
+
+  late List<Publicacion> _tablon;
 
   late String _nombre;
   late String _apellidos;
@@ -16,7 +20,7 @@ class Usuario{
     return _email;
   }
 
-  String getContrasenia(){
+  String getPassword(){
     return _password;
   }
   
@@ -52,6 +56,12 @@ class Usuario{
 
     else
       return false;
+  }
+
+  void publicar(Publicacion pub){
+    if(!this._tablon.contains(pub)){
+      this._tablon.add(pub);
+    }
   }
 
   void seguir(Usuario u){
