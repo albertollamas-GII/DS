@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:twitter/modelo/coleccionUsuarios.dart';
-import 'package:twitter/modelo/publicacion.dart';
-import 'package:twitter/modelo/sesion.dart';
-import '../vista/bottom_navbar.dart';
+import '../modelo/coleccionUsuarios.dart';
+import '../modelo/publicacion.dart';
+import '../vista/pages/bottom_navbar.dart';
 import '../modelo/usuario.dart';
-import '../vista/login.dart';
-import '../vista/register.dart';
+import '../vista/pages/login.dart';
+import '../vista/pages/register.dart';
 import '../modelo/coleccionUsuarios.dart';
 
 class Controlador  {
 
   late ColeccionUsuarios coleccionUsuarios;
-  late Sesion _sesion;
+  late Usuario _sesion;
 
   Controlador(){
     coleccionUsuarios = ColeccionUsuarios();
@@ -40,7 +39,7 @@ class Controlador  {
     Usuario? usu = coleccionUsuarios.buscarPorNombreUsuario(nombreUsuario);
     if(usu != null) {
       if (usu.getPassword() == password) {
-        _sesion = Sesion(usu);
+        _sesion = usu;
         irNavBarSeguidos(usu,context);
       } else {
         crearAlerta("ContraseñaIncorrecta", context);
@@ -101,6 +100,10 @@ class Controlador  {
 
   List<String> getNombresUsuarios(){
     return coleccionUsuarios.getAllNames();
+  }
+
+  Usuario getSesion(){
+    return _sesion;
   }
   
   

@@ -1,7 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:twitter/controlador/controlador.dart';
-import 'package:twitter/vista/Home.dart';
+import '../../controlador/controlador.dart';
 
 class HomeScreen extends StatefulWidget {
   @override

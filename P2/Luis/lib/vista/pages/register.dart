@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../vista/bottom_navbar.dart';
-import '../controlador/controlador.dart';
+import 'bottom_navbar.dart';
+import '../../controlador/controlador.dart';
 
 class Register extends StatefulWidget{
 

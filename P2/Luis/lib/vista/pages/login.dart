@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../vista/Home.dart';
-import '../vista/bottom_navbar.dart';
-import '../controlador/controlador.dart';
+import 'Home.dart';
+import 'bottom_navbar.dart';
+import '../../controlador/controlador.dart';
 
 class Login extends StatefulWidget{
 

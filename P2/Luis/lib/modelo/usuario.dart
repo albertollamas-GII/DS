@@ -1,4 +1,4 @@
-import 'package:twitter/modelo/publicacion.dart';
+import '../modelo/publicacion.dart';
 
 class Usuario{
 
@@ -10,6 +10,7 @@ class Usuario{
   late String _email;
   late String _password;
   late String _imagen;
+  late String _about;
   late List<Usuario> _seguidos;
   late List<Usuario> _seguidores;
 
@@ -67,6 +68,10 @@ class Usuario{
 
     else
       return false;
+  }
+
+  String getAbout(){
+    return _about;
   }
 
   void publicar(Publicacion pub){

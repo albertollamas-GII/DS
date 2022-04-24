@@ -1,6 +1,5 @@
 import 'publicacion.dart';
 import 'filtro.dart';
-import 'usuario.dart';
 
 class FiltroPalabras extends Filtro{
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:twitter/modelo/publicacion.dart';
-import 'package:twitter/modelo/usuario.dart';
+import '../../modelo/publicacion.dart';
+import '../../modelo/usuario.dart';
 
 class Home extends StatefulWidget{
 

@@ -1,5 +1,5 @@
-import 'package:twitter/modelo/publicacion.dart';
-import 'package:twitter/modelo/usuario.dart';
+import '../modelo/publicacion.dart';
+import '../modelo/usuario.dart';
 
 class ColeccionUsuarios{
 
