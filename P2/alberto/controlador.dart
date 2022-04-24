@@ -1,40 +1,38 @@
-// ignore_for_file: non_constant_identifier_names
-
 import 'package:flutter/material.dart';
+import 'package:twitter_app/modelo/filtroPalabras.dart';
+import 'package:twitter_app/modelo/gestorFiltros.dart';
+import '../modelo/coleccionUsuarios.dart';
 import '../modelo/publicacion.dart';
-import '../modelo/usuario.dart';
 import '../vista/pages/bottom_navbar.dart';
+import '../modelo/usuario.dart';
 import '../vista/pages/login.dart';
 import '../vista/pages/register.dart';
-import '../modelo/coleccion_usuarios.dart';
-import '../modelo/sesion.dart';
+import '../modelo/coleccionUsuarios.dart';
 
-class ControladorLuis  {
+class Controlador  {
 
   late ColeccionUsuarios coleccionUsuarios;
-  late Sesion _sesion;
+  late Usuario _sesion;
+  late AdminFiltros adminFiltros;
+  late FiltroPalabras fPalabras;
 
-  ControladorLuis(){
+
+  Controlador(){
     coleccionUsuarios = ColeccionUsuarios();
+    adminFiltros = new AdminFiltros();
+    fPalabras = new FiltroPalabras();
+    adminFiltros.setFiltro(fPalabras);
+
   }
 
-  Sesion getSesion(){
-    return _sesion;
-  }
 
-  void modificaUsuario(Usuario usuario){
-    coleccionUsuarios.remUsuario(_sesion.usuario);
-    coleccionUsuarios.addUsuario(usuario);
-    _sesion.usuario = usuario;
-  }
-  
   void ConfirmacionRegistro(String nombre, String apellido, String nombreUsuario, String email, String password, BuildContext context){
     if(nombre != "" && apellido != "" && nombreUsuario != "" && email != "" && password != ""){
-      coleccionUsuarios.addUsuario(Usuario(nombreUsuario,email, password));
+      coleccionUsuarios.addUsuario(Usuario(nombre,apellido,nombreUsuario,email, password));
       Navigator.of(context).push(MaterialPageRoute(
           builder: (BuildContext context){
             return Login(this);
-          },
+          }
       ));
     }else{
       crearAlerta("Rellena todos los campos para registrate", context);
@@ -42,11 +40,15 @@ class ControladorLuis  {
 
   }
 
+  Usuario? BuscarUsuarioPorNombre(String nombre){
+    return coleccionUsuarios.buscarPorNombreUsuario(nombre);
+  }
+
   void ConfirmacionLogin(String nombreUsuario, String password, BuildContext context){
     Usuario? usu = coleccionUsuarios.buscarPorNombreUsuario(nombreUsuario);
     if(usu != null) {
       if (usu.getPassword() == password) {
-        _sesion = Sesion(usu);
+        _sesion = usu;
         irNavBarSeguidos(usu,context);
       } else {
         crearAlerta("ContraseñaIncorrecta", context);
@@ -64,24 +66,33 @@ class ControladorLuis  {
     ));
   }
 
+  void irNavBar(Usuario usuario, BuildContext context){
+    List<Publicacion> publicaciones = [];
+    for(var pub in usuario.getTablon()){
+      publicaciones.add(pub);
+    }
+
+    Navigator.of(context).push(MaterialPageRoute(
+        builder: (BuildContext context) {
+          return BottomNavBarView(publicaciones,this);
+        }
+    ));
+  }
+
   void irNavBarSeguidos(Usuario usuario, BuildContext context){
 
     List<Publicacion> publicaciones = [];
     for(var usu in usuario.getSeguidos()){
-      print(usu.getNombreUsuario());
       for(var pub in usu.getTablon()){
-        print(pub.getTexto());
         publicaciones.add(pub);
       }
     }
-
-    print("Numero de objetos " + (publicaciones.length).toString());
 
     publicaciones.sort((a, b) => a.getFecha().compareTo(b.getFecha()));
 
     Navigator.of(context).push(MaterialPageRoute(
         builder: (BuildContext context) {
-          return BottomNavBarView(publicaciones, this);
+          return BottomNavBarView(publicaciones,this);
         }
     ));
   }
@@ -95,7 +106,24 @@ class ControladorLuis  {
         }
     );
   }
+
+  List<String> getNombresUsuarios(){
+    return coleccionUsuarios.getAllNames();
+  }
+
+  Usuario getSesion(){
+    return _sesion;
+  }
   
+  Publicacion publicarPost(String texto, Usuario autor){
+    String imagen = "assets/universitter.png";
+    Publicacion post = new Publicacion(imagen,texto, autor);
+
+    adminFiltros.setTarget(post);
+    adminFiltros.ejecutar();
+
+    return post;
+  }
   
 }
 
