@@ -1,26 +1,29 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
-import 'package:p2_ds/page/edit_profile_page.dart';
-import 'page/profile_page.dart';
+import 'controlador/Controlador_luis.dart';
+import 'vista/pages/login.dart';
+
+
 void main(){
   runApp(MyApp());
 }
 
+// ignore: must_be_immutable
 class MyApp extends StatelessWidget{
-  static const String title = 'User Profile';
 
-  const MyApp({Key? key}) : super(key: key);
+  ControladorLuis controlador = ControladorLuis();
+
+  MyApp({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: title,
-      home: ProfilePage(),
+      title: 'Nombre Aplicacion kk',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+      ),
+      home: Login(controlador),
     );
   }
 }
-
-
 
