@@ -3,11 +3,12 @@ import 'publicacion.dart';
 
 class CadenaFiltros {
 
+  // ignore: prefer_final_fields
   List<Filtro> _filtros = [];
   late Publicacion _post;
 
 
-  CadenaFiltros(){}
+  CadenaFiltros();
 
   addFiltro(Filtro filtro) {
     _filtros.add(filtro);
@@ -17,9 +18,9 @@ class CadenaFiltros {
     _post = objetivo;
   }
 
-  @override
   ejecutar() {
-    for(int i= 0; i < _filtros.length; i++)
+    for(int i= 0; i < _filtros.length; i++) {
       _filtros[i].ejecutar(_post);
+    }
   }
 }

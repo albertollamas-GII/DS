@@ -1,47 +1,53 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import '../page/edit_profile_page.dart';
-import '../widget/numbers_widget.dart';
-import '../widget/profile_widget.dart';
-import '../model/user.dart';
-import '../utils/user_preferences.dart';
-import '../widget/appbar_widget.dart';
+import '../../modelo/usuario.dart';
+import '../widgets/numbers_widget.dart';
+import '../widgets/profile_widget.dart';
+import 'edit_profile_page.dart';
+import '../../controlador/Controlador_luis.dart';
 
-class ProfilePage  extends StatefulWidget {
-  const ProfilePage({Key? key}) : super(key: key);
 
+class ProfilePage extends StatefulWidget {
+  
+  late Usuario _usuario;
+  late ControladorLuis _controlador;
+
+  ProfilePage(ControladorLuis controlador){
+    _usuario = controlador.getSesion().usuario;
+    _controlador = controlador;
+  }
 
   @override
   _ProfilePageState createState() => _ProfilePageState();
+
+
 }
 
 class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context){
-    const user = UserPreferences.myUser;
 
     return 
       Scaffold(
-        appBar: buildAppBar(context),
         body: 
         ListView(
           physics: const BouncingScrollPhysics(),
           children: [
             ProfileWidget(
-              imagePath: user.imagePath,
+              imagePath: widget._usuario.getImagen(),
               onClicked: () {
                 Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => EditProfilePage()),
+                  MaterialPageRoute(builder: (context) => EditProfilePage(widget._controlador)),
                 );
               },
             ),
             const SizedBox(height : 24),
-            buildName(user),
+            buildName(widget._usuario),
             const SizedBox(height : 24),
             NumbersWidget(),
             const SizedBox(height : 48),
-            buildAbout(user),
+            buildAbout(widget._usuario),
 
           ],
         ),
@@ -49,21 +55,22 @@ class _ProfilePageState extends State<ProfilePage> {
 
   }
 
-  Widget buildName(User user) => Column(
+  //El usuario tiene que ser el de la sesión
+  Widget buildName(Usuario user) => Column(
     children: [
       Text(
-        user.name,
+        user.getNombreUsuario(),
         style:const TextStyle(color: Colors.black, fontWeight:  FontWeight.bold, fontSize: 20)
       ),
       const SizedBox(height: 4),
       Text(
-        user.email,
+        user.getEmail(),
         style: const TextStyle(color: Colors.grey),
       ),
     ],
   );
 
-  Widget buildAbout(User user) => Container(
+  Widget buildAbout(Usuario user) => Container(
     padding: EdgeInsets.symmetric(horizontal: 48),
     child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -74,7 +81,7 @@ class _ProfilePageState extends State<ProfilePage> {
         ),
         const SizedBox(height: 16),
         Text(
-          user.about,
+          user.getAbout(),
           style: TextStyle(color: Colors.black, height: 1.4, fontSize: 16),
         ),
       ],

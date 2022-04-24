@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import '../vista/bottom_navbar.dart';
-import '../controlador/controladorLuis.dart';
+import '../../controlador/Controlador_luis.dart';
 
+// ignore: must_be_immutable
 class Register extends StatefulWidget{
 
   ControladorLuis controlador;
 
-  Register(this.controlador);
+  Register(this.controlador, {Key? key}) : super(key: key);
 
 
   @override
@@ -26,12 +26,12 @@ class _RegisterState extends State<Register> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xff15ac63),
+        backgroundColor: const Color(0xff15ac63),
         elevation: 8,
         title: const Text("Registrate"),
       ),
       body:Container(
-          padding: EdgeInsets.symmetric(vertical: 20, horizontal: 50),
+          padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 50),
           child: Column(
             children: [
               Image.asset(
@@ -103,13 +103,11 @@ class _RegisterState extends State<Register> {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           ElevatedButton(
-                              child: Text("Confirmar"),
+                              child: const Text("Confirmar"),
                               style: ElevatedButton.styleFrom(
-                                primary: Color(0xff15ac63),
+                                primary: const Color(0xff15ac63),
                               ),
-                              onPressed: () {
-                                 clickConfirmationButton(context);
-                              }
+                              onPressed: () => clickConfirmationButton(context)
                           )
                         ],
                       )
@@ -124,6 +122,5 @@ class _RegisterState extends State<Register> {
 
   void clickConfirmationButton(BuildContext context){
 
-      widget.controlador.ConfirmacionRegistro(nombre,apellidos,nombreUsuario,email,password, context);
   }
 }

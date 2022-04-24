@@ -2,12 +2,14 @@
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
+  const HomeScreen({Key? key}) : super(key: key);
+
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  TextEditingController? _textEditingController = TextEditingController();
+  final TextEditingController? _textEditingController = TextEditingController();
     List<String> usuariosOnSearch =[];
     //Se llamaría al método getNombresUsuario()
     List<String> usuarios = [
@@ -37,7 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        backgroundColor: Color(0xff15ac63),
+        backgroundColor: const Color(0xff15ac63),
         title: Container(
                 decoration: BoxDecoration(color: Colors.white,
                 borderRadius: BorderRadius.circular(30)),
@@ -50,7 +52,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     });
                   },
                   controller: _textEditingController,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     border: InputBorder.none,
                     errorBorder: InputBorder.none,
                     enabledBorder: InputBorder.none,
@@ -68,7 +70,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 _textEditingController!.text = '';
               });
             },
-            child: Icon(
+            child: const Icon(
               Icons.close,
               color: Colors.red,
             )
@@ -79,7 +81,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ? Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
+                  children: const [
                     Icon(
                       Icons.search_off,
                       size: 80,
@@ -100,17 +102,17 @@ class _HomeScreenState extends State<HomeScreen> {
                 padding: const EdgeInsets.all(4.0),
                 child: Row(
                   children: [
-                    CircleAvatar(
+                    const CircleAvatar(
                         child: Icon(Icons.account_circle_rounded),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
                     Text(
                         _textEditingController!.text.isNotEmpty
                             ? usuariosOnSearch[index]
                             : usuarios[index],
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontSize: 25, fontWeight: FontWeight.bold)
                     ),
                   ],

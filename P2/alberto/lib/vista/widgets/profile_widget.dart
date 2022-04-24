@@ -1,14 +1,12 @@
-import 'dart:html' as html;
-import 'dart:io';
+// ignore: avoid_web_libraries_in_flutter
 
 import 'package:flutter/material.dart';
 
-import '../page/edit_profile_page.dart';
 
 class ProfileWidget extends StatelessWidget{
   final String imagePath;
   final bool isEdit;
-  final html.VoidCallback onClicked;
+  final VoidCallback onClicked;
 
   const ProfileWidget({
     Key? key,

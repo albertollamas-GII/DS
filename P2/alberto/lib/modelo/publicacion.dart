@@ -5,13 +5,14 @@ class Publicacion{
   late String _texto;
   late Usuario _autor;
   late DateTime _fecha;
+  late String _imagen;
 
   String getTexto(){
     return _texto;
   }
 
   void setTexto(String text){
-    this._texto = text;
+    _texto = text;
   }
 
   Usuario getUsuario(){
@@ -20,17 +21,23 @@ class Publicacion{
 
   DateTime getFecha(){
       return _fecha;
-    }
+  }
 
-  Publicacion(String texto, Usuario autor) {
-    this._texto = texto;
-    this._autor = autor;
-    this._fecha = DateTime.now();
+  String getImagen(){
+    return _imagen;
+  }
+
+  Publicacion(String imagen, String texto, Usuario autor) {
+    _texto = texto;
+    _imagen = imagen;
+    _autor = autor;
+    _fecha = DateTime.now();
   }
   
   bool tieneTexto(String texto){
-    if(this._texto.indexOf(texto) != -1)
+    if(_texto.indexOf(texto) != -1) {
       return true;
+    }
 
     return false;
   }

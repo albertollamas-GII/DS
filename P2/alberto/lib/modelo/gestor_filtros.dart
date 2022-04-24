@@ -1,6 +1,4 @@
-import 'dart:ffi';
-
-import 'cadenaFiltros.dart';
+import 'cadena_filtros.dart';
 import 'publicacion.dart';
 import 'filtro.dart';
 
@@ -9,18 +7,18 @@ class AdminFiltros{
   late CadenaFiltros cadenaFiltros;
 
  void setFiltro(Filtro filtro) {
-   this.cadenaFiltros.addFiltro(filtro);
+   cadenaFiltros.addFiltro(filtro);
   }
 
  void setTarget(Publicacion post) {
-   this.cadenaFiltros.setTarget(post);
+   cadenaFiltros.setTarget(post);
   }
 
   AdminFiltros(){
-   this.cadenaFiltros = new CadenaFiltros();
+   cadenaFiltros = CadenaFiltros();
   }
 
  void ejecutar() {
-   this.cadenaFiltros.ejecutar();
+   cadenaFiltros.ejecutar();
   }
 }

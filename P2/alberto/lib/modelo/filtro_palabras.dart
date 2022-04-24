@@ -1,9 +1,11 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'publicacion.dart';
 import 'filtro.dart';
-import 'usuario.dart';
 
 class FiltroPalabras extends Filtro{
 
+  // ignore: constant_identifier_names
   static const int NUM_PALABRAS_PROHIBIDAS = 5;
   List<String> PALABRAS_PROHIBIDAS = ["tonto" , "feo", "inutil", "retrasado", "mongolo"];
 

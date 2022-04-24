@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../widget/textfield_widget.dart';
 
-import '../modelo/user.dart';
+import '../model/user.dart';
 import '../utils/user_preferences.dart';
 import '../widget/appbar_widget.dart';
 import '../widget/profile_widget.dart';
@@ -18,11 +18,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-    appBar: AppBar(
-    leading: const BackButton(color: Colors.black,),
-    backgroundColor: Colors.transparent,
-    elevation: 0,
-  ),
+    appBar: buildAppBar(context),
     body: ListView(
       padding: const EdgeInsets.symmetric(horizontal: 32),
       physics: const BouncingScrollPhysics(),

@@ -1,29 +1,40 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:flutter/material.dart';
-import '../modelo/coleccionUsuarios.dart';
-import '../vista/bottom_navbar.dart';
+import '../modelo/publicacion.dart';
 import '../modelo/usuario.dart';
-import '../vista/login.dart';
-import '../vista/register.dart';
-import '../modelo/coleccionUsuarios.dart';
+import '../vista/pages/bottom_navbar.dart';
+import '../vista/pages/login.dart';
+import '../vista/pages/register.dart';
+import '../modelo/coleccion_usuarios.dart';
+import '../modelo/sesion.dart';
 
 class ControladorLuis  {
 
   late ColeccionUsuarios coleccionUsuarios;
+  late Sesion _sesion;
 
   ControladorLuis(){
     coleccionUsuarios = ColeccionUsuarios();
-    Usuario usu = Usuario("luis", "luis", "luis", "luis", "luis");
-    coleccionUsuarios.addUsuario(usu);
   }
 
+  Sesion getSesion(){
+    return _sesion;
+  }
 
+  void modificaUsuario(Usuario usuario){
+    coleccionUsuarios.remUsuario(_sesion.usuario);
+    coleccionUsuarios.addUsuario(usuario);
+    _sesion.usuario = usuario;
+  }
+  
   void ConfirmacionRegistro(String nombre, String apellido, String nombreUsuario, String email, String password, BuildContext context){
     if(nombre != "" && apellido != "" && nombreUsuario != "" && email != "" && password != ""){
-      coleccionUsuarios.addUsuario(Usuario(nombre,apellido,nombreUsuario,email, password));
+      coleccionUsuarios.addUsuario(Usuario(nombreUsuario,email, password));
       Navigator.of(context).push(MaterialPageRoute(
           builder: (BuildContext context){
             return Login(this);
-          }
+          },
       ));
     }else{
       crearAlerta("Rellena todos los campos para registrate", context);
@@ -35,11 +46,8 @@ class ControladorLuis  {
     Usuario? usu = coleccionUsuarios.buscarPorNombreUsuario(nombreUsuario);
     if(usu != null) {
       if (usu.getPassword() == password) {
-        Navigator.of(context).push(MaterialPageRoute(
-            builder: (BuildContext context) {
-              return BottomNavBarView(usu.getSeguidos());
-            }
-        ));
+        _sesion = Sesion(usu);
+        irNavBarSeguidos(usu,context);
       } else {
         crearAlerta("ContraseñaIncorrecta", context);
       }
@@ -52,6 +60,28 @@ class ControladorLuis  {
     Navigator.of(context).push(MaterialPageRoute(
         builder: (BuildContext context){
           return Register(this);
+        }
+    ));
+  }
+
+  void irNavBarSeguidos(Usuario usuario, BuildContext context){
+
+    List<Publicacion> publicaciones = [];
+    for(var usu in usuario.getSeguidos()){
+      print(usu.getNombreUsuario());
+      for(var pub in usu.getTablon()){
+        print(pub.getTexto());
+        publicaciones.add(pub);
+      }
+    }
+
+    print("Numero de objetos " + (publicaciones.length).toString());
+
+    publicaciones.sort((a, b) => a.getFecha().compareTo(b.getFecha()));
+
+    Navigator.of(context).push(MaterialPageRoute(
+        builder: (BuildContext context) {
+          return BottomNavBarView(publicaciones, this);
         }
     ));
   }
