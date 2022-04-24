@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:p2_ds/widget/textfield_widget.dart';
+import '../../modelo/user.dart';
+import '../../modelo/utils/user_preferences.dart';
+import '../widgets/appbar_widget.dart';
+import '../widgets/profile_widget.dart';
+import '../widgets/textfield_widget.dart';
 
-import '../model/user.dart';
-import '../utils/user_preferences.dart';
-import '../widget/appbar_widget.dart';
-import '../widget/profile_widget.dart';
 
 class EditProfilePage extends StatefulWidget {
   const EditProfilePage({Key? key}) : super(key: key);

@@ -7,7 +7,7 @@ class CadenaFiltros {
   late Publicacion _post;
 
 
-  CadenaFiltros(){}
+  CadenaFiltros();
 
   addFiltro(Filtro filtro) {
     _filtros.add(filtro);
@@ -17,7 +17,6 @@ class CadenaFiltros {
     _post = objetivo;
   }
 
-  @override
   ejecutar() {
     for(int i= 0; i < _filtros.length; i++)
       _filtros[i].ejecutar(_post);

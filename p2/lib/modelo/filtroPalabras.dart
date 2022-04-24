@@ -1,6 +1,7 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'publicacion.dart';
 import 'filtro.dart';
-import 'usuario.dart';
 
 class FiltroPalabras extends Filtro{
 

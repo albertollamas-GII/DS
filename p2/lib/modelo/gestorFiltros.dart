@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'cadenaFiltros.dart';
 import 'publicacion.dart';
 import 'filtro.dart';

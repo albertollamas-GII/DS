@@ -1,9 +1,7 @@
 import 'dart:html' as html;
-import 'dart:io';
 
 import 'package:flutter/material.dart';
 
-import '../page/edit_profile_page.dart';
 
 class ProfileWidget extends StatelessWidget{
   final String imagePath;

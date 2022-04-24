@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:untitled2/Controlador/ControladorLuis.dart';
+import '../../controlador/ControladorLuis.dart';
 
 class Register extends StatefulWidget{
 

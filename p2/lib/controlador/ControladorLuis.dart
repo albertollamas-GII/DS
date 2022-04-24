@@ -1,14 +1,16 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:flutter/material.dart';
-import 'package:untitled2/auth/signup.dart';
-import 'package:untitled2/modelo/usuario.dart';
-import '../auth/register.dart';
+import 'package:twitter_app/vista/pages/home.dart';
+import '../vista/pages/register.dart';
+import '../vista/pages/login.dart';
 
 class ControladorLuis {
   void ConfirmacionRegistro(String nombre, String apellido, String nombreUsuario, String email, String password, BuildContext context){
     //AlmacenUsuarios.add(new Usuario(nombre,apellido,nombreUsuario,email, password);)
     Navigator.of(context).push(MaterialPageRoute(
         builder: (BuildContext context){
-          return new SignUp(this);
+          return new Login(this);
         }
     ));
   }
@@ -17,7 +19,7 @@ class ControladorLuis {
     if(email == "luisito" && password == "1234"){ //AQUI SE DEBE HACER LA COMPROBACION DE SI ESTA EN EL SISTEMA O NO!
       Navigator.of(context).push(MaterialPageRoute(
           builder: (BuildContext context){
-            return new Register(this); // Esto es en verdad a la pagina principal
+            return new Home(); // Esto es en verdad a la pagina principal
           }
       ));
     }

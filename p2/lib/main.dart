@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:untitled2/Controlador/ControladorLuis.dart';
-import 'package:untitled2/auth/signup.dart';
-import 'package:untitled2/auth/register.dart';
+import 'controlador/ControladorLuis.dart';
+import 'vista/pages/login.dart';
 
 
 void main(){
@@ -20,7 +19,8 @@ class MyApp extends StatelessWidget{
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: SignUp(controlador),
+      home: Login(controlador),
     );
   }
 }
+

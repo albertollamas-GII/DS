@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:untitled2/Controlador/ControladorLuis.dart';
+import '../../controlador/ControladorLuis.dart';
 
-class SignUp extends StatefulWidget{
+class Login extends StatefulWidget{
 
   ControladorLuis controlador;
 
-  SignUp(this.controlador);
+  Login(this.controlador);
 
   @override
   _SignUpState createState() => _SignUpState();
 
 }
 
-class _SignUpState extends State<SignUp>{
+class _SignUpState extends State<Login>{
 
   String email = "";
   String password = "";
@@ -85,7 +85,7 @@ class _SignUpState extends State<SignUp>{
                             style: ElevatedButton.styleFrom(
                               primary: Color(0xff15ac63),
                             ),
-                            onPressed: () => clikLoginButton(context)
+                            onPressed: () => clickLoginButton(context)
                         )
                       ],
                     )
@@ -98,7 +98,7 @@ class _SignUpState extends State<SignUp>{
     );
   }
 
-  void clikLoginButton(BuildContext context){ //ESTO VA EN EL MODELO
+  void clickLoginButton(BuildContext context){ //ESTO VA EN EL MODELO
     widget.controlador.ConfirmacionLogin(email,password,context);
   }
 
