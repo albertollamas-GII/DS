@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:twitter/modelo/coleccionUsuarios.dart';
 import 'package:twitter/modelo/publicacion.dart';
+import 'package:twitter/modelo/sesion.dart';
 import '../vista/bottom_navbar.dart';
 import '../modelo/usuario.dart';
 import '../vista/login.dart';
@@ -10,6 +11,7 @@ import '../modelo/coleccionUsuarios.dart';
 class ControladorLuis  {
 
   late ColeccionUsuarios coleccionUsuarios;
+  late Sesion _sesion;
 
   ControladorLuis(){
     coleccionUsuarios = ColeccionUsuarios();
@@ -34,6 +36,7 @@ class ControladorLuis  {
     Usuario? usu = coleccionUsuarios.buscarPorNombreUsuario(nombreUsuario);
     if(usu != null) {
       if (usu.getPassword() == password) {
+        _sesion = Sesion(usu);
         irNavBarSeguidos(usu,context);
       } else {
         crearAlerta("ContraseñaIncorrecta", context);
