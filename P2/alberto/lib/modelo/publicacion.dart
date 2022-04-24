@@ -1,0 +1,38 @@
+import 'usuario.dart';
+
+class Publicacion{
+
+  late String _texto;
+  late Usuario _autor;
+  late DateTime _fecha;
+
+  String getTexto(){
+    return _texto;
+  }
+
+  void setTexto(String text){
+    this._texto = text;
+  }
+
+  Usuario getUsuario(){
+    return _autor;
+  }
+
+  DateTime getFecha(){
+      return _fecha;
+    }
+
+  Publicacion(String texto, Usuario autor) {
+    this._texto = texto;
+    this._autor = autor;
+    this._fecha = DateTime.now();
+  }
+  
+  bool tieneTexto(String texto){
+    if(this._texto.indexOf(texto) != -1)
+      return true;
+
+    return false;
+  }
+
+}
