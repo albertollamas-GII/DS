@@ -26,6 +26,14 @@ class ColeccionUsuarios{
     }
   }
 
+  List<String> getAllNames(){
+    List<String> listaNombres = [];
+    for(var usu in coleccion){
+      listaNombres.add(usu.getNombreUsuario());
+    }
+    return listaNombres;
+  }
+
   Usuario? buscarPorNombreUsuario(String nombreUsuarioBuscar){
     var usu;
     for(usu in coleccion){

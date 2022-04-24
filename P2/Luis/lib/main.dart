@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../vista/Home.dart';
 import '../vista/bottom_navbar.dart';
-import 'controlador/controladorLuis.dart';
+import 'controlador/controlador.dart';
 import 'vista/login.dart';
 import 'vista/register.dart';
 
@@ -12,12 +12,12 @@ void main(){
 
 class MyApp extends StatelessWidget{
 
-  late ControladorLuis controlador;
+  late Controlador controlador;
 
   @override
   Widget build(BuildContext context) {
 
-    controlador = ControladorLuis();
+    controlador = Controlador();
 
     return MaterialApp(
       title: 'Nombre Aplicacion kk',

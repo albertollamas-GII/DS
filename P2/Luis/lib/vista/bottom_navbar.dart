@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:twitter/controlador/controlador.dart';
 import 'package:twitter/modelo/publicacion.dart';
 import 'package:twitter/modelo/usuario.dart';
 import '../vista/bottom_navbar_pulsado.dart';
@@ -10,9 +11,11 @@ import 'Home.dart';
 class BottomNavBarView extends StatelessWidget {
 
   late List<Publicacion> _listaPublicaciones;
+  late Controlador _controlador;
 
-  BottomNavBarView(List<Publicacion> listaPublicaciones){
+  BottomNavBarView(List<Publicacion> listaPublicaciones, Controlador controlador){
     _listaPublicaciones = listaPublicaciones;
+    _controlador = controlador;
   }
 
   @override
@@ -25,7 +28,7 @@ class BottomNavBarView extends StatelessWidget {
             index: state,
             children: [
               Home(_listaPublicaciones),
-              HomeScreen(),
+              HomeScreen(_controlador),
               //Perfil(),
             ],
           ),

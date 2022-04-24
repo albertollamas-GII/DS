@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import '../vista/bottom_navbar.dart';
-import '../controlador/controladorLuis.dart';
+import '../controlador/controlador.dart';
 
 class Register extends StatefulWidget{
 
-  ControladorLuis controlador;
+  Controlador controlador;
 
   Register(this.controlador);
 

@@ -1,39 +1,30 @@
 
 import 'package:flutter/material.dart';
+import 'package:twitter/controlador/controlador.dart';
+import 'package:twitter/vista/Home.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
   State<HomeScreen> createState() => _HomeScreenState();
+
+  late Controlador _controlador;
+
+  HomeScreen(Controlador controlador){
+    _controlador = controlador;
+  }
 }
 
 class _HomeScreenState extends State<HomeScreen> {
   TextEditingController? _textEditingController = TextEditingController();
     List<String> usuariosOnSearch =[];
     //Se llamaría al método getNombresUsuario()
-    List<String> usuarios = [
-      'Joselito',
-      'Oscar',
-      'Luis',
-      'Alberto',
-      'Manu',
-      'Paco',
-      'Cristina',
-      'Marina',
-      'Marta',
-      'Maria',
-      'Luisa',
-      'Filomena',
-      'Pepita',
-      'Lupita',
-      'Lucia',
-      'Laura',
-      'Rodolfo',
-      'Jesus',
-      'Juan',
-      'Pepe'
-    ];
+    late List<String> usuarios;
+
+
   @override
   Widget build(BuildContext context) {
+    usuarios = widget._controlador.getNombresUsuarios();
+
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -50,7 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     });
                   },
                   controller: _textEditingController,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     border: InputBorder.none,
                     errorBorder: InputBorder.none,
                     enabledBorder: InputBorder.none,
@@ -68,7 +59,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 _textEditingController!.text = '';
               });
             },
-            child: Icon(
+            child: const Icon(
               Icons.close,
               color: Colors.red,
             )
@@ -79,7 +70,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ? Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
+                  children: const [
                     Icon(
                       Icons.search_off,
                       size: 80,
@@ -100,19 +91,29 @@ class _HomeScreenState extends State<HomeScreen> {
                 padding: const EdgeInsets.all(4.0),
                 child: Row(
                   children: [
-                    CircleAvatar(
+                    const CircleAvatar(
                         child: Icon(Icons.account_circle_rounded),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
-                    Text(
+                    GestureDetector(
+                      onTap: () {
+                        var usu_aux = widget._controlador.BuscarUsuarioPorNombre(usuarios[index]);
+                        if(usu_aux != null){
+                          widget._controlador.irNavBar(usu_aux, context);
+                        }
+                      },
+                      child: Text(
                         _textEditingController!.text.isNotEmpty
                             ? usuariosOnSearch[index]
                             : usuarios[index],
-                        style: TextStyle(
-                            fontSize: 25, fontWeight: FontWeight.bold)
-                    ),
+                        style: const TextStyle(
+                            fontSize: 25, fontWeight: FontWeight.bold
+                        ),
+
+                      ),
+                    )
                   ],
                 ),
               );
