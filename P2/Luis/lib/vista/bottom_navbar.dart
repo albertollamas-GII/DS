@@ -24,6 +24,10 @@ class BottomNavBarView extends StatelessWidget {
       create: (context) => BottomNavBarPulsado(),
       child: BlocBuilder<BottomNavBarPulsado, int>(builder: (context, state) {
         return Scaffold(
+          floatingActionButton: FloatingActionButton(
+            onPressed: () => publicarPost(context),
+            child: Icon(Icons.add),
+          ),
           body: IndexedStack(
             index: state,
             children: [
@@ -53,6 +57,37 @@ class BottomNavBarView extends StatelessWidget {
           ),
         );
       }),
+    );
+  }
+
+  void publicarPost(BuildContext context) {
+    final controlPost = new TextEditingController();
+    showDialog(
+        context: context,
+        builder: (BuildContext context){
+          return AlertDialog(
+            title: Text('Publicar post'),
+            content: TextFormField(
+              style: TextStyle(color: Colors.black),
+              cursorColor: Colors.black,
+              decoration: InputDecoration(
+                focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.black)),
+                enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.black)),
+              ),
+              controller: controlPost,
+            ),
+            actions: [
+              TextButton(onPressed: () {
+              },
+
+                  child: Text('Publicar')),
+            ],
+          );
+        }
+
+
     );
   }
 }
