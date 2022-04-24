@@ -52,6 +52,7 @@ class Usuario{
     _seguidores = [];
     _seguidos = [];
     _tablon = [];
+    _about = "";
   }
 
   bool isSeguido(Usuario usu){
@@ -88,6 +89,18 @@ class Usuario{
   void addSeguidor(Usuario u){
     if(!_seguidores.contains(u) && u != this)
       _seguidores.add(u);
+  }
+
+  void setNombreUsuario(String nombreUsuario){
+    _nombreUsuario = nombreUsuario;
+  }
+
+  void setEmail(String email){
+    _email = email;
+  }
+
+  void setAbout(String about){
+    _about = about;
   }
 
 }

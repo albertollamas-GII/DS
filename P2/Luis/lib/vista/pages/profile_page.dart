@@ -9,12 +9,10 @@ import '../../controlador/controlador.dart';
 
 
 class ProfilePage extends StatefulWidget {
-  
-  late Usuario _usuario;
+
   late Controlador _controlador;
 
   ProfilePage(Controlador controlador){
-    _usuario = controlador.getSesion();
     _controlador = controlador;
   }
 
@@ -35,7 +33,7 @@ class _ProfilePageState extends State<ProfilePage> {
           physics: const BouncingScrollPhysics(),
           children: [
             ProfileWidget(
-              imagePath: widget._usuario.getImagen(),
+              imagePath: widget._controlador.getSesion().getImagen(),
               onClicked: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(builder: (context) => EditProfilePage(widget._controlador)),
@@ -43,11 +41,11 @@ class _ProfilePageState extends State<ProfilePage> {
               },
             ),
             const SizedBox(height : 24),
-            buildName(widget._usuario),
+            buildName(widget._controlador.getSesion()),
             const SizedBox(height : 24),
             NumbersWidget(),
             const SizedBox(height : 48),
-            buildAbout(widget._usuario),
+            buildAbout(widget._controlador.getSesion()),
 
           ],
         ),

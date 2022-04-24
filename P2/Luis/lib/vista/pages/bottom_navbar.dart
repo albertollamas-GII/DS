@@ -1,6 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:twitter/vista/pages/profile_page.dart';
 import '../../controlador/controlador.dart';
 import '../../modelo/publicacion.dart';
 import 'bottom_navbar_pulsado.dart';
@@ -32,7 +32,7 @@ class BottomNavBarView extends StatelessWidget {
             children: [
               Home(_listaPublicaciones),
               HomeScreen(_controlador),
-              //Perfil(),
+              ProfilePage(_controlador),
             ],
           ),
           bottomNavigationBar: BottomNavigationBar(
