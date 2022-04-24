@@ -9,6 +9,7 @@ class Usuario{
   late String _nombreUsuario;
   late String _email;
   late String _password;
+  late String _imagen;
   late List<Usuario> _seguidos;
   late List<Usuario> _seguidores;
 
@@ -18,6 +19,14 @@ class Usuario{
 
   String getEmail(){
     return _email;
+  }
+
+  String getImagen(){
+    return _imagen;
+  }
+
+  List<Publicacion> getTablon(){
+    return _tablon;
   }
 
   String getPassword(){
@@ -33,6 +42,7 @@ class Usuario{
   }
 
   Usuario(String nombre, String apellidos, String nombreUsuario, String password, String email){
+    _imagen = '../../assets/default_profile_image.png';
     _nombre = nombre;
     _apellidos = apellidos;
     _nombreUsuario = nombreUsuario;
@@ -40,6 +50,7 @@ class Usuario{
     _password = password;
     _seguidores = [];
     _seguidos = [];
+    _tablon = [];
   }
 
   bool isSeguido(Usuario usu){

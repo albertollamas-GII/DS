@@ -5,6 +5,7 @@ class Publicacion{
   late String _texto;
   late Usuario _autor;
   late DateTime _fecha;
+  late String _imagen;
 
   String getTexto(){
     return _texto;
@@ -20,10 +21,15 @@ class Publicacion{
 
   DateTime getFecha(){
       return _fecha;
-    }
+  }
 
-  Publicacion(String texto, Usuario autor) {
+  String getImagen(){
+    return _imagen;
+  }
+
+  Publicacion(String imagen, String texto, Usuario autor) {
     this._texto = texto;
+    this._imagen = imagen;
     this._autor = autor;
     this._fecha = DateTime.now();
   }

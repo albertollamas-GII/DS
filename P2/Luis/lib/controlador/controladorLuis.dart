@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:twitter/modelo/coleccionUsuarios.dart';
+import 'package:twitter/modelo/publicacion.dart';
 import '../vista/bottom_navbar.dart';
 import '../modelo/usuario.dart';
 import '../vista/login.dart';
@@ -12,8 +13,6 @@ class ControladorLuis  {
 
   ControladorLuis(){
     coleccionUsuarios = ColeccionUsuarios();
-    Usuario usu = Usuario("luis", "luis", "luis", "luis", "luis");
-    coleccionUsuarios.addUsuario(usu);
   }
 
 
@@ -35,11 +34,7 @@ class ControladorLuis  {
     Usuario? usu = coleccionUsuarios.buscarPorNombreUsuario(nombreUsuario);
     if(usu != null) {
       if (usu.getPassword() == password) {
-        Navigator.of(context).push(MaterialPageRoute(
-            builder: (BuildContext context) {
-              return BottomNavBarView(usu.getSeguidos());
-            }
-        ));
+        irNavBarSeguidos(usu,context);
       } else {
         crearAlerta("ContraseñaIncorrecta", context);
       }
@@ -52,6 +47,28 @@ class ControladorLuis  {
     Navigator.of(context).push(MaterialPageRoute(
         builder: (BuildContext context){
           return Register(this);
+        }
+    ));
+  }
+
+  void irNavBarSeguidos(Usuario usuario, BuildContext context){
+
+    List<Publicacion> publicaciones = [];
+    for(var usu in usuario.getSeguidos()){
+      print(usu.getNombreUsuario());
+      for(var pub in usu.getTablon()){
+        print(pub.getTexto());
+        publicaciones.add(pub);
+      }
+    }
+
+    print("Numero de objetos " + (publicaciones.length).toString());
+
+    publicaciones.sort((a, b) => a.getFecha().compareTo(b.getFecha()));
+
+    Navigator.of(context).push(MaterialPageRoute(
+        builder: (BuildContext context) {
+          return BottomNavBarView(publicaciones);
         }
     ));
   }

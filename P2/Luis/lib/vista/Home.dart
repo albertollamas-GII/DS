@@ -1,75 +1,63 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:twitter/modelo/publicacion.dart';
 import 'package:twitter/modelo/usuario.dart';
 
 class Home extends StatefulWidget{
 
-  late List<Usuario> _listaUsuarios;
+  late List<Publicacion> _listaPublicaciones;
 
-  Home(List<Usuario> lista){
-    _listaUsuarios = lista;
+  Home(List<Publicacion> listaPublicaciones){
+    _listaPublicaciones=listaPublicaciones;
   }
 
   @override
   _HomeState createState() => _HomeState();
-
-  int numeroDePublicaciones(){
-    return 3;
-  }
 
 }
 
 class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
-    return _postsListView(widget.numeroDePublicaciones(), context);
+    return ListView.builder(
+        itemCount: widget._listaPublicaciones.length,
+        itemBuilder: (context, index) {
+          return _postView(widget._listaPublicaciones[index],context);
+        });
     
   }
 }
 
-Widget _postsListView(int numPub, BuildContext context) {
-    return ListView.builder(
-        itemCount: numPub,
-        itemBuilder: (context, index) {
-          return _postView(context);
-        });
-  }
 
-
-
-Widget _postView(BuildContext context) {
+Widget _postView(Publicacion pub,BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _postAuthorRow(context),
-        _postImage(),
-        _postCaption(),
+        _postAuthorRow(pub.getUsuario(),context),
+        _postImage(pub.getImagen()),
+        _postCaption(pub.getTexto()),
       ],
     );
   }
 
-  Widget _postCaption() {
-    return const Padding(
-      padding: EdgeInsets.symmetric(
+  Widget _postCaption(String texto) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
         horizontal: 8,
         vertical: 4,
       ),
-      child: Text(
-          'Welcome to the Kilo Loco YouTube channel, where we cover iOS, Flutter, and Android development. The perfect place for explarative mobile devlopers.'),
+      child: Text(texto),
     );
   }
 
-    Widget _postImage() {
+    Widget _postImage(String imagen) {
     return AspectRatio(
       aspectRatio: 1,
-      child: CachedNetworkImage(
-        fit: BoxFit.cover,
-        imageUrl: _dummyImage,
-      ),
+      child: Image.asset(imagen,fit: BoxFit.cover)
     );
   }
 
-  Widget _postAuthorRow(BuildContext context) {
+  Widget _postAuthorRow(Usuario usu, BuildContext context) {
     const double avatarDiameter = 44;
     return GestureDetector(
       child: Row(
@@ -85,16 +73,13 @@ Widget _postView(BuildContext context) {
               ),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(avatarDiameter / 2),
-                child: CachedNetworkImage(
-                  imageUrl: _dummyAvatar,
-                  fit: BoxFit.cover,
-                ),
+                child: Image.asset(usu.getImagen(),fit: BoxFit.cover)
               ),
             ),
           ),
-          const Text(
-            'Username',
-            style: TextStyle(
+          Text(
+            usu.getNombreUsuario(),
+            style: const TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 16,
             ),
