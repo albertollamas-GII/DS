@@ -6,9 +6,11 @@ import '../../modelo/usuario.dart';
 class Home extends StatefulWidget{
 
   late List<Publicacion> _listaPublicaciones;
+  ScrollController _scrollController = new ScrollController();
 
-  Home(List<Publicacion> listaPublicaciones){
+  Home(List<Publicacion> listaPublicaciones, ScrollController controller){
     _listaPublicaciones=listaPublicaciones;
+    _scrollController = controller;
   }
 
   @override
@@ -18,12 +20,11 @@ class Home extends StatefulWidget{
 
 class _HomeState extends State<Home> {
 
-  ScrollController _scrollController = new ScrollController();
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-        controller: _scrollController,
+        controller: widget._scrollController,
         reverse: true,
         itemCount: widget._listaPublicaciones.length,
         itemBuilder: (context, index) {

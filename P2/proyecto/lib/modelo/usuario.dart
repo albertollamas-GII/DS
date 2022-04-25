@@ -3,7 +3,6 @@ import '../modelo/publicacion.dart';
 class Usuario{
 
   late List<Publicacion> _tablon;
-
   late String _nombre;
   late String _apellidos;
   late String _nombreUsuario;
@@ -13,6 +12,7 @@ class Usuario{
   late String _about;
   late List<Usuario> _seguidos;
   late List<Usuario> _seguidores;
+
 
   String getNombreUsuario(){
     return _nombreUsuario;
@@ -42,8 +42,16 @@ class Usuario{
     return _seguidos;
   }
 
+  void setImagen(String imagen){
+    this._imagen = imagen;
+  }
+
+  void setAbout(String text){
+    this._about = text;
+  }
+
   Usuario(String nombre, String apellidos, String nombreUsuario, String password, String email){
-    _imagen = '../../assets/default_profile_image.png';
+    _imagen = 'assets/default_profile_image.png';
     _nombre = nombre;
     _apellidos = apellidos;
     _nombreUsuario = nombreUsuario;
@@ -82,8 +90,9 @@ class Usuario{
   }
 
   void seguir(Usuario u){
-    if(!isSeguido(u) && u != this)
+    if(!isSeguido(u) && u != this){
       _seguidos.add(u);
+    }
   }
 
   void addSeguidor(Usuario u){
@@ -99,8 +108,8 @@ class Usuario{
     _email = email;
   }
 
-  void setAbout(String about){
-    _about = about;
+  void addPublicacion(Publicacion pub){
+    if (pub != null)
+      _tablon.add(pub);
   }
-
 }

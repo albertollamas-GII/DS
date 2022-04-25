@@ -1,17 +1,24 @@
 import 'package:flutter/material.dart';
+import '../../controlador/controlador.dart';
 
 class NumbersWidget extends StatelessWidget{
-  const NumbersWidget({Key? key}) : super(key: key);
+  // NumbersWidget({Key? key}) : super(key: key);
+  
+  late Controlador _controlador;
+
+  NumbersWidget(Controlador controlador){
+    _controlador = controlador;
+  }
 
     @override
   Widget build(BuildContext context) => Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          buildButton(context, '42', 'Posts'),
+          buildButton(context, _controlador.getSesion().getTablon().length.toString(), 'Posts'),
           buildDivider(),
-          buildButton(context, '35', 'Following'),
+          buildButton(context, _controlador.getSesion().getSeguidos().length.toString(), 'Following'),
           buildDivider(),
-          buildButton(context, '50', 'Followers'),
+          buildButton(context, _controlador.getSesion().getSeguidores().length.toString(), 'Followers'),
         ],
       );
       

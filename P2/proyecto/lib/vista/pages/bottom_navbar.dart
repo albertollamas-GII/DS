@@ -17,28 +17,44 @@ class BottomNavBarView extends StatelessWidget {
     _controlador = controlador;
   }
 
+  final ScrollController _controller = ScrollController();
+
+  // This is what you're looking for!
+  void _scrollUp() {
+    final double start = _controller.position.maxScrollExtent;
+    _controller.animateTo(start, duration: Duration(milliseconds: 300), curve: Curves.easeIn);
+  }
+
   @override
   Widget build(BuildContext context) {
+    
     return BlocProvider(
       create: (context) => BottomNavBarPulsado(),
       child: BlocBuilder<BottomNavBarPulsado, int>(builder: (context, state) {
         return Scaffold(
-          floatingActionButton: FloatingActionButton(
-            onPressed: () => publicarPost(context),
-            child: Icon(Icons.add),
-          ),
+        floatingActionButton: 
+                  FloatingActionButton(
+                    onPressed: () => {
+                      publicarPost(context),
+                      _scrollUp(),
+                    },
+                    child: Icon(Icons.add),
+                  ),                
           body: IndexedStack(
             index: state,
             children: [
-              Home(_listaPublicaciones),
+              Home(_listaPublicaciones,_controller),
               HomeScreen(_controlador),
               ProfilePage(_controlador),
             ],
           ),
           bottomNavigationBar: BottomNavigationBar(
             currentIndex: state,
-            onTap: (index) =>
+            onTap: (index) => {
                 context.read<BottomNavBarPulsado>().selectTab(index),
+                _scrollUp(),
+                },
+            
             items: const [
               BottomNavigationBarItem(
                 icon: Icon(Icons.home),

@@ -17,9 +17,9 @@ class MyApp extends StatelessWidget{
     controlador = Controlador();
 
     return MaterialApp(
-      title: 'Nombre Aplicacion kk',
+      title: 'Universitter',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.green,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: Login(controlador),

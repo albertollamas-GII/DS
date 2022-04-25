@@ -15,6 +15,7 @@ class Controlador  {
   late AdminFiltros adminFiltros;
   late FiltroPalabras fPalabras;
 
+
   Controlador(){
     coleccionUsuarios = ColeccionUsuarios();
     adminFiltros = new AdminFiltros();
@@ -121,10 +122,10 @@ class Controlador  {
   Publicacion publicarPost(String texto, Usuario autor){
     String imagen = "assets/universitter.png";
     Publicacion post = new Publicacion(imagen,texto, autor);
-
+    
     adminFiltros.setTarget(post);
     adminFiltros.ejecutar();
-
+    _sesion.addPublicacion(post); 
     return post;
   }
 

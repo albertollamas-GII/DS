@@ -43,7 +43,7 @@ class _ProfilePageState extends State<ProfilePage> {
             const SizedBox(height : 24),
             buildName(widget._controlador.getSesion()),
             const SizedBox(height : 24),
-            NumbersWidget(),
+            NumbersWidget(widget._controlador),
             const SizedBox(height : 48),
             buildAbout(widget._controlador.getSesion()),
 

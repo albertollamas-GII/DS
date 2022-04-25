@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:twitter/modelo/publicacion.dart';
-import 'package:twitter/vista/pages/profile_page.dart';
+import '../../modelo/publicacion.dart';
+import 'profile_page.dart';
 import '../../controlador/controlador.dart';
 import '../../modelo/usuario.dart';
 import '../widgets/appbar_widget.dart';

@@ -8,16 +8,19 @@ class ColeccionUsuarios{
   ColeccionUsuarios(){
     coleccion = <Usuario>[];
 
-    Usuario usu = Usuario("luis", "luis", "luis", "luis", "luis");
-    usu.publicar(Publicacion("assets/imagen1.jpg","me cago en la puta ostia ya", usu));
-    usu.publicar(Publicacion("assets/imagen2.jpg","esto puede salir muy bien", usu));
-    Usuario usu2 = Usuario("luis2", "luis2", "luis2", "luis2", "luis2");
-    usu2.publicar(Publicacion("assets/imagen3.jpg","Adios le pido", usu2));
-    usu2.publicar(Publicacion("assets/imagen4.jpg","Que si me muero sea de amor", usu2));
-    usu2.seguir(usu);
-    usu.seguir(usu2);
+    Usuario usu = Usuario("Universidad de Granada", "UGR", "@UGR", "UGR", "ugr@ugr.es");
+    usu.publicar(Publicacion("assets/imagen1.jpg","Una aplicación diseñada en la #UGR ayuda al estudio del cerebro gracias a la inteligencia artificial. MVPAlab es capaz de realizar detallados análisis de patrones en datos de electroencefalografía cerebral", usu));
+    usu.publicar(Publicacion("assets/imagen2.jpg","Comunicado de la UGR en relación al uso de mascarillas y otras medidas de prevención.\nSe establece las siguientes RECOMENDACIONES que pueden consultar en: http://sl.ugr.es/usomascarillas", usu));
+    Usuario usu2 = Usuario("Universidad de Sevilla", "US", "@US", "US", "us@us.es");
+    usu2.publicar(Publicacion("assets/imagen3.jpg","Vuestros futuros compañeros y compañeras también os asesoran para el acceso y los estudios en la US ", usu2));
+    usu2.publicar(Publicacion("assets/imagen4.jpg","Segunda adjudicación definitiva de plazas #SICUE\nPlazo para aceptar, reservar o renunciar: del 21 al 29 de abril", usu2));
+    usu2.seguir(usu); usu.addSeguidor(usu2);
+    usu.seguir(usu2); usu2.addSeguidor(usu);
+    
     addUsuario(usu);
     addUsuario(usu2);
+    usu.setImagen("assets/profile_ugr.jpeg");
+    usu2.setImagen("assets/profile_sevilla.jpeg");
   }
 
   void addUsuario(Usuario usu){
