@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import '../../modelo/publicacion.dart';
 import '../../modelo/usuario.dart';
 
@@ -6,7 +7,7 @@ class Home extends StatefulWidget{
 
   late List<Publicacion> _listaPublicaciones;
 
-  Home(List<Publicacion> listaPublicaciones, {Key? key}) : super(key: key){
+  Home(List<Publicacion> listaPublicaciones){
     _listaPublicaciones=listaPublicaciones;
   }
 
@@ -16,14 +17,19 @@ class Home extends StatefulWidget{
 }
 
 class _HomeState extends State<Home> {
+
+  ScrollController _scrollController = new ScrollController();
+
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
+        controller: _scrollController,
+        reverse: true,
         itemCount: widget._listaPublicaciones.length,
         itemBuilder: (context, index) {
           return _postView(widget._listaPublicaciones[index],context);
+
         });
-    
   }
 }
 
@@ -88,3 +94,7 @@ Widget _postView(Publicacion pub,BuildContext context) {
     );
   }
 
+  final _dummyAvatar =
+      'https://static.wikia.nocookie.net/inuyasha/images/b/b5/Inuyasha.png/revision/latest?cb=20151128185518';
+  final _dummyImage =
+      'https://i1.wp.com/butwhythopodcast.com/wp-content/uploads/2020/09/maxresdefault-28.jpg?fit=1280%2C720&ssl=1';

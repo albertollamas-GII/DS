@@ -1,19 +1,25 @@
 import 'package:flutter/material.dart';
+import '../modelo/filtroPalabras.dart';
+import '../modelo/gestorFiltros.dart';
 import '../modelo/coleccionUsuarios.dart';
 import '../modelo/publicacion.dart';
 import '../vista/pages/bottom_navbar.dart';
 import '../modelo/usuario.dart';
 import '../vista/pages/login.dart';
 import '../vista/pages/register.dart';
-import '../modelo/coleccionUsuarios.dart';
 
 class Controlador  {
 
   late ColeccionUsuarios coleccionUsuarios;
   late Usuario _sesion;
+  late AdminFiltros adminFiltros;
+  late FiltroPalabras fPalabras;
 
   Controlador(){
     coleccionUsuarios = ColeccionUsuarios();
+    adminFiltros = new AdminFiltros();
+    fPalabras = new FiltroPalabras();
+    adminFiltros.setFiltro(fPalabras);
   }
 
 
@@ -110,6 +116,16 @@ class Controlador  {
     _sesion.setNombreUsuario(nombreUsuario);
     _sesion.setEmail(email);
     _sesion.setAbout(about);
+  }
+
+  Publicacion publicarPost(String texto, Usuario autor){
+    String imagen = "assets/universitter.png";
+    Publicacion post = new Publicacion(imagen,texto, autor);
+
+    adminFiltros.setTarget(post);
+    adminFiltros.ejecutar();
+
+    return post;
   }
 
   

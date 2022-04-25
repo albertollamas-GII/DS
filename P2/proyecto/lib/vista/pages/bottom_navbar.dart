@@ -1,7 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:twitter_app/vista/pages/profile_page.dart';
+import '../../vista/pages/profile_page.dart';
 import '../../controlador/controlador.dart';
 import '../../modelo/publicacion.dart';
 import 'bottom_navbar_pulsado.dart';
@@ -24,7 +23,6 @@ class BottomNavBarView extends StatelessWidget {
       create: (context) => BottomNavBarPulsado(),
       child: BlocBuilder<BottomNavBarPulsado, int>(builder: (context, state) {
         return Scaffold(
-          
           floatingActionButton: FloatingActionButton(
             onPressed: () => publicarPost(context),
             child: Icon(Icons.add),
@@ -34,14 +32,14 @@ class BottomNavBarView extends StatelessWidget {
             children: [
               Home(_listaPublicaciones),
               HomeScreen(_controlador),
-              // ProfilePage(_controlador),
+              ProfilePage(_controlador),
             ],
           ),
           bottomNavigationBar: BottomNavigationBar(
             currentIndex: state,
             onTap: (index) =>
                 context.read<BottomNavBarPulsado>().selectTab(index),
-            items: [
+            items: const [
               BottomNavigationBarItem(
                 icon: Icon(Icons.home),
                 label: "Home",   
@@ -71,7 +69,7 @@ class BottomNavBarView extends StatelessWidget {
             content: TextFormField(
               style: TextStyle(color: Colors.black),
               cursorColor: Colors.black,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 focusedBorder: UnderlineInputBorder(
                     borderSide: BorderSide(color: Colors.black)),
                 enabledBorder: UnderlineInputBorder(
@@ -85,13 +83,13 @@ class BottomNavBarView extends StatelessWidget {
                 _listaPublicaciones.add(new_post);
                 Navigator.pop(context);
                 Navigator.of(context).push(MaterialPageRoute(
-          builder: (BuildContext context){
-            return BottomNavBarView(_listaPublicaciones, _controlador);
-          }
-      ));
+                    builder: (BuildContext context){
+                      return BottomNavBarView(_listaPublicaciones, _controlador);
+                    }
+                ));
               },
 
-              child: Text('Publicar')),
+                  child: Text('Publicar')),
             ],
           );
         }
