@@ -94,8 +94,3 @@ Widget _postView(Publicacion pub,BuildContext context) {
       ),
     );
   }
-
-  final _dummyAvatar =
-      'https://static.wikia.nocookie.net/inuyasha/images/b/b5/Inuyasha.png/revision/latest?cb=20151128185518';
-  final _dummyImage =
-      'https://i1.wp.com/butwhythopodcast.com/wp-content/uploads/2020/09/maxresdefault-28.jpg?fit=1280%2C720&ssl=1';

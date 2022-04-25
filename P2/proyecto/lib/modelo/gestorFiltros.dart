@@ -4,7 +4,7 @@ import 'publicacion.dart';
 import 'filtro.dart';
 
 
-class AdminFiltros{
+class GestorFiltros{
   late CadenaFiltros cadenaFiltros;
 
  void setFiltro(Filtro filtro) {
@@ -15,7 +15,7 @@ class AdminFiltros{
    this.cadenaFiltros.setTarget(post);
   }
 
-  AdminFiltros(){
+  GestorFiltros(){
    this.cadenaFiltros = new CadenaFiltros();
   }
 

@@ -14,17 +14,17 @@ class Controlador  {
 
   late ColeccionUsuarios coleccionUsuarios;
   late Usuario _sesion;
-  late AdminFiltros adminFiltros;
+  late GestorFiltros gestorFiltros;
   late FiltroPalabras fPalabras;
   late FiltroMaxPalabras fNumPalabras;
 
   Controlador(){
     coleccionUsuarios = ColeccionUsuarios();
-    adminFiltros = new AdminFiltros();
+    gestorFiltros = new GestorFiltros();
     fPalabras = new FiltroPalabras();
     fNumPalabras = new FiltroMaxPalabras();
-    adminFiltros.setFiltro(fPalabras);
-    adminFiltros.setFiltro(fNumPalabras);
+    gestorFiltros.setFiltro(fPalabras);
+    gestorFiltros.setFiltro(fNumPalabras);
   }
 
 
@@ -129,8 +129,8 @@ class Controlador  {
 
     Publicacion post = new Publicacion(imagenes[rng.nextInt(3)],texto, autor);
     
-    adminFiltros.setTarget(post);
-    adminFiltros.ejecutar();
+    gestorFiltros.setTarget(post);
+    gestorFiltros.ejecutar();
     _sesion.addPublicacion(post); 
     return post;
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:twitter_app/vista/pages/splash.dart';
 import 'controlador/controlador.dart';
 import 'vista/pages/login.dart';
 
@@ -9,12 +10,10 @@ void main(){
 
 class MyApp extends StatelessWidget{
 
-  late Controlador controlador;
+  
 
   @override
   Widget build(BuildContext context) {
-
-    controlador = Controlador();
 
     return MaterialApp(
       title: 'Universitter',
@@ -22,7 +21,7 @@ class MyApp extends StatelessWidget{
         primarySwatch: Colors.green,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: Login(controlador),
+      home: Splash(),
     );
   }
 }
