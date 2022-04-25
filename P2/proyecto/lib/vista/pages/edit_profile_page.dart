@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../modelo/publicacion.dart';
-import 'profile_page.dart';
 import '../../controlador/controlador.dart';
-import '../../modelo/usuario.dart';
 import '../widgets/appbar_widget.dart';
 import '../widgets/profile_widget.dart';
-import '../widgets/textfield_widget.dart';
 
 
 class EditProfilePage extends StatefulWidget {

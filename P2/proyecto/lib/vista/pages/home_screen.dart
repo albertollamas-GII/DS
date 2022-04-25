@@ -86,16 +86,15 @@ class _HomeScreenState extends State<HomeScreen> {
                 : usuarios.length,
             itemBuilder: (context, index) {
               return Padding(
-                //onTap () => llamar a mostrar el perfil del usuario
+
                 padding: const EdgeInsets.all(4.0),
                 child: Row(
+
                   children: [
-                    const CircleAvatar(
-                        child: Icon(Icons.account_circle_rounded),
+                    CircleAvatar(
+                        child: Image.asset(),
                     ),
-                    const SizedBox(
-                      width: 10,
-                    ),
+
                     GestureDetector(
                       onTap: () {
                         var usu_aux = widget._controlador.BuscarUsuarioPorNombre(usuarios[index]);
@@ -112,11 +111,41 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
 
                       ),
-                    )
+                    ),
+                    const SizedBox(width: 40),
+                    MaterialButton(
+                        onPressed: () => {
+                          ClickBotonSeguir(usuarios[index])
+                        },
+                        color: Color(0xff15ac63),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(18.0),
+                            side: BorderSide(color: Color(0xff15ac63))
+                        ),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: const <Widget>[
+                            Text(
+                              '+ Seguir',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 24),
+                            ),
+                          ],
+                        )
+                    ),
                   ],
                 ),
               );
             }),
     );
+  }
+
+  void ClickBotonSeguir(String nombre){
+    var usu_aux = widget._controlador.BuscarUsuarioPorNombre(nombre);
+    if( usu_aux != null){
+      widget._controlador.getSesion().seguir(usu_aux);
+    }
   }
 }

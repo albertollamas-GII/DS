@@ -16,11 +16,14 @@ class ColeccionUsuarios{
     usu2.publicar(Publicacion("assets/imagen4.jpg","Segunda adjudicación definitiva de plazas #SICUE\nPlazo para aceptar, reservar o renunciar: del 21 al 29 de abril", usu2));
     usu2.seguir(usu); usu.addSeguidor(usu2);
     usu.seguir(usu2); usu2.addSeguidor(usu);
+    Usuario usu3 = Usuario("Universidad de Malaga", "UMA", "@UMA", "UMA", "uma@uma.es");
     
     addUsuario(usu);
     addUsuario(usu2);
+    addUsuario(usu3);
     usu.setImagen("assets/profile_ugr.jpeg");
     usu2.setImagen("assets/profile_sevilla.jpeg");
+    usu3.setImagen("assets/profile_uma.png");
   }
 
   void addUsuario(Usuario usu){
