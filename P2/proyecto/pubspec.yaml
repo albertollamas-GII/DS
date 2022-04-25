@@ -30,7 +30,7 @@ dependencies:
   flutter:
     sdk: flutter
   http:
-    
+  time: "^2.1.0"
   flutter_bloc: ^8.0.1
   cached_network_image: ^3.2.0
 
@@ -72,9 +72,9 @@ flutter:
     - assets/imagen4.jpg
     - assets/profile_sevilla.jpeg
     - assets/profile_ugr.jpeg
-    - assets/profile_uma.png
     - assets/imagen5.jpeg
     - assets/etsiit.jpeg
+    - assets/profile_uma.png
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

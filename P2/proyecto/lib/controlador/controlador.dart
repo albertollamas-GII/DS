@@ -8,6 +8,7 @@ import '../modelo/usuario.dart';
 import '../vista/pages/login.dart';
 import '../vista/pages/register.dart';
 import 'dart:math';
+import '../modelo/filtroMaxPalabras.dart';
 
 class Controlador  {
 
@@ -15,13 +16,15 @@ class Controlador  {
   late Usuario _sesion;
   late AdminFiltros adminFiltros;
   late FiltroPalabras fPalabras;
-
+  late FiltroMaxPalabras fNumPalabras;
 
   Controlador(){
     coleccionUsuarios = ColeccionUsuarios();
     adminFiltros = new AdminFiltros();
     fPalabras = new FiltroPalabras();
+    fNumPalabras = new FiltroMaxPalabras();
     adminFiltros.setFiltro(fPalabras);
+    adminFiltros.setFiltro(fNumPalabras);
   }
 
 
