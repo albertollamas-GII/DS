@@ -17,6 +17,8 @@ class ColeccionUsuarios{
     usu2.seguir(usu); usu.addSeguidor(usu2);
     usu.seguir(usu2); usu2.addSeguidor(usu);
     Usuario usu3 = Usuario("Universidad de Malaga", "UMA", "@UMA", "UMA", "uma@uma.es");
+
+    usu.setAbout("Somos la Oficina de Transferencia de Resultados de Investigación (OTRI) de la Universidad de Granada (UGR).\nIdentificamos y valorizamos la I+D para su transferencia a empresas y entidades de cualquier parte del mundo. También propiciamos, asesoramos y formalizamos las colaboraciones entre la UGR y las empresas para la realización de proyectos de I+D+I.\nLa OTRI forma parte de la Dirección de Innovación y Transferencia, enmarcada en el Vicerrectorado de Investigación y Transferencia de la UGR.");
     
     addUsuario(usu);
     addUsuario(usu2);

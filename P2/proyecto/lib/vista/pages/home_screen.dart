@@ -92,9 +92,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
                   children: [
                     CircleAvatar(
-                        child: Image.asset(),
+                        child: Image.asset(widget._controlador.BuscarUsuarioPorNombre(usuarios[index])!.getImagen()),
+                        backgroundColor: Colors.transparent,
                     ),
-
                     GestureDetector(
                       onTap: () {
                         var usu_aux = widget._controlador.BuscarUsuarioPorNombre(usuarios[index]);

@@ -7,6 +7,7 @@ import '../vista/pages/bottom_navbar.dart';
 import '../modelo/usuario.dart';
 import '../vista/pages/login.dart';
 import '../vista/pages/register.dart';
+import 'dart:math';
 
 class Controlador  {
 
@@ -120,8 +121,10 @@ class Controlador  {
   }
 
   Publicacion publicarPost(String texto, Usuario autor){
-    String imagen = "assets/universitter.png";
-    Publicacion post = new Publicacion(imagen,texto, autor);
+    List<String> imagenes = ["assets/universitter.png", "assets/etsiit.jpeg", "assets/imagen5.jpeg"];
+    var rng = Random();
+
+    Publicacion post = new Publicacion(imagenes[rng.nextInt(3)],texto, autor);
     
     adminFiltros.setTarget(post);
     adminFiltros.ejecutar();
