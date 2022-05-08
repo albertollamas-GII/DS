@@ -117,6 +117,10 @@ class Controlador  {
     return _sesion;
   }
 
+  void iniSesion(Usuario usu){
+    _sesion = usu;
+  }
+
   void setSesion(String nombreUsuario, String email, String about){
     _sesion.setNombreUsuario(nombreUsuario);
     _sesion.setEmail(email);
