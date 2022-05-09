@@ -55,6 +55,7 @@ class _LoginState extends State<Login>{
                             onChanged: (val) => setState(() {
                               nombreUsuario = val;
                             }),
+                            key: Key("Nombre"),
                           ),
                           TextFormField(
                             obscureText: true,
@@ -66,6 +67,7 @@ class _LoginState extends State<Login>{
                             onChanged: (val) => setState(() {
                               password = val;
                             }),
+                            key: Key("Password"),
                           )
                         ],
                       ),
@@ -84,10 +86,11 @@ class _LoginState extends State<Login>{
                         ),
                         ElevatedButton(
                             child: Text("Confirmar"),
+                            key: Key("Confirmar"),
                             style: ElevatedButton.styleFrom(
                               primary: Color(0xff15ac63),
                             ),
-                            onPressed: () { 
+                            onPressed: () {
                               clickLoginButton(context);
                             }
                         )

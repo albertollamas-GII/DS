@@ -138,8 +138,5 @@ class Controlador  {
     _sesion.addPublicacion(post); 
     return post;
   }
-
-  
-  
 }
 
