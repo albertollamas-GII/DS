@@ -1,7 +1,5 @@
 
 import 'dart:convert';
-import 'package:flutter/material.dart';
-
 import 'user.dart';
 
 import 'package:http/http.dart' as http;
@@ -17,13 +15,13 @@ class Publication {
 
   static const  String _applicationName='DS/api/';
 
-  Publication({required this.img, required this.user,required this.date,required  this.text, this.id = 0});
-
   @override
   String toString()
   {
     return "img: $img, username: '$user', date: $date, 'text': $text";
   }
+
+
 
   String getTexto(){
     return text;
@@ -32,11 +30,11 @@ class Publication {
   void setTexto(String textn){
     this.text = textn;
 
-    Publication.updateProject(img: img, user: user, date: date, text: textn, id: id);
+    Publication.updatePublication(img: img, user: user, date: date, text: textn, id: id);
   }
 
-  Future<User> getUsuario(){ //ESTO VA A DAR POSIBLEMENTE PROBLEMAS
-    return User.getUser(user);
+  Future<User> getUsuario() async { //ESTO VA A DAR POSIBLEMENTE PROBLEMAS
+    return await User.getUser(user);
   }
 
   DateTime getFecha(){
@@ -72,7 +70,7 @@ class Publication {
 
 
   //////////// get //////////////////
-  static Future<Publication> getProject(String id) async {
+  static Future<Publication> getPublication(String id) async {
     final response = await http.get(
         Uri.https(_baseAddress, '$_applicationName/v1/projects/$id'),
         headers: <String, String>{
@@ -91,7 +89,7 @@ class Publication {
 
   ////////////// create ///////////////
 
-  static Future<Publication> createProject({required img, required user, required date, required text}) async {
+  static Future<Publication> createPublication({required img, required user, required date, required text}) async {
     final response = await http.post(
       Uri.https(_baseAddress, '$_applicationName/v1/projects/'),
       headers: <String, String>{
@@ -114,7 +112,7 @@ class Publication {
 
 //////////// delete //////////////////
 
-  static Future<Publication> deleteProject(String id) async {
+  static Future<Publication> deletePublication(String id) async {
     final http.Response response = await http.delete(
       Uri.https(_baseAddress, '$_applicationName/v1/projects/$id'),
       headers: <String, String>{
@@ -122,7 +120,7 @@ class Publication {
       },
     );
     if (response.statusCode == 200) {
-      return Publication(img: "", user:"", date: DateTime.now(),text:"");
+      return Publication.fromJson(jsonDecode(response.body));
     } else {
       throw Exception('Failed to delete project.');
     }
@@ -131,7 +129,7 @@ class Publication {
 
   /////////// update /////////
 
-  static Future<Publication> updateProject({required img, required user, required date, required text, required int id}) async {
+  static Future<Publication> updatePublication({required img, required user, required date, required text, required int id}) async {
     final http.Response response = await http.put(
       Uri.https(_baseAddress, '$_applicationName/v1/projects/$id'),
       headers: <String, String>{
@@ -150,4 +148,27 @@ class Publication {
       throw Exception('Failed to update project');
     }
   }
+
+  //////////// getPublicationsDelUsuario //////////////////
+  static Future<List<Publication>> getPublicationsUser(int idUsuario) async {
+    final response = await http.get(
+        Uri.https(_baseAddress, '$_applicationName/v2/projects/$idUsuario'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        }
+    );
+
+    if (response.statusCode == 200) {
+      List<Publication> lista = [];
+      List<dynamic> jsonlist = jsonDecode(response.body);
+      jsonlist.forEach((element) {
+        lista.add(Publication.fromJson(element)) ;
+      });
+      return lista;
+
+    } else {
+      throw Exception('Failed to get project');
+    }
+  }
+
 }

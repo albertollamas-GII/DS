@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:twitter_app/modelo/publication.dart';
+import 'package:twitter_app/modelo/user.dart';
 import '../../controlador/controlador.dart';
 
 class NumbersWidget extends StatelessWidget{
@@ -14,11 +16,11 @@ class NumbersWidget extends StatelessWidget{
   Widget build(BuildContext context) => Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          buildButton(context, _controlador.getSesion().getTablon().length.toString(), 'Posts'),
+          buildButton(context, (_controlador.getSesion().getTablon() as List<Publication>).length.toString(), 'Posts'),
           buildDivider(),
-          buildButton(context, _controlador.getSesion().getSeguidos().length.toString(), 'Following'),
+          buildButton(context, (_controlador.getSesion().getSeguidos() as List<User>).length.toString(), 'Following'),
           buildDivider(),
-          buildButton(context, _controlador.getSesion().getSeguidores().length.toString(), 'Followers'),
+          buildButton(context, (_controlador.getSesion().getSeguidores() as List<User>).length.toString(), 'Followers'),
         ],
       );
       

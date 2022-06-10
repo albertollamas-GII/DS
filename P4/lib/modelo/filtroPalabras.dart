@@ -1,4 +1,5 @@
-import 'publicacion.dart';
+import 'package:twitter_app/modelo/publication.dart';
+
 import 'filtro.dart';
 
 class FiltroPalabras extends Filtro{
@@ -17,7 +18,7 @@ class FiltroPalabras extends Filtro{
   }
   
   @override
-  String ejecutar(Publicacion publicacion){
+  String ejecutar(Publication publicacion){
     int indice = -1;
     String resultado = publicacion.getTexto();
 

@@ -1,4 +1,4 @@
-import 'publicacion.dart';
+import 'publication.dart';
 import 'filtro.dart';
 
 class FiltroMaxPalabras extends Filtro{
@@ -8,7 +8,7 @@ class FiltroMaxPalabras extends Filtro{
   
   
   @override
-  String ejecutar(Publicacion publicacion){
+  String ejecutar(Publication publicacion){
     int contador = 0;
     String resultado = "";
 

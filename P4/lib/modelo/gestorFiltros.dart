@@ -1,6 +1,7 @@
 
+import 'publication.dart';
+
 import 'cadenaFiltros.dart';
-import 'publicacion.dart';
 import 'filtro.dart';
 
 
@@ -11,7 +12,7 @@ class GestorFiltros{
    this.cadenaFiltros.addFiltro(filtro);
   }
 
- void setTarget(Publicacion post) {
+ void setTarget(Publication post) {
    this.cadenaFiltros.setTarget(post);
   }
 

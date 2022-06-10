@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import '../../controlador/controlador.dart';
+import '../../modelo/user.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -91,12 +92,12 @@ class _HomeScreenState extends State<HomeScreen> {
 
                   children: [
                     CircleAvatar(
-                        child: Image.asset(widget._controlador.BuscarUsuarioPorNombre(usuarios[index])!.getImagen()),
+                        child: Image.asset((widget._controlador.BuscarUsuarioPorNombre(usuarios[index]) as User).getImagen()),
                         backgroundColor: Colors.transparent,
                     ),
                     GestureDetector(
-                      onTap: () {
-                        var usu_aux = widget._controlador.BuscarUsuarioPorNombre(usuarios[index]);
+                      onTap: () async {
+                        var usu_aux = await widget._controlador.BuscarUsuarioPorNombre(usuarios[index]);
                         if(usu_aux != null){
                           widget._controlador.irNavBar(usu_aux, context);
                         }

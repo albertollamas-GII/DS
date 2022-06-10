@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import '../../modelo/usuario.dart';
+import '../../modelo/user.dart';
 import '../widgets/numbers_widget.dart';
 import '../widgets/profile_widget.dart';
 import 'edit_profile_page.dart';
@@ -54,7 +54,7 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   //El usuario tiene que ser el de la sesión
-  Widget buildName(Usuario user) => Column(
+  Widget buildName(User user) => Column(
     children: [
       Text(
         user.getNombreUsuario(),
@@ -68,7 +68,7 @@ class _ProfilePageState extends State<ProfilePage> {
     ],
   );
 
-  Widget buildAbout(Usuario user) => Container(
+  Widget buildAbout(User user) => Container(
     padding: EdgeInsets.symmetric(horizontal: 48),
     child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

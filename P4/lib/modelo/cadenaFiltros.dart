@@ -1,10 +1,10 @@
 import 'filtro.dart';
-import 'publicacion.dart';
+import 'publication.dart';
 
 class CadenaFiltros {
 
   List<Filtro> _filtros = [];
-  late Publicacion _post;
+  late Publication _post;
 
 
   CadenaFiltros(){}
@@ -13,7 +13,7 @@ class CadenaFiltros {
     _filtros.add(filtro);
   }
 
-  setTarget(Publicacion objetivo){
+  setTarget(Publication objetivo){
     _post = objetivo;
   }
 

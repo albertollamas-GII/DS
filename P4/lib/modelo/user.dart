@@ -1,11 +1,12 @@
 
 import 'dart:convert';
+import 'follow.dart';
 import 'publication.dart';
 
 import 'package:http/http.dart' as http;
 
 class User {
-  //int _id;
+  int id;
   String name;
   String surname;
   String username;
@@ -17,17 +18,6 @@ class User {
   static const  String _baseAddress='clados.ugr.es';
 
   static const  String _applicationName='DS2_4/api/v1/';
-
-  Usuario(String nombre, String apellidos, String nombreUsuario, String passwordn, String emailn){
-    img = 'assets/default_profile_image.png';
-    name = nombre;
-    surname = apellidos;
-    username = nombreUsuario;
-    email = emailn;
-    password = passwordn;
-    about = "";
-    createUser(name: name, surname: surname, username: username, email: email, password: password, about: about);
-  }
 
   @override
   String toString()
@@ -54,6 +44,8 @@ class User {
   String getPassword(){
     return password;
   }
+
+
 
   void setAbout(String text){
     about = text;
@@ -82,6 +74,7 @@ class User {
 
 
   User.fromJson(Map<String, dynamic> json):
+        id = json['id'],
         name = json['name'],
         surname=json['surname'],
         username= json['username'],
@@ -91,14 +84,33 @@ class User {
         about= json['about'];
 
 
+  ////////////// index ///////////////////
+  static Future<List<String>> getAllUser() async{
+    final response = await http.get(
+        Uri.https(_baseAddress, '$_applicationName/users'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        }
+    );
 
 
+    if (response.statusCode == 200) {
+      List<String> lista = [];
+      List<dynamic> jsonlist = jsonDecode(response.body);
+      jsonlist.forEach((element) {
+        lista.add(element["username"]) ;
+      });
+      return lista;
+    } else {
+      throw Exception('Failed to get User');
+    }
+  }
 
 
   //////////// get //////////////////
-  static Future<User> getUser(String nombreUsuario) async {
+  static Future<User> getUser(String username) async {
     final response = await http.get(
-        Uri.https(_baseAddress, '$_applicationName/users/$nombreUsuario'),
+        Uri.https(_baseAddress, '$_applicationName/users/$username'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         }
@@ -107,9 +119,10 @@ class User {
     if (response.statusCode == 200) {
       return User.fromJson(jsonDecode(response.body));
     } else {
-      throw Exception('Failed to get project');
+      throw Exception('Failed to get User');
     }
   }
+
 
   ////////////// create ///////////////
 
@@ -132,7 +145,7 @@ class User {
     if (response.statusCode == 201) {
       return User.fromJson(jsonDecode(response.body));
     } else {
-      throw Exception('Failed to create project');
+      throw Exception('Failed to create User');
     }
 
   }
@@ -159,81 +172,69 @@ class User {
     if (response.statusCode == 200) {
       return User.fromJson(jsonDecode(response.body));
     } else {
-      throw Exception('Failed to update project');
+      throw Exception('Failed to update User');
     }
   }
+
+  Future<List<Publication>> getTablon() async{
+    List<Publication> lista = await Publication.getPublicationsUser(id);
+    return lista;
+  }
+
+  Future<List<User>> getSeguidores() async{
+    List<Follow> lista = await Follow.getFollowers(username);
+    List<User> listaSeguidores = [];
+    lista.forEach((element) async{
+      listaSeguidores.add( await User.getUser(element.follower));
+    });
+    return listaSeguidores;
+  }
+
+  Future<List<User>> getSeguidos() async{
+    List<Follow> lista = await Follow.getFollowing(username);
+    List<User> listaSeguidos = [];
+    lista.forEach((element) async{
+      listaSeguidos.add( await User.getUser(element.following));
+    });
+    return listaSeguidos;
+  }
+
+  Future<bool> isSeguido(User usu) async{
+    List<Follow> listaSeguidos = await Follow.getFollowers(username);
+    bool encontrado = false;
+    listaSeguidos.forEach((element) {
+      if(element.follower == usu.username){
+        encontrado = true;
+        return;
+      }
+    });
+    return encontrado;
+  }
+
+  Future<bool> isSeguidor(User usu) async{
+    List<Follow> listaSeguidos = await Follow.getFollowing(username);
+    bool encontrado = false;
+    listaSeguidos.forEach((element) {
+      if(element.following == usu.username){
+        encontrado = true;
+        return;
+      }
+    });
+    return encontrado;
+  }
+
+  void publicar(Publication pub){
+    if(pub != null){
+      Publication.createPublication(img: pub.img, user: username, date: DateTime.now(), text: pub.text);
+    }
+  }
+
+  void seguir(User usu){
+    if(this != usu && usu != null){
+      Follow.createFollow(follower: username, following: usu.username);
+    }
+  }
+
 }
 
-/*
-
-class Usuario{
-
-  late List<Publicacion> _tablon;
-  late String _nombre;
-  late String _apellidos;
-  late String _nombreUsuario;
-  late String _email;
-  late String _password;
-  late String _imagen;
-  late String _about;
-  late List<Usuario> _seguidos;
-  late List<Usuario> _seguidores;
-
-
-
-  List<Publicacion> getTablon(){
-    return _tablon;
-  }
-
-  List<Usuario> getSeguidores(){
-    return _seguidores;
-  }
-
-  List<Usuario> getSeguidos(){
-    return _seguidos;
-  }
-
-
-
-  bool isSeguido(Usuario usu){
-    if(this._seguidos.contains(usu))
-      return true;
-
-    else
-      return false;
-  }
-
-  bool isSeguidor(Usuario usu){
-    if(usu.isSeguido(this))
-      return true;
-
-    else
-      return false;
-  }
-
-
-  void publicar(Publicacion pub){
-    if(!this._tablon.contains(pub)){
-      this._tablon.add(pub);
-    }
-  }
-
-  void seguir(Usuario u){
-    if(!isSeguido(u) && u != this){
-      _seguidos.add(u);
-    }
-  }
-
-  void addSeguidor(Usuario u){
-    if(!_seguidores.contains(u) && u != this)
-      _seguidores.add(u);
-  }
-
-  void addPublicacion(Publicacion pub){
-    if (pub != null)
-      _tablon.add(pub);
-  }
-}
-
-*/
 

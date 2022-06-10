@@ -1,10 +1,12 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:twitter_app/modelo/user.dart';
 import '../modelo/filtroPalabras.dart';
 import '../modelo/gestorFiltros.dart';
-import '../modelo/coleccionUsuarios.dart';
-import '../modelo/publicacion.dart';
+import '../modelo/publication.dart';
 import '../vista/pages/bottom_navbar.dart';
-import '../modelo/usuario.dart';
+import '../modelo/user.dart';
 import '../vista/pages/login.dart';
 import '../vista/pages/register.dart';
 import 'dart:math';
@@ -12,14 +14,12 @@ import '../modelo/filtroMaxPalabras.dart';
 
 class Controlador  {
 
-  late ColeccionUsuarios coleccionUsuarios;
-  late Usuario _sesion;
+  late User _sesion;
   late GestorFiltros gestorFiltros;
   late FiltroPalabras fPalabras;
   late FiltroMaxPalabras fNumPalabras;
 
   Controlador(){
-    coleccionUsuarios = ColeccionUsuarios();
     gestorFiltros = GestorFiltros();
     fPalabras = FiltroPalabras();
     fNumPalabras = FiltroMaxPalabras();
@@ -30,7 +30,7 @@ class Controlador  {
 
   void ConfirmacionRegistro(String nombre, String apellido, String nombreUsuario, String email, String password, BuildContext context){
     if(nombre != "" && apellido != "" && nombreUsuario != "" && email != "" && password != ""){
-      coleccionUsuarios.addUsuario(Usuario(nombre,apellido,nombreUsuario,email, password));
+      User.createUser(name: nombre, surname: apellido, username: nombreUsuario, email: email, password: password, about: "");
       //AÑADIR A LA BASE DE DATOS
       Navigator.of(context).push(MaterialPageRoute(
           builder: (BuildContext context){
@@ -43,12 +43,12 @@ class Controlador  {
 
   }
 
-  Usuario? BuscarUsuarioPorNombre(String nombre){
-    return coleccionUsuarios.buscarPorNombreUsuario(nombre);
+  Future<User> BuscarUsuarioPorNombre(String nombre) async{
+    return await User.getUser(nombre);
   }
 
-  void ConfirmacionLogin(String nombreUsuario, String password, BuildContext context){
-    Usuario? usu = coleccionUsuarios.buscarPorNombreUsuario(nombreUsuario);
+  void ConfirmacionLogin(String nombreUsuario, String password, BuildContext context) async{
+    User usu = await BuscarUsuarioPorNombre(nombreUsuario);
     if(usu != null) {
       if (usu.getPassword() == password) {
         _sesion = usu;
@@ -69,9 +69,9 @@ class Controlador  {
     ));
   }
 
-  void irNavBar(Usuario usuario, BuildContext context){
-    List<Publicacion> publicaciones = [];
-    for(var pub in usuario.getTablon()){
+  void irNavBar(User usuario, BuildContext context){
+    List<Publication> publicaciones = [];
+    for(var pub in usuario.getTablon() as List<Publication>){
       publicaciones.add(pub);
     }
 
@@ -82,11 +82,11 @@ class Controlador  {
     ));
   }
 
-  void irNavBarSeguidos(Usuario usuario, BuildContext context){
+  void irNavBarSeguidos(User usuario, BuildContext context){
 
-    List<Publicacion> publicaciones = [];
-    for(var usu in usuario.getSeguidos()){
-      for(var pub in usu.getTablon()){
+    List<Publication> publicaciones = [];
+    for(var usu in usuario.getSeguidos() as List<User>){
+      for(var pub in usu.getTablon() as List<Publication>){
         publicaciones.add(pub);
       }
     }
@@ -111,14 +111,14 @@ class Controlador  {
   }
 
   List<String> getNombresUsuarios(){
-    return coleccionUsuarios.getAllNames();
+    return User.getAllUser() as List<String>;
   }
 
-  Usuario getSesion(){
+  User getSesion(){
     return _sesion;
   }
 
-  void iniSesion(Usuario usu){
+  void iniSesion(User usu){
     _sesion = usu;
   }
 
@@ -128,16 +128,16 @@ class Controlador  {
     _sesion.setAbout(about);
   }
 
-  Publicacion publicarPost(String texto, Usuario autor){
+  Publication publicarPost(String texto, User autor){
     List<String> imagenes = ["assets/universitter.png", "assets/etsiit.jpeg", "assets/imagen5.jpeg"];
     var rng = Random();
 
-    Publicacion post = new Publicacion(imagenes[rng.nextInt(3)],texto, autor);
+    Publication post = Publication.fromJson(jsonDecode("{img: imagenes[rng.nextInt(3)], user: autor, date: DateTime.now(), text: texto}"));
     //AÑADIR A LA BASE DE DATOS
     
     gestorFiltros.setTarget(post);
     gestorFiltros.ejecutar();
-    _sesion.addPublicacion(post); 
+    _sesion.publicar(post);
     return post;
   }
 

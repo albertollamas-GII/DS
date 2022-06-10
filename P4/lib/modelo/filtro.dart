@@ -1,5 +1,5 @@
-import 'publicacion.dart';
+import 'publication.dart';
 
 abstract class Filtro{
-  String ejecutar(Publicacion publicacion);
+  String ejecutar(Publication publicacion);
 }

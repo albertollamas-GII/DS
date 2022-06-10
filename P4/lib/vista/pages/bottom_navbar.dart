@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../modelo/publication.dart';
 import '../../vista/pages/profile_page.dart';
 import '../../controlador/controlador.dart';
-import '../../modelo/publicacion.dart';
 import 'bottom_navbar_pulsado.dart';
 import 'home_screen.dart';
 import 'Home.dart';
 
 class BottomNavBarView extends StatelessWidget {
 
-  late List<Publicacion> _listaPublicaciones;
+  late List<Publication> _listaPublicaciones;
   late Controlador _controlador;
 
-  BottomNavBarView(List<Publicacion> listaPublicaciones, Controlador controlador){
+  BottomNavBarView(List<Publication> listaPublicaciones, Controlador controlador){
     _listaPublicaciones = listaPublicaciones;
     _controlador = controlador;
   }
@@ -95,7 +95,7 @@ class BottomNavBarView extends StatelessWidget {
             ),
             actions: [
               TextButton(onPressed: () {
-                Publicacion new_post = _controlador.publicarPost(controlPost.text, _controlador.getSesion());
+                Publication new_post = _controlador.publicarPost(controlPost.text, _controlador.getSesion());
                 _listaPublicaciones.add(new_post);
                 Navigator.pop(context);
                 Navigator.of(context).push(MaterialPageRoute(

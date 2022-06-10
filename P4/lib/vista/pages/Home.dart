@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import '../../modelo/publicacion.dart';
-import '../../modelo/usuario.dart';
+import '../../modelo/publication.dart';
+import '../../modelo/user.dart';
 
 class Home extends StatefulWidget{
 
-  late List<Publicacion> _listaPublicaciones;
+  late List<Publication> _listaPublicaciones;
   ScrollController _scrollController = new ScrollController();
 
-  Home(List<Publicacion> listaPublicaciones, ScrollController controller){
+  Home(List<Publication> listaPublicaciones, ScrollController controller){
     _listaPublicaciones=listaPublicaciones;
     _scrollController = controller;
   }
@@ -27,7 +27,7 @@ class _HomeState extends State<Home> {
         controller: widget._scrollController,
         reverse: true,
         itemCount: widget._listaPublicaciones.length,
-        itemBuilder: (context, index) {
+        itemBuilder: (context, index){
           return _postView(widget._listaPublicaciones[index],context);
 
         });
@@ -35,11 +35,11 @@ class _HomeState extends State<Home> {
 }
 
 
-Widget _postView(Publicacion pub,BuildContext context) {
+Widget _postView(Publication pub,BuildContext context){
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _postAuthorRow(pub.getUsuario(),context),
+        _postAuthorRow(pub.getUsuario() as User,context),
         _postImage(pub.getImagen()),
         _postCaption(pub.getTexto()),
       ],
@@ -63,7 +63,7 @@ Widget _postView(Publicacion pub,BuildContext context) {
     );
   }
 
-  Widget _postAuthorRow(Usuario usu, BuildContext context) {
+  Widget _postAuthorRow(User usu, BuildContext context) {
     const double avatarDiameter = 44;
     return GestureDetector(
       child: Row(
