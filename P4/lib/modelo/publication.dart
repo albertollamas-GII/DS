@@ -5,15 +5,15 @@ import 'user.dart';
 import 'package:http/http.dart' as http;
 
 class Publication {
-  int id;
+  int ?id;
   String text;
-  String user;
+  int user;
   DateTime date;
   String img;
 
   static const  String _baseAddress='clados.ugr.es';
 
-  static const  String _applicationName='DS/api/';
+  static const  String _applicationName='DS2_4/api';
 
   @override
   String toString()
@@ -30,11 +30,11 @@ class Publication {
   void setTexto(String textn){
     this.text = textn;
 
-    Publication.updatePublication(img: img, user: user, date: date, text: textn, id: id);
+    //Publication.updatePublication(img: img, user: user, date: date, text: textn, id: id!);
   }
 
   Future<User> getUsuario() async { //ESTO VA A DAR POSIBLEMENTE PROBLEMAS
-    return await User.getUser(user);
+    return await User.getUserId(user);
   }
 
   DateTime getFecha(){
@@ -60,19 +60,18 @@ class Publication {
   };
 
 
-  Publication.fromJson(Map<String, dynamic> json):
-        id = json['id'],
+  Publication.fromJson(Map<String, dynamic> json) :
         img = json['img'],
-        user=json['user'],
+        user= json['user_id'],
         date= DateTime.now(),
-        text= json['text'];
+        text= json['description'];
 
 
 
   //////////// get //////////////////
   static Future<Publication> getPublication(String id) async {
     final response = await http.get(
-        Uri.https(_baseAddress, '$_applicationName/v1/projects/$id'),
+        Uri.https(_baseAddress, '$_applicationName/v1/publications/$id'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         }
@@ -91,14 +90,14 @@ class Publication {
 
   static Future<Publication> createPublication({required img, required user, required date, required text}) async {
     final response = await http.post(
-      Uri.https(_baseAddress, '$_applicationName/v1/projects/'),
+      Uri.https(_baseAddress, '$_applicationName/v1/publications/'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
       body: jsonEncode(<String, String>{
       'img': img!,
-      'user': user!,
-      'date': date!,
+      'user_id': user!,
+      'date': date!.toString(),
       'text': text!
       }),
     );
@@ -114,7 +113,7 @@ class Publication {
 
   static Future<Publication> deletePublication(String id) async {
     final http.Response response = await http.delete(
-      Uri.https(_baseAddress, '$_applicationName/v1/projects/$id'),
+      Uri.https(_baseAddress, '$_applicationName/v1/publications/$id'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
@@ -131,7 +130,7 @@ class Publication {
 
   static Future<Publication> updatePublication({required img, required user, required date, required text, required int id}) async {
     final http.Response response = await http.put(
-      Uri.https(_baseAddress, '$_applicationName/v1/projects/$id'),
+      Uri.https(_baseAddress, '$_applicationName/v1/publications/$id'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
@@ -152,7 +151,7 @@ class Publication {
   //////////// getPublicationsDelUsuario //////////////////
   static Future<List<Publication>> getPublicationsUser(int idUsuario) async {
     final response = await http.get(
-        Uri.https(_baseAddress, '$_applicationName/v2/projects/$idUsuario'),
+        Uri.https(_baseAddress, '$_applicationName/v2/publications/$idUsuario'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         }

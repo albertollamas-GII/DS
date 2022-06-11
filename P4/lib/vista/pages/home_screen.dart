@@ -17,12 +17,14 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   TextEditingController? _textEditingController = TextEditingController();
     List<String> usuariosOnSearch =[];
-    late List<String> usuarios;
+    List<String> usuarios = [];
+    List<String> imagenes = ['','','','','','','',''];
 
 
   @override
   Widget build(BuildContext context) {
-    usuarios = widget._controlador.getNombresUsuarios();
+    rellenarUsuarios();
+    cargarImagenes();
 
     return Scaffold(
       appBar: AppBar(
@@ -92,7 +94,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
                   children: [
                     CircleAvatar(
-                        child: Image.asset((widget._controlador.BuscarUsuarioPorNombre(usuarios[index]) as User).getImagen()),
+                        child: Image.asset(imagenes[index]),
                         backgroundColor: Colors.transparent,
                     ),
                     GestureDetector(
@@ -144,5 +146,15 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void ClickBotonSeguir(String nombre){
     widget._controlador.seguir(widget._controlador.getSesion(),nombre);
+  }
+
+  void rellenarUsuarios() async{
+    usuarios = await widget._controlador.getNombresUsuarios();
+  }
+
+  void cargarImagenes() async{
+    for(var i = 0; i< usuarios.length; i++){
+      imagenes.add((await widget._controlador.BuscarUsuarioPorNombre(usuarios[i])).getImagen()) ;
+    }
   }
 }

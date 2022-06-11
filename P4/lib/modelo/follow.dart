@@ -10,7 +10,7 @@ class Follow {
 
   static const  String _baseAddress='clados.ugr.es';
 
-  static const  String _applicationName='DS/api';
+  static const  String _applicationName='DS2_4/api';
 
   Follow({required this.id, required this.follower, required this.following});
 
@@ -37,7 +37,7 @@ class Follow {
   //////////// get //////////////////
   static Future<List<Follow>> getFollowers(String nombreUsuario) async {
     final response = await http.get(
-        Uri.https(_baseAddress, '$_applicationName/v2/follows/$nombreUsuario'),
+        Uri.https(_baseAddress, '$_applicationName/v3/follows/$nombreUsuario'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         }
@@ -46,8 +46,8 @@ class Follow {
     if (response.statusCode == 200) {
       List<Follow> lista = [];
       List<dynamic> jsonlist = jsonDecode(response.body);
-      jsonlist.forEach((element) {
-        lista.add(Follow.fromJson(element)) ;
+      jsonlist.forEach((v) {
+        lista.add(Follow.fromJson(v)) ;
       });
       return lista;
     } else {
@@ -58,7 +58,7 @@ class Follow {
   //////////// get //////////////////
   static Future<List<Follow>> getFollowing(String nombreUsuario) async {
     final response = await http.get(
-        Uri.https(_baseAddress, '$_applicationName/v3/follows/$nombreUsuario'),
+        Uri.https(_baseAddress, '$_applicationName/v2/follows/$nombreUsuario'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         }
@@ -67,8 +67,8 @@ class Follow {
     if (response.statusCode == 200) {
       List<Follow> lista = [];
       List<dynamic> jsonlist = jsonDecode(response.body);
-      jsonlist.forEach((element) {
-        lista.add(Follow.fromJson(element)) ;
+      jsonlist.forEach((v) {
+        lista.add(Follow.fromJson(v)) ;
       });
       return lista;
     } else {

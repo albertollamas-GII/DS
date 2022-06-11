@@ -2,16 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import '../../modelo/publication.dart';
 import '../../modelo/user.dart';
+import 'dart:io';
 
 class Home extends StatefulWidget{
 
-  late List<Publication> _listaPublicaciones;
+  List<Publication> _listaPublicaciones = [];
+
   ScrollController _scrollController = new ScrollController();
 
   Home(List<Publication> listaPublicaciones, ScrollController controller){
+    _HomeState.load = false;
     _listaPublicaciones=listaPublicaciones;
+
     _scrollController = controller;
   }
+
+
 
   @override
   _HomeState createState() => _HomeState();
@@ -19,27 +25,46 @@ class Home extends StatefulWidget{
 }
 
 class _HomeState extends State<Home> {
+  List<User> _listaUsuarios = [];
+  static var load = false;
+
+  Future<dynamic> rellenarListaUsuarios() async {
+    widget._listaPublicaciones.forEach((element) async{
+      _listaUsuarios.add( await User.getUserId(element.user) );
+    });
+  }
 
 
   @override
   Widget build(BuildContext context) {
+    if(!load) {
+      rellenarListaUsuarios().then(
+            (value) {
+              setState(() {
+                load = true;
+              });
+        }
+      );
+    }
+
     return ListView.builder(
         controller: widget._scrollController,
         reverse: true,
         itemCount: widget._listaPublicaciones.length,
         itemBuilder: (context, index){
-          return _postView(widget._listaPublicaciones[index],context);
+          return _postView(widget._listaPublicaciones[index], _listaUsuarios[index] ,context);
 
         });
   }
 }
 
 
-Widget _postView(Publication pub,BuildContext context){
+  Widget _postView(Publication pub, User usu,BuildContext context){
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _postAuthorRow(pub.getUsuario() as User,context),
+        _postAuthorRow(usu,context),
         _postImage(pub.getImagen()),
         _postCaption(pub.getTexto()),
       ],

@@ -17,7 +17,7 @@ class User {
 
   static const  String _baseAddress='clados.ugr.es';
 
-  static const  String _applicationName='DS2_4/api/v1/';
+  static const  String _applicationName='DS2_4/api';
 
   @override
   String toString()
@@ -87,7 +87,7 @@ class User {
   ////////////// index ///////////////////
   static Future<List<String>> getAllUser() async{
     final response = await http.get(
-        Uri.https(_baseAddress, '$_applicationName/users'),
+        Uri.https(_baseAddress, '$_applicationName/v1/users'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         }
@@ -108,9 +108,26 @@ class User {
 
 
   //////////// get //////////////////
-  static Future<User> getUser(String username) async {
+  static Future<User> getUserNombre(String username) async {
     final response = await http.get(
-        Uri.https(_baseAddress, '$_applicationName/users/$username'),
+        Uri.https(_baseAddress, '$_applicationName/v1/users/$username'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        }
+    );
+
+    if (response.statusCode == 200) {
+      return User.fromJson(jsonDecode(response.body));
+    } else {
+      throw Exception('Failed to get User');
+    }
+  }
+
+
+  //////////// get //////////////////
+  static Future<User> getUserId(int userid) async {
+    final response = await http.get(
+        Uri.https(_baseAddress, '$_applicationName/v2/users/$userid'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         }
@@ -129,7 +146,7 @@ class User {
   static Future<User> createUser({required name, required surname, required username,  required email, required password,required about }) async {
     var client = http.Client();
     final response = await client.post(
-      Uri.https(_baseAddress, '$_applicationName/users/'),
+      Uri.https(_baseAddress, '$_applicationName/v1/users/'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
         "Access-Control-Allow-Origin": "*", // Required for CORS support to work
@@ -162,7 +179,7 @@ class User {
 
   Future<User> updateUser({String? usernameAntiguo, String? usernameNuevo, String? email, String? about}) async {
     final http.Response response = await http.put(
-      Uri.https(_baseAddress, '$_applicationName/users/$usernameAntiguo'),
+      Uri.https(_baseAddress, '$_applicationName/v1/users/$usernameAntiguo'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
@@ -188,20 +205,20 @@ class User {
     return lista;
   }
 
-  Future<List<User>> getSeguidores() async{
+  Future<List<String>> getSeguidores() async{
     List<Follow> lista = await Follow.getFollowers(username);
-    List<User> listaSeguidores = [];
-    lista.forEach((element) async{
-      listaSeguidores.add( await User.getUser(element.follower));
+    List<String> listaSeguidores = [];
+    lista.forEach((element){
+      listaSeguidores.add(element.follower) ;
     });
     return listaSeguidores;
   }
 
-  Future<List<User>> getSeguidos() async{
+  Future<List<String>> getSeguidos() async{
     List<Follow> lista = await Follow.getFollowing(username);
-    List<User> listaSeguidos = [];
+    List<String> listaSeguidos = [];
     lista.forEach((element) async{
-      listaSeguidos.add( await User.getUser(element.following));
+      listaSeguidos.add( element.following);
     });
     return listaSeguidos;
   }
@@ -232,12 +249,12 @@ class User {
 
   void publicar(Publication pub){
     if(pub != null){
-      Publication.createPublication(img: pub.img, user: username, date: DateTime.now(), text: pub.text);
+      Publication.createPublication(img: pub.img, user: id, date: DateTime.now(), text: pub.text);
     }
   }
 
   void seguir(User usu){
-    if(this != usu && usu != null){
+    if(id != usu.id && usu != null){
       Follow.createFollow(follower: username, following: usu.username);
     }
   }

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:twitter_app/vista/pages/splash.dart';
-import 'controlador/controlador.dart';
-import 'vista/pages/login.dart';
+import './vista/pages/splash.dart';
+
 
 
 void main(){

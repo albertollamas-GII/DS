@@ -43,12 +43,12 @@ class Controlador  {
 
   }
 
-  User BuscarUsuarioPorNombre(String nombre){
-    return User.getUser(nombre) as User;
+  Future<User> BuscarUsuarioPorNombre(String nombre) async{
+    return User.getUserNombre(nombre);
   }
 
-  void ConfirmacionLogin(String nombreUsuario, String password, BuildContext context){
-    User usu = BuscarUsuarioPorNombre(nombreUsuario);
+  void ConfirmacionLogin(String nombreUsuario, String password, BuildContext context) async{
+    User usu = await BuscarUsuarioPorNombre(nombreUsuario);
     if(usu != null) {
       if (usu.getPassword() == password) {
         _sesion = usu;
@@ -86,7 +86,8 @@ class Controlador  {
 
     List<Publication> publicaciones = [];
     for(var usu in await usuario.getSeguidos()){
-      for(var pub in await usu.getTablon()){
+      var usu2 = await User.getUserNombre(usu);
+      for(var pub in await usu2.getTablon()){
         publicaciones.add(pub);
       }
     }
@@ -110,8 +111,8 @@ class Controlador  {
     );
   }
 
-  List<String> getNombresUsuarios(){
-    return User.getAllUser() as List<String>;
+  Future<List<String>> getNombresUsuarios() async{
+    return User.getAllUser() ;
   }
 
   User getSesion(){
@@ -131,18 +132,21 @@ class Controlador  {
   Publication publicarPost(String texto, User autor){
     List<String> imagenes = ["assets/universitter.png", "assets/etsiit.jpeg", "assets/imagen5.jpeg"];
     var rng = Random();
+    var imagen = imagenes[rng.nextInt(3)];
+    var hora = DateTime.now();
+    var username = autor.id;
 
-    Publication post = Publication.fromJson(jsonDecode("{img: imagenes[rng.nextInt(3)], user: autor, date: DateTime.now(), text: texto}"));
+    Publication post = Publication.fromJson(jsonDecode("{\"img\": \"$imagen\", \"user_id\": $username, \"date\": \"$hora\", \"description\": \"$texto\"}"));
     //AÑADIR A LA BASE DE DATOS
-    
+
     gestorFiltros.setTarget(post);
     gestorFiltros.ejecutar();
     _sesion.publicar(post);
     return post;
   }
 
-  void seguir(usu,nombre){
-    var usu_aux = this.BuscarUsuarioPorNombre(nombre);
+  void seguir(usu,nombre) async {
+    var usu_aux = await BuscarUsuarioPorNombre(nombre);
     if( usu_aux != null){
       usu.seguir(usu_aux);
     }
