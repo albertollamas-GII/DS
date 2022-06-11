@@ -127,10 +127,15 @@ class User {
   ////////////// create ///////////////
 
   static Future<User> createUser({required name, required surname, required username,  required email, required password,required about }) async {
-    final response = await http.post(
+    var client = http.Client();
+    final response = await client.post(
       Uri.https(_baseAddress, '$_applicationName/users/'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
+        "Access-Control-Allow-Origin": "*", // Required for CORS support to work
+        "Access-Control-Allow-Credentials": "true", // Required for cookies, authorization headers with HTTPS
+        "Access-Control-Allow-Headers": "Origin,Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,locale",
+        "Access-Control-Allow-Methods": "POST, OPTIONS"
       },
       body: jsonEncode(<String, String>{
         'name': name,
@@ -143,8 +148,10 @@ class User {
       }),
     );
     if (response.statusCode == 201) {
+      client.close();
       return User.fromJson(jsonDecode(response.body));
     } else {
+      client.close();
       throw Exception('Failed to create User');
     }
 

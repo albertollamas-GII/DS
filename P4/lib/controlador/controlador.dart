@@ -43,12 +43,12 @@ class Controlador  {
 
   }
 
-  Future<User> BuscarUsuarioPorNombre(String nombre) async{
-    return await User.getUser(nombre);
+  User BuscarUsuarioPorNombre(String nombre){
+    return User.getUser(nombre) as User;
   }
 
-  void ConfirmacionLogin(String nombreUsuario, String password, BuildContext context) async{
-    User usu = await BuscarUsuarioPorNombre(nombreUsuario);
+  void ConfirmacionLogin(String nombreUsuario, String password, BuildContext context){
+    User usu = BuscarUsuarioPorNombre(nombreUsuario);
     if(usu != null) {
       if (usu.getPassword() == password) {
         _sesion = usu;
@@ -69,9 +69,9 @@ class Controlador  {
     ));
   }
 
-  void irNavBar(User usuario, BuildContext context){
+  void irNavBar(User usuario, BuildContext context) async{
     List<Publication> publicaciones = [];
-    for(var pub in usuario.getTablon() as List<Publication>){
+    for(var pub in await usuario.getTablon()){
       publicaciones.add(pub);
     }
 
@@ -82,11 +82,11 @@ class Controlador  {
     ));
   }
 
-  void irNavBarSeguidos(User usuario, BuildContext context){
+  void irNavBarSeguidos(User usuario, BuildContext context)async{
 
     List<Publication> publicaciones = [];
-    for(var usu in usuario.getSeguidos() as List<User>){
-      for(var pub in usu.getTablon() as List<Publication>){
+    for(var usu in await usuario.getSeguidos()){
+      for(var pub in await usu.getTablon()){
         publicaciones.add(pub);
       }
     }

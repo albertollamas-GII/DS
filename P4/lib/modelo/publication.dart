@@ -81,7 +81,7 @@ class Publication {
     if (response.statusCode == 200) {
       return Publication.fromJson(jsonDecode(response.body));
     } else {
-      throw Exception('Failed to get project');
+      throw Exception('Failed to get Publication');
     }
   }
 
@@ -105,7 +105,7 @@ class Publication {
     if (response.statusCode == 201) {
       return Publication.fromJson(jsonDecode(response.body));
     } else {
-      throw Exception('Failed to create project');
+      throw Exception('Failed to create Publication');
     }
 
   }
@@ -122,7 +122,7 @@ class Publication {
     if (response.statusCode == 200) {
       return Publication.fromJson(jsonDecode(response.body));
     } else {
-      throw Exception('Failed to delete project.');
+      throw Exception('Failed to delete Publication.');
     }
   }
 
@@ -145,7 +145,7 @@ class Publication {
     if (response.statusCode == 200) {
       return Publication.fromJson(jsonDecode(response.body));
     } else {
-      throw Exception('Failed to update project');
+      throw Exception('Failed to update Publication');
     }
   }
 
@@ -167,7 +167,7 @@ class Publication {
       return lista;
 
     } else {
-      throw Exception('Failed to get project');
+      throw Exception('Failed to get Publication');
     }
   }
 

@@ -37,7 +37,7 @@ class Follow {
   //////////// get //////////////////
   static Future<List<Follow>> getFollowers(String nombreUsuario) async {
     final response = await http.get(
-        Uri.https(_baseAddress, '$_applicationName/v2/projects/$nombreUsuario'),
+        Uri.https(_baseAddress, '$_applicationName/v2/follows/$nombreUsuario'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         }
@@ -51,14 +51,14 @@ class Follow {
       });
       return lista;
     } else {
-      throw Exception('Failed to get project');
+      throw Exception('Failed to get Follow');
     }
   }
 
   //////////// get //////////////////
   static Future<List<Follow>> getFollowing(String nombreUsuario) async {
     final response = await http.get(
-        Uri.https(_baseAddress, '$_applicationName/v3/projects/$nombreUsuario'),
+        Uri.https(_baseAddress, '$_applicationName/v3/follows/$nombreUsuario'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         }
@@ -72,7 +72,7 @@ class Follow {
       });
       return lista;
     } else {
-      throw Exception('Failed to get project');
+      throw Exception('Failed to get Follow');
     }
   }
 
@@ -80,7 +80,7 @@ class Follow {
 
   static Future<Follow> createFollow({required String follower, required String following}) async {
     final response = await http.post(
-      Uri.https(_baseAddress, '$_applicationName/v1/projects/'),
+      Uri.https(_baseAddress, '$_applicationName/v1/follows/'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
@@ -92,7 +92,7 @@ class Follow {
     if (response.statusCode == 201) {
       return Follow.fromJson(jsonDecode(response.body));
     } else {
-      throw Exception('Failed to create project');
+      throw Exception('Failed to create Follow');
     }
 
   }
