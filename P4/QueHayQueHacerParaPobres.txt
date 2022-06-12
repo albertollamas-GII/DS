@@ -3,7 +3,7 @@ Objetivos:
 Documentacion:
 -Equipos organizados para cada parte
 
--An‡lisis en una Descripci—nn Arquitectonica light:
+-An‡lisis en una Descripci—n Arquitectonica light:
 	- Requisitos funcionales y no funcionales
 	- Listado de partes interesadas y preocupaciones de cada unna
 	- Diagrama que muestre arquitectura del sistema
