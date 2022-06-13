@@ -10,6 +10,7 @@ class HomeScreen extends StatefulWidget {
   late Controlador _controlador;
 
   HomeScreen(Controlador controlador){
+    _HomeScreenState.load = false;
     _controlador = controlador;
   }
 }
@@ -18,13 +19,23 @@ class _HomeScreenState extends State<HomeScreen> {
   TextEditingController? _textEditingController = TextEditingController();
     List<String> usuariosOnSearch =[];
     List<String> usuarios = [];
-    List<String> imagenes = ['','','','','','','',''];
+    List<String> imagenes = List<String>.filled(5, "");
+    static var load = false;
 
 
   @override
   Widget build(BuildContext context) {
-    rellenarUsuarios();
-    cargarImagenes();
+    if(!load){
+      rellenarUsuarios().then(
+        (value) => cargarImagenes().then(
+          (value) => {
+            setState(() {
+              load = true;
+            })
+          }
+        )
+      );
+    }
 
     return Scaffold(
       appBar: AppBar(
@@ -148,13 +159,14 @@ class _HomeScreenState extends State<HomeScreen> {
     widget._controlador.seguir(widget._controlador.getSesion(),nombre);
   }
 
-  void rellenarUsuarios() async{
+  Future<dynamic> rellenarUsuarios() async{
     usuarios = await widget._controlador.getNombresUsuarios();
   }
 
-  void cargarImagenes() async{
+  Future<dynamic> cargarImagenes() async{
     for(var i = 0; i< usuarios.length; i++){
-      imagenes.add((await widget._controlador.BuscarUsuarioPorNombre(usuarios[i])).getImagen()) ;
+      // imagenes.add((await widget._controlador.BuscarUsuarioPorNombre(usuarios[i])).getImagen()) ;
+      imagenes[i] = (await widget._controlador.BuscarUsuarioPorNombre(usuarios[i])).getImagen();
     }
   }
 }

@@ -29,7 +29,11 @@ class _HomeState extends State<Home> {
   static var load = false;
 
   Future<dynamic> rellenarListaUsuarios() async {
+    // for(var i = 0; i< widget._listaPublicaciones.length; i++){
+    //   _listaUsuarios[i] = await User.getUserId(widget._listaPublicaciones[i].user);
+    // }
     widget._listaPublicaciones.forEach((element) async{
+      
       _listaUsuarios.add( await User.getUserId(element.user) );
     });
   }
@@ -38,9 +42,11 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     if(!load) {
+      // _listaUsuarios.fillRange(0,widget._listaPublicaciones.length,User.fromJson({'id': 0, 'name': '', 'surname': '', 'username': '', 'email': '', 'password': '', 'img':'', 'about':''}));
       rellenarListaUsuarios().then(
             (value) {
               setState(() {
+                print("holasbdhafa");
                 load = true;
               });
         }
@@ -50,7 +56,7 @@ class _HomeState extends State<Home> {
     return ListView.builder(
         controller: widget._scrollController,
         reverse: true,
-        itemCount: widget._listaPublicaciones.length,
+        itemCount: _listaUsuarios.length,
         itemBuilder: (context, index){
           return _postView(widget._listaPublicaciones[index], _listaUsuarios[index] ,context);
 
