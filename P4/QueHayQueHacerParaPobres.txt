@@ -1,0 +1,28 @@
+Objetivos:
+
+Documentacion:
+-Equipos organizados para cada parte
+
+-An‡lisis en una Descripci—n Arquitectonica light:
+	- Requisitos funcionales y no funcionales
+	- Listado de partes interesadas y preocupaciones de cada unna
+	- Diagrama que muestre arquitectura del sistema
+	- Listado de criterios de calidad a partir de los requisitos no funcionales que cumplan con las expectativas de los distintos interesados en el sistema, normativa legal, criterios que consideremos importantes.
+	- Dise–o de pruebas de sistema
+
+- Diagrama de clases de dise–o
+
+- Codigo: App de flutter -> Universitter (lo que tenemos). Falta conectarlo a RoR (clados)
+Aplicaci—n web RoR -> web de Administraci—n de Unniversitter
+Pruebas de unidad de flutter y RoR
+
+- Pruebas
+
+Todo en un unico pdf menos el codigo
+
+
+Decir que se ha usado github para el control de versiones
+Que no haya codigo redundante
+Validez
+Cumplimiento con los requisitos no funcionales
+Exito de las pruebas

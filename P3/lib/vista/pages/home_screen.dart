@@ -16,7 +16,6 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   TextEditingController? _textEditingController = TextEditingController();
     List<String> usuariosOnSearch =[];
-    //Se llamaría al método getNombresUsuario()
     late List<String> usuarios;
 
 
